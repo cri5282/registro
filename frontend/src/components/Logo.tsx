@@ -1,7 +1,11 @@
 import { useId } from "react";
+import { useTheme } from "../themes/ThemeProvider";
+import { useLongPress } from "../themes/useLongPress";
 
 export function LogoMark({ size = 40 }: { size?: number }) {
   const gradient = useId().replace(/:/g, "");
+  const { openPrompt } = useTheme();
+  const longPress = useLongPress(openPrompt);
   return (
     <svg
       viewBox="0 0 64 64"
@@ -10,12 +14,13 @@ export function LogoMark({ size = 40 }: { size?: number }) {
       role="img"
       aria-label="Registro"
       className="logo-mark"
+      {...longPress}
     >
       <defs>
         <linearGradient id={gradient} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#8b7cff" />
-          <stop offset="55%" stopColor="#6d5dfc" />
-          <stop offset="100%" stopColor="#22d3ee" />
+          <stop offset="0%" style={{ stopColor: "var(--logo-1)" }} />
+          <stop offset="55%" style={{ stopColor: "var(--logo-2)" }} />
+          <stop offset="100%" style={{ stopColor: "var(--logo-3)" }} />
         </linearGradient>
       </defs>
       <rect width="64" height="64" rx="16" fill={`url(#${gradient})`} />

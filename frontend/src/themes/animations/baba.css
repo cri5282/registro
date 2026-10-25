@@ -1,0 +1,197 @@
+.bb-room {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, #3a1d5e, #120a22 70%);
+  opacity: 0;
+  animation:
+    bb-in 0.4s forwards,
+    bb-hide 0.01s 3.2s forwards;
+}
+
+/* Lampo a tempo con la cassa: solo opacità, niente filtri sull'intero schermo. */
+.bb-room::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(255, 120, 200, 0.35), transparent 70%);
+  opacity: 0;
+  will-change: opacity;
+  animation: bb-beat 0.25s 0.6s ease-out 8;
+}
+
+.bb-specks {
+  position: absolute;
+  inset: -40%;
+  will-change: transform;
+  animation: bb-rotate 5s linear infinite;
+}
+
+.bb-speck {
+  position: absolute;
+  background: var(--c);
+  border-radius: 50%;
+  box-shadow: 0 0 12px 3px var(--c);
+  opacity: 0;
+  animation: bb-speck 0.6s 0.9s ease-out forwards;
+}
+
+.bb-ball {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(34vmin, 240px);
+  transform: translate(-50%, -110%);
+  animation: bb-drop 0.8s 0.25s cubic-bezier(0.3, 1.5, 0.5, 1) forwards;
+}
+
+.bb-string {
+  width: 2px;
+  height: 18vh;
+  background: linear-gradient(#999, #ddd);
+}
+
+.bb-ball img {
+  width: 100%;
+  margin-top: -6px;
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 60px rgba(255, 95, 162, 0.5));
+  animation: bb-sway 1s ease-in-out infinite alternate;
+}
+
+.bb-slay {
+  position: absolute;
+  top: 66%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #fff;
+  font: 800 clamp(64px, 18vw, 180px) / 1 "Bricolage Grotesque", system-ui, sans-serif;
+  letter-spacing: -0.04em;
+  text-align: center;
+  background: linear-gradient(90deg, #e40303, #ff8c00, #ffed00, #008026, #24408e, #732982, #e40303) 0 0 / 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgba(255, 95, 162, 0.6));
+  opacity: 0;
+  transform: translateY(-50%) scale(0.4);
+  animation:
+    bb-slay 0.45s 1.25s cubic-bezier(0.2, 1.6, 0.4, 1) forwards,
+    bb-rainbow 1.5s 1.25s linear infinite;
+}
+
+.bb-wave {
+  position: absolute;
+  inset: -20% -40%;
+  display: flex;
+  transform: skewX(-18deg);
+}
+
+.bb-wave span {
+  flex: 1;
+  will-change: transform;
+  margin-right: -1px;
+  transform: translateX(-480%);
+  animation: bb-wave 1.3s 2.55s cubic-bezier(0.45, 0.1, 0.55, 0.9) forwards;
+}
+
+.bb-confetti {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: bb-confetti 1.5s cubic-bezier(0.25, 0.6, 0.5, 1) forwards;
+}
+
+.bb-confetti.from-left {
+  left: 4vw;
+}
+
+.bb-confetti.from-right {
+  right: 4vw;
+}
+
+@keyframes bb-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bb-beat {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes bb-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes bb-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bb-speck {
+  to {
+    opacity: 0.85;
+  }
+}
+
+@keyframes bb-drop {
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes bb-sway {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes bb-slay {
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@keyframes bb-rainbow {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* Le bande attraversano tutto: a metà corsa coprono lo schermo, poi escono a destra. */
+@keyframes bb-wave {
+  to {
+    transform: translateX(480%);
+  }
+}
+
+@keyframes bb-confetti {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(calc(var(--dx) * 0.7), var(--peak)) rotate(calc(var(--spin) * 0.5));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), 10vh) rotate(var(--spin));
+  }
+}

@@ -8,11 +8,15 @@ import EventCard from "../components/EventCard";
 import { EmptyState, ErrorBanner } from "../components/ui";
 import { addDays, allDayIncludes, fmtFullDate, greeting, localDateKey, startOfDay, timeAgo } from "../date";
 import { isCancelled, type AttendanceStatus, type EventItem } from "../types";
+import { themedGreeting, useTheme } from "../themes/ThemeProvider";
+import OddsTicker from "../themes/OddsTicker";
+import ThemeWidget from "../themes/ThemeWidget";
 
 export default function TodayPage() {
   const { user } = useAuth();
   const { version, syncing, lastSyncAt } = useSync();
   const { push } = useToast();
+  const { copy } = useTheme();
   const [events, setEvents] = useState<EventItem[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [reload, setReload] = useState(0);
@@ -174,26 +178,27 @@ export default function TodayPage() {
       <header className="page-header">
         <div>
           <p className="eyebrow">
-            {greeting()}, {firstName}
+            {themedGreeting(copy, firstName) ?? `${greeting()}, ${firstName}`}
           </p>
-          <h1>Oggi</h1>
-          <p className="page-subtitle">{fmtFullDate(new Date())}</p>
+          <h1>{copy.titles.today ?? "Oggi"}</h1>
+          <p className="page-subtitle">
+            {fmtFullDate(new Date())}
+            <span className="page-subtitle-meta">
+              {syncing ? "sincronizzazione in corso…" : `aggiornato ${timeAgo(lastSyncAt)}`}
+            </span>
+          </p>
         </div>
         <div className="today-stats">
           <span className="stat-chip stat-chip-ok">
-            <strong>{counts.present}</strong> presenti
+            <strong>{counts.present}</strong> {copy.presentCount}
           </span>
           <span className="stat-chip stat-chip-bad">
-            <strong>{counts.absent}</strong> assenti
+            <strong>{counts.absent}</strong> {copy.absentCount}
           </span>
         </div>
       </header>
 
-      <div className="sync-line">
-        <span>
-          {syncing ? "Sincronizzazione in corso…" : `Aggiornato ${timeAgo(lastSyncAt)}`}
-        </span>
-      </div>
+      <OddsTicker events={timed} />
 
       {error ? <ErrorBanner message={error} onRetry={() => setReload((n) => n + 1)} /> : null}
 
@@ -210,7 +215,7 @@ export default function TodayPage() {
 
       <section className="section">
         <div className="section-head">
-          <h2>Lezioni</h2>
+          <h2>{copy.titles.lessons ?? "Lezioni"}</h2>
           {events ? <span className="section-count">{timed.length}</span> : null}
         </div>
 
@@ -241,6 +246,8 @@ export default function TodayPage() {
           </div>
         )}
       </section>
+
+      <ThemeWidget placement="page" />
 
       {!syncing && !events?.length && !error ? (
         <p className="hint">

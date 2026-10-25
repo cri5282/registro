@@ -22,8 +22,10 @@ import { isGoogleConfigured } from "../firebase";
 import { fmtDateTime, timeAgo } from "../date";
 import { PasswordInput, Spinner } from "../components/ui";
 import type { CalendarInfo } from "../types";
+import { useTheme } from "../themes/ThemeProvider";
 
 export default function SettingsPage() {
+  const { copy } = useTheme();
   const { user, changePassword, deleteAccount, logout } = useAuth();
   const { syncNow, syncing, lastSyncAt, calendarIds, saveCalendars, settingsLoading } = useSync();
   const { push } = useToast();
@@ -148,8 +150,7 @@ export default function SettingsPage() {
     <div className="page">
       <header className="page-header">
         <div>
-          <p className="eyebrow">Configurazione</p>
-          <h1>Impostazioni</h1>
+          <h1>{copy.titles.settings ?? "Impostazioni"}</h1>
           <p className="page-subtitle">Account, calendario condiviso e sicurezza.</p>
         </div>
       </header>
@@ -268,7 +269,11 @@ export default function SettingsPage() {
             <p className="muted">
               {isAdmin
                 ? "Gli eventi vengono importati solo quando premi “Sincronizza ora”. Gli studenti non collegano Google."
-                : "Il calendario è unico per tutta la classe ed è aggiornato dall'amministratore."}
+                : `Il calendario è unico per la classe e lo aggiorna l'amministratore${
+                    settingsLoading
+                      ? "."
+                      : ` (${calendarIds.length} ${calendarIds.length === 1 ? "calendario" : "calendari"}).`
+                  } Non serve collegare il tuo account Google.`}
             </p>
           </div>
           {isAdmin ? (
@@ -368,23 +373,7 @@ export default function SettingsPage() {
               ) : null}
             </div>
           </>
-        ) : (
-          <div className="card setting-row">
-            <div>
-              <strong>Calendari configurati</strong>
-              <p>
-                {settingsLoading
-                  ? "Caricamento…"
-                  : `${calendarIds.length} ${calendarIds.length === 1 ? "calendario" : "calendari"} importati dall'amministratore.`}
-              </p>
-              <p className="muted">
-                Non serve collegare il tuo account Google: vedrai gli eventi condivisi della
-                classe.
-              </p>
-            </div>
-            <ShieldCheck size={22} className="setting-icon" />
-          </div>
-        )}
+        ) : null}
       </section>
 
       <section className="section">

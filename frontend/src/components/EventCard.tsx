@@ -2,14 +2,15 @@ import { Check, Clock3, ExternalLink, MapPin, X } from "lucide-react";
 import { useEffect, useState, type FormEvent } from "react";
 import { fmtTime, isTimeInRange } from "../date";
 import { isCancelled, type AttendanceStatus, type EventItem } from "../types";
+import { useTheme } from "../themes/ThemeProvider";
+import { announceAttendance } from "../themes/ThemeExtras";
 
 const OPTIONS: {
   value: AttendanceStatus;
-  label: string;
   icon: typeof Check;
 }[] = [
-  { value: "present", label: "Presente", icon: Check },
-  { value: "absent", label: "Assente", icon: X },
+  { value: "present", icon: Check },
+  { value: "absent", icon: X },
 ];
 
 function timeValue(value: string): number {
@@ -34,6 +35,7 @@ export default function EventCard({
   busy = false,
   compact = false,
 }: Props) {
+  const { copy } = useTheme();
   const active = event.attendance?.status;
   const cancelled = isCancelled(event);
   const isPast = new Date(event.end).getTime() < Date.now();
@@ -166,10 +168,14 @@ export default function EventCard({
                     aria-pressed={isActive}
                     disabled={busy}
                     title={isActive ? "Tocca di nuovo per annullare" : undefined}
-                    onClick={() => (isActive ? onClear() : onSet(option.value))}
+                    onClick={() => {
+                      if (isActive) return onClear();
+                      announceAttendance(option.value);
+                      onSet(option.value);
+                    }}
                   >
                     <Icon size={15} strokeWidth={2.6} />
-                    <span>{option.label}</span>
+                    <span>{copy[option.value]}</span>
                   </button>
                 );
               })}

@@ -1,0 +1,246 @@
+.anim-chantalle {
+  font-family: -apple-system, "SF Pro Display", "Inter", system-ui, sans-serif;
+}
+
+.ch-lock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%, #ff7eb3 0, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 90% 30%, #7a5cff 0, transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, #ff9a5a 0, transparent 65%),
+    linear-gradient(160deg, #3a1d6e, #c2367c);
+  opacity: 0;
+  animation:
+    ch-in 0.3s ease-out forwards,
+    ch-unlock 0.75s 2.65s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+}
+
+.ch-status {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  padding: 16px 28px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ch-status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ch-signal {
+  width: 18px;
+  height: 11px;
+  background: linear-gradient(90deg, #fff 0 3px, transparent 3px 5px, #fff 5px 8px, transparent 8px 10px, #fff 10px 13px, transparent 13px 15px, #fff 15px);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}
+
+.ch-battery {
+  width: 25px;
+  height: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  background: linear-gradient(90deg, #fff 70%, transparent 70%) 1px 1px / calc(100% - 2px) calc(100% - 2px) no-repeat;
+}
+
+.ch-island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  width: 118px;
+  height: 34px;
+  background: #000;
+  border-radius: 20px;
+  transform: translateX(-50%);
+}
+
+.ch-clock {
+  margin-top: 9vh;
+  text-align: center;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+.ch-date {
+  margin: 0;
+  font-size: clamp(17px, 3vw, 22px);
+  font-weight: 600;
+  text-transform: capitalize;
+  opacity: 0.9;
+}
+
+.ch-time {
+  margin: -4px 0 0;
+  font-size: clamp(88px, 22vw, 150px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ch-notif {
+  display: flex;
+  gap: 12px;
+  width: min(380px, calc(100% - 32px));
+  margin-top: 5vh;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.32);
+  border-radius: 22px;
+  backdrop-filter: blur(20px) saturate(160%);
+  color: #111;
+  opacity: 0;
+  transform: translateY(-30px) scale(0.92);
+  animation: ch-notif 0.55s 0.9s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+}
+
+.ch-app {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #5ac8fa, #007aff 55%, #5856d6);
+  border-radius: 9px;
+}
+
+.ch-notif p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.ch-notif p:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ch-notif p:first-child span {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+}
+
+.ch-slide {
+  margin: auto 0 26px;
+  font-size: 20px;
+  font-weight: 500;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.45) 0 40%, #fff 50%, rgba(255, 255, 255, 0.45) 60%) 0 0 / 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ch-shimmer 1.4s linear infinite;
+}
+
+.ch-home {
+  width: 134px;
+  height: 5px;
+  margin-bottom: 9px;
+  background: #fff;
+  border-radius: 3px;
+  animation: ch-home 0.5s 2.2s ease-in-out;
+}
+
+.ch-island-big {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 118px;
+  height: 34px;
+  overflow: hidden;
+  background: #000;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-50%);
+  animation: ch-island 1.3s 3.05s cubic-bezier(0.3, 1.3, 0.4, 1) forwards;
+}
+
+.ch-island-big span {
+  opacity: 0;
+  animation: ch-island-text 1s 3.25s ease forwards;
+}
+
+.ch-island-check {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  background: #30d158;
+  border-radius: 50%;
+  font-size: 13px;
+}
+
+@keyframes ch-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ch-unlock {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-105%);
+  }
+}
+
+@keyframes ch-notif {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ch-shimmer {
+  to {
+    background-position: -150% 0;
+  }
+}
+
+@keyframes ch-home {
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes ch-island {
+  0% {
+    opacity: 1;
+  }
+  30%,
+  75% {
+    opacity: 1;
+    width: 250px;
+    height: 54px;
+    border-radius: 28px;
+  }
+  100% {
+    opacity: 0;
+    width: 118px;
+    height: 34px;
+  }
+}
+
+@keyframes ch-island-text {
+  20%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

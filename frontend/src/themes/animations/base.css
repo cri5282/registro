@@ -1,0 +1,30 @@
+.anim {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.anim *,
+.anim *::before,
+.anim *::after {
+  box-sizing: border-box;
+}
+
+.anim img {
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.anim-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.anim-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}

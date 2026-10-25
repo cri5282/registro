@@ -1,0 +1,221 @@
+.drum-dim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(34, 31, 28, 0.55), rgba(10, 9, 8, 0.85));
+  opacity: 0;
+  animation: drum-fade-in 0.35s forwards;
+}
+
+.drum-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  animation: drum-hide 0.01s 2.35s forwards;
+}
+
+.drum-cig {
+  position: relative;
+  display: flex;
+  width: min(62vw, 520px);
+  height: min(5.4vw, 44px);
+  transform: translateX(110vw) rotate(-4deg);
+  animation:
+    drum-cig-in 0.7s 0.1s cubic-bezier(0.2, 1, 0.3, 1) forwards,
+    drum-cough 0.75s 1.2s linear;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.5));
+}
+
+.drum-filter {
+  width: 24%;
+  background:
+    radial-gradient(circle, rgba(120, 70, 20, 0.35) 1px, transparent 1.6px) 0 0 / 7px 7px,
+    linear-gradient(180deg, #e7a95c, #c98a3d 55%, #9b6626);
+  border-radius: 6px 0 0 6px;
+}
+
+.drum-paper {
+  flex: 1;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 22px, rgba(0, 0, 0, 0.03) 22px 23px),
+    linear-gradient(180deg, #ffffff, #f2ece0 60%, #d9d1c2);
+}
+
+.drum-tip {
+  position: relative;
+  width: 5%;
+  background: linear-gradient(90deg, #8c8279, #4a4440);
+  border-radius: 0 6px 6px 0;
+  animation: drum-ember 0.4s 1.05s ease-out forwards;
+}
+
+.drum-flame {
+  position: absolute;
+  right: -3%;
+  bottom: 70%;
+  width: min(4.4vw, 36px);
+  height: min(9vw, 74px);
+  background: radial-gradient(ellipse at 50% 80%, #fff6c4, #ffd23f 30%, #ff7a1a 60%, rgba(255, 90, 31, 0) 72%);
+  border-radius: 50% 50% 45% 45% / 70% 70% 30% 30%;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  filter: blur(0.6px);
+  animation:
+    drum-flame 0.5s 0.75s ease-out forwards,
+    drum-flicker 0.12s 0.75s linear 4 alternate;
+}
+
+.drum-puff {
+  position: absolute;
+  top: 46%;
+  left: calc(50% + min(31vw, 260px));
+  margin: -7vmin 0 0 -7vmin;
+  background: radial-gradient(circle, rgba(222, 216, 206, 0.95), rgba(190, 182, 170, 0.6) 55%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(6px);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: drum-puff 2.5s ease-out forwards;
+}
+
+.drum-smoke {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 40% 40%, #cfc8bd, transparent 70%),
+    radial-gradient(ellipse 70% 60% at 70% 70%, #bdb5a8, transparent 70%),
+    linear-gradient(#a59d91, #a59d91);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation:
+    drum-smoke-in 0.7s 1.65s ease-in forwards,
+    drum-smoke-out 2s 2.6s ease-in-out forwards;
+}
+
+.drum-caption {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #2a2420;
+  font: italic 400 clamp(26px, 5vw, 52px) / 1.1 "DM Serif Display", Georgia, serif;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-50%);
+  animation: drum-caption 1.7s 2.4s ease-in-out forwards;
+}
+
+@keyframes drum-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drum-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes drum-cig-in {
+  to {
+    transform: translateX(-4vw) rotate(-4deg);
+  }
+}
+
+@keyframes drum-cough {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  10%,
+  50% {
+    translate: -8px 6px;
+  }
+  25%,
+  65% {
+    translate: 7px -5px;
+  }
+  80% {
+    translate: -4px 3px;
+  }
+}
+
+@keyframes drum-ember {
+  to {
+    background: radial-gradient(circle at 30% 50%, #ffe08a, #ff5a1f 45%, #7a1d02);
+    box-shadow: 0 0 22px 8px rgba(255, 90, 31, 0.75);
+  }
+}
+
+@keyframes drum-flame {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  30%,
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes drum-flicker {
+  to {
+    rotate: 6deg;
+    scale: 1 1.12;
+  }
+}
+
+@keyframes drum-puff {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+  20% {
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(var(--scale));
+  }
+}
+
+@keyframes drum-smoke-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drum-smoke-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12%) scale(1.2);
+  }
+}
+
+@keyframes drum-caption {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.2em;
+  }
+  30%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    letter-spacing: 0.02em;
+  }
+}

@@ -13,6 +13,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Registro" />
     <title>Registro</title>
+    <script>
+      try {
+        var t = localStorage.getItem("registro.theme");
+        if (t && t !== "default") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

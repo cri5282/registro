@@ -1,0 +1,201 @@
+.anim-bici {
+  --bike: min(34vmin, 240px);
+}
+
+.bk-flag {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.bk-stripe {
+  flex: 1;
+  margin-bottom: -1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation:
+    bk-paint 1.35s 0.1s linear forwards,
+    bk-leave-left 0.75s 2.65s cubic-bezier(0.6, 0, 0.8, 0.4) forwards;
+}
+
+.bk-stripe.to-right {
+  animation:
+    bk-paint 1.35s 0.1s linear forwards,
+    bk-leave-right 0.75s 2.72s cubic-bezier(0.6, 0, 0.8, 0.4) forwards;
+}
+
+.bk-rider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: var(--bike);
+  margin-top: calc(var(--bike) * -0.32);
+}
+
+.bk-rider-out {
+  transform: translateX(calc(var(--bike) * -1));
+  animation: bk-ride-out 1.35s 0.1s linear forwards;
+}
+
+.bk-rider-back {
+  transform: translateX(100vw) scaleX(-1);
+  animation: bk-ride-back 1.25s 1.55s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+.bk-bike {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  animation: bk-bounce 0.22s linear infinite alternate;
+}
+
+.bk-rider-back .bk-bike {
+  transform-origin: 21% 70%;
+  animation:
+    bk-bounce 0.22s linear infinite alternate,
+    bk-wheelie 0.7s 1.95s ease-in-out;
+}
+
+.bk-wheel {
+  fill: none;
+  stroke: #1c2340;
+  stroke-width: 3;
+  animation: bk-spin 0.4s linear infinite;
+}
+
+.bk-wheel line {
+  stroke-width: 1.2;
+}
+
+.bk-frame {
+  fill: none;
+  stroke: #c4467a;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bk-seat {
+  fill: none;
+  stroke: #1c2340;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.bk-hub {
+  fill: #2f8fc4;
+}
+
+.bk-pennant line {
+  stroke: #1c2340;
+  stroke-width: 1.5;
+}
+
+.bk-pennant rect {
+  stroke: rgba(28, 35, 64, 0.15);
+  stroke-width: 0.3;
+}
+
+.bk-caption {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #1c2340;
+  font: 700 clamp(34px, 8vw, 84px) / 1 "Fredoka", system-ui, sans-serif;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-50%) scale(0.6);
+  animation: bk-caption 1.2s 1.5s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+}
+
+.bk-sparkle {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  opacity: 0;
+  animation: bk-sparkle 0.9s ease-out forwards;
+}
+
+@keyframes bk-paint {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes bk-leave-left {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes bk-leave-right {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes bk-ride-out {
+  to {
+    transform: translateX(calc(100vw - var(--bike) * 0.15));
+  }
+}
+
+@keyframes bk-ride-back {
+  to {
+    transform: translateX(calc(var(--bike) * -1.2)) scaleX(-1);
+  }
+}
+
+@keyframes bk-bounce {
+  to {
+    translate: 0 -3px;
+  }
+}
+
+@keyframes bk-wheelie {
+  50% {
+    rotate: -20deg;
+  }
+}
+
+@keyframes bk-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes bk-caption {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.6);
+  }
+  25%,
+  80% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) scale(1.05);
+  }
+}
+
+@keyframes bk-sparkle {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.2) rotate(90deg);
+  }
+}

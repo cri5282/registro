@@ -1,0 +1,790 @@
+/* =========================================================
+   Decorazioni dei temi: widget in barra laterale e scenografie.
+   ========================================================= */
+
+.nav-emoji {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.bottom-link .nav-emoji {
+  width: 22px;
+  height: 22px;
+  font-size: 19px;
+}
+
+/* ---------- Widget ---------- */
+
+.theme-widget-sidebar {
+  margin-top: 22px;
+}
+
+.theme-widget-page {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .theme-widget-page {
+    display: block;
+  }
+}
+
+.tw {
+  position: relative;
+  margin: 0;
+  padding: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.tw-title {
+  margin: 0;
+  font: 700 15px/1.25 var(--font-display);
+  color: var(--text);
+}
+
+.tw-text {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Perù: quipu di cordini colorati e lama. */
+.tw-peru {
+  padding-top: 0;
+  background:
+    var(--aguayo) top / 100% 8px no-repeat,
+    var(--surface);
+}
+
+.tw-peru-quipu {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  height: 84px;
+  padding-top: 16px;
+  border-top: 5px solid #8b5a2b;
+  margin: 8px -16px 0;
+}
+
+.tw-peru-quipu span {
+  width: 4px;
+  border-radius: 2px;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.45) 2.6px, transparent 3px);
+  background-size: 4px 14px;
+  background-blend-mode: multiply;
+  transform-origin: top;
+  animation: tw-sway 3s ease-in-out infinite alternate;
+}
+
+.tw-peru-quipu span:nth-child(even) {
+  animation-delay: -1.4s;
+}
+
+.tw-peru-llama {
+  width: 76px;
+  margin: -32px auto 6px;
+  animation: tw-hop 2.6s ease-in-out infinite;
+}
+
+/* Holy: pergamena con il versetto. */
+.tw-holy {
+  padding: 20px 16px 16px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(243, 215, 122, 0.18), transparent 70%),
+    linear-gradient(180deg, #f6ecd2, #e9d9b0);
+  border: 2px solid #c9a032;
+  color: #3a2c12;
+}
+
+.tw-holy-cross {
+  display: block;
+  margin-bottom: 4px;
+  color: #b8932a;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.tw-holy .tw-title {
+  color: #6b4f12;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.tw-holy blockquote {
+  margin: 10px 0 8px;
+  font: italic 500 15px/1.45 Georgia, "Times New Roman", serif;
+}
+
+.tw-holy figcaption {
+  font: 600 12px/1 var(--font-display);
+  color: #8a6a1c;
+}
+
+/* Quattro: cartello di cartone del fan. */
+.tw-quattro {
+  background: transparent;
+  border: 0;
+  padding: 6px 0 0;
+}
+
+.tw-quattro-sign {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 10px 12px;
+  background:
+    repeating-linear-gradient(90deg, rgba(120, 80, 30, 0.06) 0 2px, transparent 2px 9px),
+    #d9b785;
+  border-radius: 4px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+  color: #121212;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+  animation: tw-wave-sign 1.6s ease-in-out infinite alternate;
+}
+
+.tw-quattro-sign span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.tw-quattro-sign strong {
+  color: #e10600;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: 3px 3px 0 #000;
+}
+
+.tw-quattro-hands {
+  display: block;
+  margin-top: -8px;
+  font-size: 30px;
+  letter-spacing: 40px;
+  text-indent: 40px;
+}
+
+/* Drum: posacenere con sigaretta accesa e fumo. */
+.tw-drum-tray {
+  position: relative;
+  height: 96px;
+  margin: 0 auto 10px;
+}
+
+.tw-drum-tray::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 132px;
+  height: 34px;
+  margin-left: -66px;
+  background: radial-gradient(ellipse at 50% 30%, #4d4640, #2a2622 55%, #6a625a 58%, #3a3530 80%);
+  border-radius: 50%;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.tw-drum-cig {
+  position: absolute;
+  left: calc(50% - 10px);
+  bottom: 16px;
+  width: 76px;
+  height: 8px;
+  background: linear-gradient(90deg, #8c8279 0 6px, #ff5a1f 6px 9px, #f4efe6 9px calc(100% - 18px), #c98a3d calc(100% - 18px));
+  border-radius: 2px;
+  transform: rotate(-12deg);
+  box-shadow: -3px 0 8px rgba(255, 90, 31, 0.6);
+}
+
+.tw-drum-butt {
+  position: absolute;
+  bottom: 12px;
+  width: 22px;
+  height: 7px;
+  background: linear-gradient(90deg, #6a625a 0 4px, #e9e1d2 4px 8px, #c98a3d 8px);
+  border-radius: 2px;
+}
+
+.tw-drum-butt:nth-of-type(5) {
+  left: calc(50% - 50px);
+  transform: rotate(18deg);
+}
+
+.tw-drum-butt:nth-of-type(6) {
+  left: calc(50% - 30px);
+  transform: rotate(-30deg);
+}
+
+.tw-drum-smoke {
+  position: absolute;
+  left: calc(50% - 6px);
+  bottom: 30px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, rgba(220, 214, 204, 0.55), transparent 70%);
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: tw-smoke 3.6s ease-out infinite;
+}
+
+.tw-drum-smoke:nth-child(2) {
+  animation-delay: -1.2s;
+}
+
+.tw-drum-smoke:nth-child(3) {
+  animation-delay: -2.4s;
+}
+
+/* Surebet: saldo e bonus. */
+.tw-surebet {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(0, 196, 106, 0.2), transparent 70%),
+    var(--surface);
+  border-color: rgba(255, 214, 10, 0.3);
+}
+
+.tw-surebet-balance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 2px 0 10px;
+  color: var(--accent);
+  font: 800 34px/1 var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.tw-surebet-balance img {
+  width: 28px;
+  animation: tw-coin 2.4s linear infinite;
+}
+
+.tw-surebet-bonus {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  background: repeating-linear-gradient(-45deg, #00c46a 0 10px, #00b060 10px 20px);
+  border-radius: 6px;
+  color: #04140c;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.tw-surebet-bonus strong {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.tw-surebet-cta {
+  display: block;
+  margin-top: 10px;
+  padding: 9px;
+  background: var(--accent-grad);
+  border-radius: 6px;
+  color: var(--on-accent);
+  font: 800 15px/1 var(--font-display);
+  text-transform: uppercase;
+  animation: tw-pulse 1.4s ease-in-out infinite;
+}
+
+/* Puglia: la nonna con le orecchiette sul tavoliere. */
+.tw-puglia {
+  padding-top: 10px;
+  background:
+    linear-gradient(180deg, transparent 60%, rgba(10, 111, 181, 0.08)),
+    var(--surface);
+}
+
+.tw-puglia-nonna {
+  width: 84px;
+  margin: 0 auto;
+}
+
+.tw-puglia-bubble {
+  display: inline-block;
+  margin: 2px 0 10px;
+  padding: 7px 12px;
+  background: var(--accent);
+  border-radius: 14px 14px 14px 4px;
+  color: #fff;
+  font: 700 14px/1.2 var(--font-display);
+  animation: tw-hop 2.4s ease-in-out infinite;
+}
+
+.tw-puglia-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 3px;
+  padding: 8px;
+  background: repeating-linear-gradient(90deg, #c8925a 0 14px, #bd864e 14px 15px);
+  border-radius: 6px;
+}
+
+.tw-puglia-board span {
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 50% 45%, #e9cf8f 0 30%, #f6e2a8 45%, #d9b766 70%, #c49e4c 72%);
+  border-radius: 50% 50% 46% 46%;
+}
+
+/* Kalashmikov: radar. */
+.tw-kalash-radar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle, transparent 0 19px, rgba(163, 196, 71, 0.35) 19px 20px, transparent 20px 39px, rgba(163, 196, 71, 0.35) 39px 40px, transparent 40px),
+    linear-gradient(rgba(163, 196, 71, 0.25), rgba(163, 196, 71, 0.25)) 50% 0 / 1px 100% no-repeat,
+    linear-gradient(rgba(163, 196, 71, 0.25), rgba(163, 196, 71, 0.25)) 0 50% / 100% 1px no-repeat,
+    radial-gradient(circle, #1f2a12, #0f150a);
+  border: 3px solid #4b5320;
+  border-radius: 50%;
+}
+
+.tw-kalash-sweep {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from 0deg, rgba(163, 196, 71, 0.55), transparent 70deg);
+  border-radius: 50%;
+  animation: tw-spin 3s linear infinite;
+}
+
+.tw-kalash-radar i {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #e5544a;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #e5544a;
+  animation: tw-blip 3s ease-out infinite;
+}
+
+.tw-kalash-radar i:nth-of-type(2) {
+  animation-delay: 1.1s;
+}
+
+.tw-kalash-radar i:nth-of-type(3) {
+  animation-delay: 2.2s;
+}
+
+/* Bicicletta: contachilometri. */
+.tw-bici {
+  background:
+    var(--flag-h) top / 100% 10px no-repeat,
+    var(--surface);
+  padding-top: 20px;
+}
+
+.tw-bici-bike {
+  width: 82px;
+  margin: 0 auto 6px;
+  animation: tw-hop 1.2s ease-in-out infinite;
+}
+
+.tw-bici-odometer {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+  font: 700 22px/1 var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.tw-bici-odometer span {
+  padding: 5px 6px;
+  background: #1c2340;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.tw-bici-odometer .tw-bici-decimal {
+  margin-left: 4px;
+  background: #d9648a;
+}
+
+.tw-bici-odometer small {
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Chantalle: widget batterie stile iOS. */
+.tw-chantalle {
+  background: rgba(255, 255, 255, 0.82);
+  border: 0;
+  border-radius: 22px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(20px);
+}
+
+.tw-chantalle-rings {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tw-chantalle-rings span {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #fff 0 17px, transparent 18px),
+    conic-gradient(#34c759 var(--p), rgba(118, 118, 128, 0.16) 0);
+  font-size: 18px;
+}
+
+.tw-chantalle-time {
+  margin: 10px 0 0;
+  font: 800 34px/1 var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Baba: palla stroboscopica che dondola. */
+.tw-baba {
+  padding-top: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(255, 95, 162, 0.3), transparent 70%),
+    var(--surface);
+}
+
+.tw-baba-string {
+  display: block;
+  width: 2px;
+  height: 22px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.tw-baba-ball {
+  width: 74px;
+  margin: 0 auto 8px;
+  transform-origin: 50% -22px;
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.5));
+  animation: tw-swing 2.4s ease-in-out infinite alternate;
+}
+
+/* ---------- Scenografie ---------- */
+
+.theme-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ts-andes {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: min(26vh, 220px);
+  opacity: 0.9;
+}
+
+.ts-condor {
+  position: absolute;
+  top: 14%;
+  left: -120px;
+  width: 110px;
+  animation: ts-glide 26s linear infinite;
+}
+
+.ts-dove {
+  position: absolute;
+  top: 10%;
+  left: -100px;
+  width: 64px;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+  animation: ts-glide 22s 4s linear infinite;
+}
+
+.ts-crowd {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 120px;
+  background:
+    radial-gradient(circle at 20px 30px, #050506 14px, transparent 15px) 0 0 / 46px 60px repeat-x,
+    radial-gradient(ellipse at 23px 70px, #050506 22px, transparent 23px) 0 0 / 46px 90px repeat-x,
+    radial-gradient(circle at 20px 46px, #0a0a0d 13px, transparent 14px) 23px 30px / 46px 60px repeat-x,
+    radial-gradient(ellipse at 23px 86px, #0a0a0d 22px, transparent 23px) 23px 30px / 46px 90px repeat-x;
+}
+
+.ts-flash {
+  position: absolute;
+  bottom: 50px;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 18px 8px rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  animation: ts-flash 5s linear infinite;
+}
+
+.ts-sea {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 90px;
+}
+
+.ts-wave {
+  position: absolute;
+  right: -60px;
+  bottom: 0;
+  left: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Cpath d='M0 20 Q30 4 60 20 T120 20 V40 H0Z' fill='%230a6fb5'/%3E%3C/svg%3E")
+    0 0 / 120px 100% repeat-x;
+}
+
+.ts-wave-back {
+  height: 54px;
+  opacity: 0.25;
+  animation: ts-waves 9s linear infinite reverse;
+}
+
+.ts-wave-front {
+  height: 36px;
+  opacity: 0.4;
+  animation: ts-waves 6s linear infinite;
+}
+
+.ts-boat {
+  position: absolute;
+  bottom: 26px;
+  left: -60px;
+  font-size: 34px;
+  animation:
+    ts-sail 48s linear infinite,
+    ts-bob 2.4s ease-in-out infinite alternate;
+}
+
+.ts-bike-lane {
+  position: absolute;
+  right: 0;
+  bottom: 18px;
+  left: 0;
+  height: 54px;
+}
+
+.ts-bike {
+  position: absolute;
+  bottom: 0;
+  left: -90px;
+  width: 64px;
+  animation: ts-ride 20s linear infinite;
+}
+
+.ts-bike-trail {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  height: 15px;
+  width: 100%;
+  background: var(--flag-h);
+  border-radius: 999px;
+  opacity: 0.55;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: ts-trail 20s linear infinite;
+}
+
+.ts-disco-lights {
+  position: absolute;
+  inset: -50%;
+  background:
+    radial-gradient(circle, rgba(255, 95, 162, 0.5) 0 3px, transparent 4px) 0 0 / 180px 160px,
+    radial-gradient(circle, rgba(124, 92, 255, 0.5) 0 3px, transparent 4px) 60px 80px / 220px 190px,
+    radial-gradient(circle, rgba(255, 237, 0, 0.4) 0 2px, transparent 3px) 30px 40px / 160px 210px;
+  animation: tw-spin 60s linear infinite;
+}
+
+@media (max-width: 900px) {
+  .ts-andes,
+  .ts-crowd,
+  .ts-sea,
+  .ts-bike-lane {
+    bottom: calc(60px + env(safe-area-inset-bottom));
+  }
+
+  .ts-bike-lane {
+    bottom: calc(66px + env(safe-area-inset-bottom));
+  }
+}
+
+@keyframes tw-sway {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes tw-hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes tw-wave-sign {
+  from {
+    transform: rotate(-6deg) translateY(0);
+  }
+  to {
+    transform: rotate(3deg) translateY(-6px);
+  }
+}
+
+@keyframes tw-smoke {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(12px, -70px) scale(3);
+  }
+}
+
+@keyframes tw-coin {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes tw-pulse {
+  50% {
+    transform: scale(1.04);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes tw-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tw-blip {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+}
+
+@keyframes tw-swing {
+  from {
+    transform: rotate(-12deg);
+  }
+  to {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes ts-glide {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(60vw, 4vh);
+  }
+  100% {
+    transform: translate(calc(100vw + 260px), -2vh);
+  }
+}
+
+@keyframes ts-flash {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+  }
+  94% {
+    opacity: 1;
+  }
+}
+
+@keyframes ts-waves {
+  to {
+    transform: translateX(-120px);
+  }
+}
+
+@keyframes ts-sail {
+  to {
+    translate: calc(100vw + 120px) 0;
+  }
+}
+
+@keyframes ts-bob {
+  from {
+    transform: translateY(0) rotate(-4deg);
+  }
+  to {
+    transform: translateY(-6px) rotate(4deg);
+  }
+}
+
+@keyframes ts-ride {
+  0% {
+    transform: translateX(0);
+  }
+  40%,
+  100% {
+    transform: translateX(calc(100vw + 180px));
+  }
+}
+
+@keyframes ts-trail {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.55;
+  }
+  38% {
+    transform: scaleX(1);
+    opacity: 0.55;
+  }
+  50%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-scene *,
+  .tw * {
+    animation: none !important;
+  }
+}

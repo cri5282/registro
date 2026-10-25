@@ -38,6 +38,22 @@ export default defineConfig(({ mode }) => {
         },
         workbox: {
           globPatterns: ["**/*.{js,css,html,svg,png,woff2}"],
+          // I temi segreti si scaricano solo quando servono, poi restano in cache.
+          globIgnores: [
+            "**/themes/**",
+            "**/assets/{alfa-slab-one,cinzel,anton,dm-serif-display,barlow-condensed,fraunces,black-ops-one,fredoka,inter,bricolage-grotesque}-latin-*",
+          ],
+          runtimeCaching: [
+            {
+              urlPattern: ({ url }) =>
+                url.pathname.includes("/themes/") || /\/assets\/[a-z-]+-latin-\d+-normal-[\w-]+\.woff2?$/.test(url.pathname),
+              handler: "CacheFirst",
+              options: {
+                cacheName: "registro-themes",
+                expiration: { maxEntries: 80 },
+              },
+            },
+          ],
         },
       }),
     ],

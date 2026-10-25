@@ -13,8 +13,10 @@ import { api } from "../data";
 import { friendlyError } from "../errors";
 import { isFirebaseConfigured } from "../firebase";
 import { PasswordInput, Spinner } from "../components/ui";
+import { useTheme } from "../themes/ThemeProvider";
 
 export default function LoginPage() {
+  const { copy } = useTheme();
   const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +63,7 @@ export default function LoginPage() {
         <div className="login-brand">
           <LogoMark size={60} />
           <div>
-            <h1>Registro</h1>
+            <h1>{copy.brand}</h1>
             <p>Il registro condiviso della classe, con i dati di ognuno separati.</p>
           </div>
         </div>

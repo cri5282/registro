@@ -1,0 +1,1654 @@
+/* =========================================================
+   Temi segreti — si sbloccano digitando la parola giusta.
+   Ogni tema ridefinisce i token di styles.css e aggiunge
+   un solo elemento "firma" agganciato alle classi esistenti.
+   ========================================================= */
+
+/* ---------- Motore ---------- */
+
+h1,
+h2,
+.brand strong,
+.topbar-brand span,
+.ring-inner strong,
+.stat-chip strong,
+.group-rate {
+  font-family: var(--font-display);
+}
+
+.logo-mark {
+  -webkit-touch-callout: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+:root[data-theme] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--art, none);
+}
+
+.theme-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+.secret-prompt-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+}
+
+.secret-prompt {
+  position: fixed;
+  top: calc(74px + env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  animation: secret-in 0.18s ease both;
+}
+
+.secret-prompt input {
+  width: 190px;
+  height: 42px;
+  padding: 0 14px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+  caret-color: var(--accent);
+  font: 600 16px/1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-align: center;
+  outline: none;
+}
+
+.secret-prompt.is-wrong {
+  animation: secret-shake 0.4s ease both;
+}
+
+@keyframes secret-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -6px) scale(0.96);
+  }
+}
+
+@keyframes secret-shake {
+  0%,
+  100% {
+    transform: translateX(-50%);
+  }
+  20%,
+  60% {
+    transform: translateX(calc(-50% - 9px));
+  }
+  40%,
+  80% {
+    transform: translateX(calc(-50% + 9px));
+  }
+}
+
+.theme-cheer {
+  position: fixed;
+  left: 50%;
+  bottom: calc(110px + env(safe-area-inset-bottom));
+  z-index: 300;
+  max-width: calc(100vw - 32px);
+  padding: 12px 20px;
+  background: var(--accent);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  color: var(--on-accent);
+  font: 700 17px/1.2 var(--font-display);
+  text-align: center;
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: cheer 1.9s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.theme-cheer-absent {
+  background: var(--red);
+}
+
+@keyframes cheer {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 30px) scale(0.6) rotate(-6deg);
+  }
+  14% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1.08) rotate(2deg);
+  }
+  22%,
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1) rotate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -24px) scale(0.95);
+  }
+}
+
+.sparkle-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  animation: sparkle-fall 0.9s ease-out forwards;
+}
+
+@keyframes sparkle-fall {
+  to {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--drift)), 30px) scale(0.3) rotate(120deg);
+  }
+}
+
+.odds-ticker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding-left: 8px;
+  overflow: hidden;
+  background: #060b14;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: 600 13px/1 var(--font-display);
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.odds-live {
+  flex-shrink: 0;
+  padding: 4px 7px;
+  background: var(--red);
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 800;
+  animation: odds-blink 1s steps(2) infinite;
+}
+
+.odds-window {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.odds-track {
+  display: inline-flex;
+  gap: 42px;
+  animation: odds-scroll 32s linear infinite;
+}
+
+.odds-track span::before {
+  content: "⚽ ";
+}
+
+@keyframes odds-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes odds-blink {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Firma condivisa: anello delle statistiche colorato via maschera su --rate. */
+.ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--ring-art, none);
+  mask: conic-gradient(#000 var(--rate, 0deg), transparent 0);
+}
+
+.ring-inner {
+  position: relative;
+}
+
+/* =========================================================
+   PERÙ — ¡Habla, causa!
+   ========================================================= */
+
+:root[data-theme="peru"] {
+  color-scheme: dark;
+  --bg: #1c1310;
+  --bg-soft: #20160f;
+  --surface: #2a1c17;
+  --surface-2: #372520;
+  --border: rgba(246, 231, 207, 0.1);
+  --border-strong: rgba(246, 231, 207, 0.22);
+  --text: #f6e7cf;
+  --muted: #cdb595;
+  --faint: #a08669;
+  --accent: #f2a900;
+  --accent-strong: #d7263d;
+  --accent-soft: rgba(242, 169, 0, 0.15);
+  --accent-2: #1fa5a0;
+  --green: #5fd38d;
+  --green-soft: rgba(95, 211, 141, 0.14);
+  --red: #ff5d6c;
+  --red-soft: rgba(255, 93, 108, 0.14);
+  --amber: #f2a900;
+  --ring-track: rgba(246, 231, 207, 0.09);
+  --radius: 6px;
+  --radius-sm: 4px;
+  --selection: rgba(215, 38, 61, 0.5);
+  --accent-border: rgba(242, 169, 0, 0.4);
+  --accent-grad: linear-gradient(135deg, #e8364c, #b3172e);
+  --accent-shadow: 0 6px 0 #6d0f1c;
+  --avatar-grad: linear-gradient(135deg, #d7263d, #f2a900);
+  --on-accent: #fff8ec;
+  --logo-1: #d7263d;
+  --logo-2: #f2a900;
+  --logo-3: #1fa5a0;
+  --logo-shadow: 0 6px 18px rgba(215, 38, 61, 0.45);
+  --font-display: "Alfa Slab One", Georgia, serif;
+  --aguayo: linear-gradient(
+    180deg,
+    #d7263d 0 16%,
+    #f2a900 16% 26%,
+    #1fa5a0 26% 40%,
+    #f6e7cf 40% 46%,
+    #7b2d8b 46% 58%,
+    #ff7a00 58% 70%,
+    #1c1310 70% 74%,
+    #d7263d 74% 88%,
+    #1fa5a0 88%
+  );
+  --body-bg: var(--bg);
+  --art:
+    linear-gradient(180deg, rgba(28, 19, 16, 0.72), rgba(28, 19, 16, 0.94) 55%, #1c1310),
+    url("/themes/peru/machu-picchu.webp") center top / cover no-repeat;
+  cursor: url("/themes/peru/llama-cursor.png") 6 4, auto;
+}
+
+[data-theme="peru"] .page-header {
+  position: relative;
+  padding-bottom: 26px;
+}
+
+[data-theme="peru"] .page-header::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 14px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 14px, rgba(28, 19, 16, 0.55) 14px 16px, transparent 16px 30px),
+    var(--aguayo);
+  border-radius: 2px;
+}
+
+[data-theme="peru"] .page-header h1 {
+  letter-spacing: 0;
+  text-shadow: 3px 3px 0 #b3172e;
+}
+
+[data-theme="peru"] .sidebar {
+  background:
+    var(--aguayo) right / 9px 100% no-repeat,
+    color-mix(in srgb, var(--bg-soft) 92%, transparent);
+  border-right: 0;
+}
+
+[data-theme="peru"] .side-link.active {
+  background: linear-gradient(90deg, rgba(215, 38, 61, 0.28), rgba(242, 169, 0, 0.12));
+  border-color: rgba(242, 169, 0, 0.35);
+  border-left: 4px solid #f2a900;
+}
+
+[data-theme="peru"] .sidebar-footer::before {
+  content: "";
+  align-self: flex-end;
+  width: 70px;
+  height: 70px;
+  margin-bottom: -22px;
+  background: url("/themes/peru/llama.svg") center / contain no-repeat;
+  animation: llama-peek 7s ease-in-out infinite;
+}
+
+@keyframes llama-peek {
+  0%,
+  60%,
+  100% {
+    transform: translateY(14px) rotate(0);
+  }
+  70%,
+  88% {
+    transform: translateY(-6px) rotate(-6deg);
+  }
+}
+
+[data-theme="peru"] .bottom-nav {
+  background:
+    var(--aguayo) top / 100% 7px no-repeat,
+    color-mix(in srgb, var(--bg-soft) 94%, transparent);
+  border-top: 0;
+}
+
+[data-theme="peru"] .event-card,
+[data-theme="peru"] .stats-hero,
+[data-theme="peru"] .card {
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="peru"] .empty-icon,
+[data-theme="baba"] .empty-icon,
+[data-theme="holy"] .empty-icon,
+[data-theme="quattro"] .empty-icon,
+[data-theme="drum"] .empty-icon,
+[data-theme="surebet"] .empty-icon,
+[data-theme="puglia"] .empty-icon,
+[data-theme="kalashmikov"] .empty-icon,
+[data-theme="bicicletta"] .empty-icon,
+[data-theme="chantalle"] .empty-icon {
+  width: 76px;
+  height: 76px;
+  background: var(--empty-art) center / 82% no-repeat;
+}
+
+[data-theme] .empty-icon svg {
+  display: none;
+}
+
+:root[data-theme="peru"] {
+  --empty-art: url("/themes/peru/llama.svg");
+  --ring-art: conic-gradient(#d7263d, #f2a900, #1fa5a0, #7b2d8b, #ff7a00, #d7263d);
+}
+
+/* =========================================================
+   HOLY — Fiat lux
+   ========================================================= */
+
+:root[data-theme="holy"] {
+  color-scheme: dark;
+  --bg: #0e1024;
+  --bg-soft: #10132b;
+  --surface: #171a36;
+  --surface-2: #21254a;
+  --border: rgba(212, 175, 55, 0.18);
+  --border-strong: rgba(212, 175, 55, 0.4);
+  --text: #f2ebdd;
+  --muted: #c8bea9;
+  --faint: #9890a3;
+  --accent: #e2c158;
+  --accent-strong: #b8932a;
+  --accent-soft: rgba(212, 175, 55, 0.14);
+  --accent-2: #7f9bff;
+  --green: #79dcae;
+  --green-soft: rgba(121, 220, 174, 0.13);
+  --red: #ff7088;
+  --red-soft: rgba(255, 112, 136, 0.13);
+  --amber: #f2c14e;
+  --ring-track: rgba(212, 175, 55, 0.12);
+  --selection: rgba(212, 175, 55, 0.4);
+  --accent-border: rgba(212, 175, 55, 0.5);
+  --accent-grad: linear-gradient(180deg, #f3d77a, #c9a032 60%, #9c7a1c);
+  --accent-shadow: 0 0 22px rgba(226, 193, 88, 0.45);
+  --avatar-grad: linear-gradient(135deg, #3e63dd, #b0183a);
+  --on-accent: #1b1405;
+  --logo-1: #f3d77a;
+  --logo-2: #c9a032;
+  --logo-3: #3e63dd;
+  --logo-shadow: 0 0 26px rgba(243, 215, 122, 0.55);
+  --font-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --body-bg: var(--bg);
+  --art:
+    linear-gradient(112deg, transparent 18%, rgba(255, 226, 150, 0.07) 24%, transparent 34%),
+    linear-gradient(104deg, transparent 52%, rgba(160, 190, 255, 0.06) 58%, transparent 66%),
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(14, 16, 36, 0.35), rgba(14, 16, 36, 0.93) 75%),
+    url("/themes/holy/rosone.webp") center -140px / 1200px auto no-repeat,
+    #0e1024;
+  --empty-art: url("/themes/holy/angel.svg");
+  --ring-art: conic-gradient(#f3d77a, #c9a032, #f3d77a, #fff3c4, #f3d77a);
+  cursor: url("/themes/holy/dove-cursor.png") 4 4, auto;
+}
+
+[data-theme="holy"] body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background: conic-gradient(
+    from 200deg at 50% -10%,
+    transparent 0deg,
+    rgba(255, 230, 160, 0.06) 8deg,
+    transparent 16deg,
+    rgba(255, 230, 160, 0.05) 30deg,
+    transparent 40deg
+  );
+  animation: holy-rays 9s ease-in-out infinite alternate;
+}
+
+@keyframes holy-rays {
+  from {
+    opacity: 0.4;
+    transform: rotate(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(3deg);
+  }
+}
+
+[data-theme="holy"] .page-header {
+  position: relative;
+  padding-top: 34px;
+}
+
+[data-theme="holy"] .page-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: min(360px, 100%);
+  height: 30px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 30' preserveAspectRatio='none'%3E%3Cpath d='M2 30 V20 A170 170 0 0 1 180 2 A170 170 0 0 1 358 20 V30' fill='none' stroke='%23d4af37' stroke-width='2'/%3E%3Cpath d='M14 30 V22 A160 160 0 0 1 180 9 A160 160 0 0 1 346 22 V30' fill='none' stroke='%23d4af37' stroke-opacity='.45' stroke-width='1'/%3E%3Ccircle cx='180' cy='2' r='2.5' fill='%23f3d77a'/%3E%3C/svg%3E")
+    center / 100% 100% no-repeat;
+}
+
+[data-theme="holy"] .page-header h1 {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(180deg, #fff3c4, #e2c158 55%, #a8841f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(226, 193, 88, 0.35));
+}
+
+[data-theme="holy"] .section-head h2::before {
+  content: "🕯️";
+  display: inline-block;
+  margin-right: 8px;
+  animation: candle 2.2s ease-in-out infinite;
+}
+
+@keyframes candle {
+  0%,
+  100% {
+    filter: drop-shadow(0 -2px 4px rgba(255, 200, 80, 0.7));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 -3px 8px rgba(255, 200, 80, 1));
+    transform: scale(1.06) rotate(2deg);
+  }
+}
+
+[data-theme="holy"] .event-card,
+[data-theme="holy"] .stats-hero,
+[data-theme="holy"] .card {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow:
+    inset 0 0 0 1px rgba(212, 175, 55, 0.12),
+    0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="holy"] .avatar-fallback {
+  position: relative;
+  overflow: visible;
+}
+
+[data-theme="holy"] .avatar-fallback::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 76%;
+  height: 8px;
+  border: 2px solid #f3d77a;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #f3d77a;
+  transform: translateX(-50%);
+  animation: halo 3s ease-in-out infinite;
+}
+
+@keyframes halo {
+  50% {
+    transform: translate(-50%, -3px);
+  }
+}
+
+[data-theme="holy"] .side-link.active {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), transparent);
+}
+
+/* =========================================================
+   QUATTRO — Devi darmi quattro euro
+   ========================================================= */
+
+:root[data-theme="quattro"] {
+  color-scheme: dark;
+  --bg: #0d0d10;
+  --bg-soft: #111115;
+  --surface: #18181d;
+  --surface-2: #232329;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --text: #f5f5f0;
+  --muted: #b8b8b1;
+  --faint: #8a8a83;
+  --accent: #ff3b30;
+  --accent-strong: #e10600;
+  --accent-soft: rgba(255, 59, 48, 0.15);
+  --accent-2: #5b80ff;
+  --green: #3ddc84;
+  --green-soft: rgba(61, 220, 132, 0.13);
+  --red: #ff3b30;
+  --red-soft: rgba(255, 59, 48, 0.14);
+  --amber: #e6b422;
+  --ring-track: rgba(255, 255, 255, 0.08);
+  --radius: 4px;
+  --radius-sm: 3px;
+  --selection: rgba(225, 6, 0, 0.5);
+  --accent-border: rgba(255, 59, 48, 0.45);
+  --accent-grad: linear-gradient(180deg, #ff2a1f, #b30500);
+  --accent-shadow: 0 5px 0 #5c0300;
+  --danger-grad: linear-gradient(180deg, #4d6fff, #1c3fcc);
+  --avatar-grad: linear-gradient(135deg, #e10600 50%, #2d5bff 50%);
+  --on-accent: #fff;
+  --logo-1: #e10600;
+  --logo-2: #e10600;
+  --logo-3: #2d5bff;
+  --logo-shadow: 0 0 0 3px #e6b422;
+  --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --body-bg: var(--bg);
+  --art:
+    conic-gradient(from 168deg at 18% -8%, transparent 0deg, rgba(255, 255, 255, 0.08) 8deg, transparent 18deg),
+    conic-gradient(from 176deg at 82% -8%, transparent 0deg, rgba(255, 255, 255, 0.07) 8deg, transparent 18deg),
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(225, 6, 0, 0.16), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/quattro/glove.svg");
+  --ring-art: conic-gradient(#f7d95c, #c8961a, #f7d95c, #fff0a8, #f7d95c);
+}
+
+[data-theme="quattro"] h1,
+[data-theme="quattro"] h2,
+[data-theme="quattro"] .brand strong {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="quattro"] .page-header {
+  position: relative;
+  padding: 36px 26px 18px;
+  background:
+    linear-gradient(#e10600, #e10600) 0 6px / 100% 4px no-repeat,
+    linear-gradient(#f5f5f0, #f5f5f0) 0 14px / 100% 4px no-repeat,
+    linear-gradient(#2d5bff, #2d5bff) 0 22px / 100% 4px no-repeat,
+    radial-gradient(ellipse 80% 120% at 50% 0%, rgba(255, 255, 255, 0.07), transparent 70%);
+}
+
+[data-theme="quattro"] .page-header::before,
+[data-theme="quattro"] .page-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 14px;
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="quattro"] .page-header::before {
+  left: 0;
+  background: #e10600;
+}
+
+[data-theme="quattro"] .page-header::after {
+  right: 0;
+  background: #2d5bff;
+}
+
+[data-theme="quattro"] .page-header h1 {
+  font-size: clamp(40px, 7vw, 64px);
+  font-style: italic;
+  transform: skewX(-8deg);
+  text-shadow:
+    3px 3px 0 #e10600,
+    6px 6px 0 #2d5bff;
+}
+
+[data-theme="quattro"] .stat-chip {
+  background: linear-gradient(180deg, #fbe27a, #d9a520 55%, #a8770c);
+  border: 2px solid #6b4a05;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 4px 0 #3d2a02;
+  color: #2b1d00;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+[data-theme="quattro"] .stat-chip strong {
+  color: #1a1200;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+[data-theme="quattro"] .button,
+[data-theme="quattro"] .status-button {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+[data-theme="quattro"] .event-card {
+  border-left: 4px solid var(--border-strong);
+}
+
+[data-theme="quattro"] .event-card:nth-child(odd) {
+  border-left-color: #e10600;
+}
+
+[data-theme="quattro"] .event-card:nth-child(even) {
+  border-left-color: #2d5bff;
+}
+
+[data-theme="quattro"] .theme-cheer {
+  background: linear-gradient(180deg, #fbe27a, #d9a520);
+  border: 3px solid #6b4a05;
+  border-radius: 12px;
+  color: #1a1200;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+/* =========================================================
+   DRUM — Fumare uccide (il tempo)
+   ========================================================= */
+
+:root[data-theme="drum"] {
+  color-scheme: dark;
+  --bg: #221f1c;
+  --bg-soft: #1c1a17;
+  --surface: #2e2a26;
+  --surface-2: #3a3530;
+  --border: rgba(239, 233, 221, 0.09);
+  --border-strong: rgba(239, 233, 221, 0.2);
+  --text: #efe9dd;
+  --muted: #c0b6a6;
+  --faint: #91877a;
+  --accent: #ff6a2f;
+  --accent-strong: #e2470f;
+  --accent-soft: rgba(255, 106, 47, 0.14);
+  --accent-2: #d39a5a;
+  --green: #a8cf7a;
+  --green-soft: rgba(168, 207, 122, 0.13);
+  --red: #ff6b5b;
+  --red-soft: rgba(255, 107, 91, 0.13);
+  --amber: #e9a54a;
+  --ring-track: rgba(239, 233, 221, 0.08);
+  --selection: rgba(255, 90, 31, 0.4);
+  --accent-border: rgba(255, 106, 47, 0.4);
+  --accent-grad: linear-gradient(135deg, #ff7a3d, #d9400b);
+  --accent-shadow: 0 0 20px rgba(255, 90, 31, 0.4);
+  --avatar-grad: linear-gradient(135deg, #b07a3e, #5c3b1a);
+  --on-accent: #1c0b03;
+  --logo-1: #efe9dd;
+  --logo-2: #b07a3e;
+  --logo-3: #ff5a1f;
+  --logo-shadow: 0 0 20px rgba(255, 90, 31, 0.35);
+  --font-display: "DM Serif Display", Georgia, serif;
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 50% 40% at 80% 10%, rgba(176, 122, 62, 0.14), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 10% 90%, rgba(255, 90, 31, 0.07), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/drum/cigarette.svg");
+  --ring-art: conic-gradient(#ff5a1f, #ffb347, #ff5a1f);
+}
+
+[data-theme="drum"] body::after {
+  content: "";
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 22% 30% at 20% 80%, rgba(200, 192, 180, 0.07), transparent 70%),
+    radial-gradient(ellipse 18% 26% at 70% 60%, rgba(200, 192, 180, 0.06), transparent 70%),
+    radial-gradient(ellipse 26% 20% at 45% 30%, rgba(200, 192, 180, 0.05), transparent 70%);
+  filter: blur(8px);
+  animation: smoke-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes smoke-drift {
+  from {
+    transform: translate(0, 4%) scale(1);
+  }
+  to {
+    transform: translate(3%, -6%) scale(1.15);
+  }
+}
+
+[data-theme="drum"] h1 {
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="drum"] .bar-track {
+  height: 12px;
+  overflow: visible;
+  background: rgba(239, 233, 221, 0.05);
+  border-radius: 2px;
+}
+
+[data-theme="drum"] .bar {
+  position: relative;
+  min-width: 34px;
+  border-radius: 2px 0 0 2px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent 40%, rgba(0, 0, 0, 0.1)),
+    linear-gradient(90deg, #c98a3d 0 20px, #e2cfa9 20px 22px, #f6f1e7 22px calc(100% - 9px), #8c8279 calc(100% - 9px));
+}
+
+[data-theme="drum"] .bar-bad {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent 40%, rgba(0, 0, 0, 0.1)),
+    linear-gradient(90deg, #a3672d 0 20px, #e2cfa9 20px 22px, #e9e1d2 22px calc(100% - 9px), #6c635b calc(100% - 9px));
+}
+
+[data-theme="drum"] .bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5px;
+  bottom: 0;
+  width: 7px;
+  border-radius: 0 3px 3px 0;
+  background: radial-gradient(circle at 30% 50%, #ffe08a, #ff5a1f 50%, #7a1d02);
+  box-shadow: 0 0 10px 2px rgba(255, 90, 31, 0.55);
+  animation: ember 2.4s ease-in-out infinite;
+}
+
+@keyframes ember {
+  50% {
+    box-shadow: 0 0 16px 5px rgba(255, 90, 31, 0.85);
+    filter: brightness(1.3);
+  }
+}
+
+[data-theme="drum"] .event-card {
+  overflow: hidden;
+}
+
+[data-theme="drum"] .event-card:nth-child(3n + 2)::after,
+[data-theme="drum"] .stats-hero::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  width: 15px;
+  height: 12px;
+  border-radius: 52% 44% 58% 40%;
+  background: radial-gradient(circle, #0e0c0a 38%, #4a2c12 56%, rgba(120, 70, 20, 0.5) 66%, transparent 74%);
+  pointer-events: none;
+}
+
+[data-theme="drum"] .stats-hero {
+  position: relative;
+}
+
+[data-theme="drum"] .content::after,
+[data-theme="surebet"] .content::after {
+  display: block;
+  margin-top: 34px;
+  text-align: center;
+}
+
+[data-theme="drum"] .content::after {
+  content: "LE ASSENZE NUOCCIONO GRAVEMENTE ALLA MEDIA";
+  padding: 16px 18px;
+  background: #fff;
+  border: 7px solid #000;
+  color: #000;
+  font: 900 clamp(15px, 2.4vw, 21px) / 1.15 "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   SUREBET — Quota sicura
+   ========================================================= */
+
+:root[data-theme="surebet"] {
+  color-scheme: dark;
+  --bg: #0a1220;
+  --bg-soft: #0c1527;
+  --surface: #121c2e;
+  --surface-2: #1a2740;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --text: #f2f5fa;
+  --muted: #a9b6cc;
+  --faint: #7a88a1;
+  --accent: #ffd60a;
+  --accent-strong: #f5c400;
+  --accent-soft: rgba(255, 214, 10, 0.13);
+  --accent-2: #00c46a;
+  --green: #00d474;
+  --green-soft: rgba(0, 212, 116, 0.13);
+  --red: #ff4d4d;
+  --red-soft: rgba(255, 77, 77, 0.13);
+  --amber: #ffd60a;
+  --ring-track: rgba(255, 255, 255, 0.07);
+  --radius: 8px;
+  --radius-sm: 6px;
+  --selection: rgba(255, 214, 10, 0.35);
+  --accent-border: rgba(255, 214, 10, 0.4);
+  --accent-grad: linear-gradient(180deg, #ffe14d, #f5c400);
+  --accent-shadow: 0 0 18px rgba(255, 214, 10, 0.35);
+  --avatar-grad: linear-gradient(135deg, #00c46a, #ffd60a);
+  --on-accent: #0a1220;
+  --logo-1: #ffd60a;
+  --logo-2: #00c46a;
+  --logo-3: #00c46a;
+  --logo-shadow: 0 0 22px rgba(0, 196, 106, 0.45);
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 60% 40% at 50% -5%, rgba(0, 196, 106, 0.18), transparent 70%),
+    repeating-linear-gradient(90deg, transparent 0 120px, rgba(255, 255, 255, 0.015) 120px 240px),
+    var(--bg);
+  --empty-art: url("/themes/surebet/slot.svg");
+  --ring-art: conic-gradient(#00c46a, #ffd60a, #00c46a);
+}
+
+[data-theme="surebet"] h1,
+[data-theme="surebet"] h2 {
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+[data-theme="surebet"] .page-header h1 {
+  font-size: clamp(36px, 6vw, 54px);
+}
+
+[data-theme="surebet"] .ring-inner strong,
+[data-theme="surebet"] .stat-chip strong,
+[data-theme="surebet"] .group-rate {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-theme="surebet"] .stat-chip {
+  background: var(--surface-2);
+  border: 1px solid rgba(255, 214, 10, 0.35);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+[data-theme="surebet"] .stat-chip strong::before {
+  content: "@";
+  opacity: 0.6;
+}
+
+[data-theme="surebet"] .event-card {
+  --surface: #f6f3e9;
+  --surface-2: #ebe6d6;
+  --text: #13161c;
+  --muted: #525967;
+  --faint: #6f7684;
+  --border: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.25);
+  --green: #007a41;
+  --green-soft: rgba(0, 122, 65, 0.12);
+  --red: #c41d1d;
+  --red-soft: rgba(196, 29, 29, 0.1);
+  --accent: #8a6d00;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  background: var(--surface);
+  color: var(--text);
+  border: 0;
+  border-radius: 2px;
+  -webkit-mask:
+    radial-gradient(circle 5px at 50% 0, transparent 96%, #000) 0 0 / 14px 51% repeat-x,
+    radial-gradient(circle 5px at 50% 100%, transparent 96%, #000) 0 100% / 14px 51% repeat-x;
+  mask:
+    radial-gradient(circle 5px at 50% 0, transparent 96%, #000) 0 0 / 14px 51% repeat-x,
+    radial-gradient(circle 5px at 50% 100%, transparent 96%, #000) 0 100% / 14px 51% repeat-x;
+}
+
+[data-theme="surebet"] .event-card .event-meta,
+[data-theme="surebet"] .event-card .event-time {
+  font-family: "Courier New", ui-monospace, monospace;
+}
+
+[data-theme="surebet"] .content::after {
+  content: "18+ · Il gioco può causare dipendenza. Anche la scuola.";
+  color: var(--faint);
+  font: 600 12px/1.4 var(--font-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   PUGLIA — Uè!
+   ========================================================= */
+
+:root[data-theme="puglia"] {
+  color-scheme: light;
+  --bg: #fbfaf6;
+  --bg-soft: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f1eee5;
+  --border: rgba(29, 43, 58, 0.1);
+  --border-strong: rgba(29, 43, 58, 0.2);
+  --text: #1d2b3a;
+  --muted: #4f5d6b;
+  --faint: #737e8a;
+  --accent: #0a6fb5;
+  --accent-strong: #085d98;
+  --accent-soft: rgba(10, 111, 181, 0.1);
+  --accent-2: #5e7a1f;
+  --green: #4d7a12;
+  --green-soft: rgba(77, 122, 18, 0.11);
+  --red: #c8321f;
+  --red-soft: rgba(200, 50, 31, 0.09);
+  --amber: #a86a00;
+  --ring-track: rgba(29, 43, 58, 0.08);
+  --shadow: 0 18px 40px rgba(29, 43, 58, 0.1);
+  --radius: 22px;
+  --selection: rgba(10, 111, 181, 0.22);
+  --accent-border: rgba(10, 111, 181, 0.3);
+  --accent-grad: linear-gradient(135deg, #1a86d0, #085d98);
+  --accent-shadow: 0 8px 20px rgba(10, 111, 181, 0.28);
+  --danger-grad: linear-gradient(135deg, #e24a33, #b02a17);
+  --avatar-grad: linear-gradient(135deg, #5e7a1f, #9bb53a);
+  --on-accent: #fff;
+  --logo-1: #0a6fb5;
+  --logo-2: #0a6fb5;
+  --logo-3: #5e7a1f;
+  --logo-shadow: 0 8px 20px rgba(10, 111, 181, 0.25);
+  --font-display: "Fraunces", Georgia, serif;
+  --trulli: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Cg fill='%23fff' stroke='%231d2b3a' stroke-width='1.4'%3E%3Cpath d='M4 40V26h28v14z'/%3E%3Cpath d='M44 40V22h36v18z'/%3E%3Cpath d='M90 40V28h24v12z'/%3E%3C/g%3E%3Cg fill='%238b8f93'%3E%3Cpath d='M2 27 18 6 34 27z'/%3E%3Cpath d='M42 23 62 0 82 23z'/%3E%3Cpath d='M88 29 102 12 116 29z'/%3E%3C/g%3E%3Cg fill='%23fff'%3E%3Ccircle cx='18' cy='5' r='2'/%3E%3Ccircle cx='62' cy='1.5' r='2.4'/%3E%3Ccircle cx='102' cy='11' r='1.8'/%3E%3C/g%3E%3Cpath d='M57 40v-9a5 5 0 0 1 10 0v9' fill='%230a6fb5'/%3E%3C/svg%3E");
+  --body-bg: var(--bg);
+  --art:
+    linear-gradient(180deg, rgba(251, 250, 246, 0.5), rgba(251, 250, 246, 0.9) 260px, #fbfaf6 520px),
+    url("/themes/puglia/trulli.webp") center top / 100% auto no-repeat,
+    #fbfaf6;
+  --empty-art: url("/themes/puglia/pasta.svg");
+  --ring-art: conic-gradient(#0a6fb5, #5aa9dd, #5e7a1f, #9bb53a, #0a6fb5);
+  cursor: url("/themes/puglia/olive-cursor.png") 6 6, auto;
+}
+
+[data-theme="puglia"] h1 {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="puglia"] .page-header {
+  position: relative;
+  padding-bottom: 28px;
+}
+
+[data-theme="puglia"] .page-header::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 14px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 14'%3E%3Cpath d='M0 7 Q15 0 30 7 T60 7' fill='none' stroke='%230a6fb5' stroke-width='2.4'/%3E%3Cpath d='M0 12 Q15 5 30 12 T60 12' fill='none' stroke='%235aa9dd' stroke-width='1.6'/%3E%3C/svg%3E")
+    0 0 / 60px 14px repeat-x;
+  animation: waves 6s linear infinite;
+}
+
+@keyframes waves {
+  to {
+    background-position: 60px 0;
+  }
+}
+
+[data-theme="puglia"] .sidebar {
+  background: color-mix(in srgb, #ffffff 86%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="puglia"] .sidebar-footer::before {
+  content: "";
+  height: 44px;
+  margin: 0 -16px -4px;
+  background: var(--trulli) 0 100% / 132px 44px repeat-x;
+}
+
+[data-theme="puglia"] .bottom-nav::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  left: 0;
+  height: 26px;
+  background: var(--trulli) 0 100% / 78px 26px repeat-x;
+  pointer-events: none;
+}
+
+[data-theme="puglia"] .event-card,
+[data-theme="puglia"] .stats-hero,
+[data-theme="puglia"] .card {
+  box-shadow: 0 6px 18px rgba(29, 43, 58, 0.06);
+}
+
+[data-theme="puglia"] .side-link.active {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+/* =========================================================
+   KALASHMIKOV — Bersaglio acquisito
+   ========================================================= */
+
+:root[data-theme="kalashmikov"] {
+  color-scheme: dark;
+  --bg: #1b1d1a;
+  --bg-soft: #171916;
+  --surface: #25281f;
+  --surface-2: #30342a;
+  --border: rgba(216, 212, 197, 0.1);
+  --border-strong: rgba(216, 212, 197, 0.22);
+  --text: #e3dfcf;
+  --muted: #b5b09c;
+  --faint: #878371;
+  --accent: #d4ab45;
+  --accent-strong: #b08a2e;
+  --accent-soft: rgba(201, 161, 59, 0.14);
+  --accent-2: #8fa33a;
+  --green: #a3c447;
+  --green-soft: rgba(163, 196, 71, 0.13);
+  --red: #ef6b60;
+  --red-soft: rgba(229, 84, 74, 0.13);
+  --amber: #e0a526;
+  --ring-track: rgba(216, 212, 197, 0.08);
+  --radius: 3px;
+  --radius-sm: 2px;
+  --selection: rgba(193, 39, 45, 0.45);
+  --accent-border: rgba(201, 161, 59, 0.45);
+  --accent-grad: linear-gradient(180deg, #e6c463, #b08a2e);
+  --accent-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.35);
+  --danger-grad: linear-gradient(180deg, #c1272d, #8a1a1f);
+  --avatar-grad: linear-gradient(135deg, #d6dadd, #8d9296);
+  --on-accent: #1b1d1a;
+  --logo-1: #6b7a2e;
+  --logo-2: #4b5320;
+  --logo-3: #8b5a2b;
+  --logo-shadow: none;
+  --font-display: "Black Ops One", Impact, sans-serif;
+  --camo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath fill='%2325281f' d='M0 0h16v16H0z'/%3E%3Cpath fill='%23353a29' d='M1 1h4v2h2v3H3V4H1zM9 0h5v3h-2v2H9zM10 8h4v4h2v3h-5v-2H9V9h1zM2 9h3v3h2v3H3v-2H2z'/%3E%3Cpath fill='%23423d2c' d='M6 6h3v3H6zM12 4h4v3h-4zM0 13h2v3H0zM5 12h2v2H5z'/%3E%3Cpath fill='%23181a15' d='M7 1h2v2H7zM4 7h2v2H4zM13 12h2v2h-2zM8 13h2v2H8z'/%3E%3C/svg%3E");
+  --body-bg: var(--bg);
+  --art:
+    linear-gradient(rgba(27, 29, 26, 0.72), rgba(27, 29, 26, 0.72)),
+    var(--camo) 0 0 / 96px 96px;
+  --empty-art: url("/themes/kalashmikov/helmet.svg");
+  --ring-art: repeating-conic-gradient(#c9a13b 0 6deg, #8d6a1f 6deg 8deg, transparent 8deg 10deg);
+  cursor: crosshair;
+}
+
+[data-theme="kalashmikov"] h1,
+[data-theme="kalashmikov"] h2 {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="kalashmikov"] .page-header h1 {
+  position: relative;
+}
+
+[data-theme="kalashmikov"] .page-header h1::after {
+  content: "Classificato";
+  position: absolute;
+  top: -6px;
+  left: calc(100% + 14px);
+  padding: 3px 8px;
+  border: 2px solid #c1272d;
+  border-radius: 3px;
+  color: #e5544a;
+  font: 400 12px/1 var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: rotate(-9deg);
+  opacity: 0.9;
+}
+
+[data-theme="kalashmikov"] .bar-track {
+  height: 11px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+}
+
+[data-theme="kalashmikov"] .bar {
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, #8d6a1f 0 2px, #e0bd5a 2px 7px, #b4672e 7px 10px, transparent 10px 13px);
+}
+
+[data-theme="kalashmikov"] .event-card,
+[data-theme="kalashmikov"] .stats-hero,
+[data-theme="kalashmikov"] .card {
+  background:
+    radial-gradient(circle at 8px 8px, #6b6f60 2px, transparent 2.6px),
+    radial-gradient(circle at calc(100% - 8px) 8px, #6b6f60 2px, transparent 2.6px),
+    radial-gradient(circle at 8px calc(100% - 8px), #6b6f60 2px, transparent 2.6px),
+    radial-gradient(circle at calc(100% - 8px) calc(100% - 8px), #6b6f60 2px, transparent 2.6px),
+    var(--surface);
+}
+
+[data-theme="kalashmikov"] .avatar-fallback {
+  position: relative;
+  border-radius: 9px / 13px;
+  box-shadow:
+    inset 0 0 0 2px rgba(0, 0, 0, 0.22),
+    0 2px 0 rgba(0, 0, 0, 0.4);
+  color: #23251f;
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+[data-theme="kalashmikov"] .avatar-fallback::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--bg);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+[data-theme="kalashmikov"] .button,
+[data-theme="kalashmikov"] .status-button {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* =========================================================
+   BICICLETTA — Pedala fiera
+   ========================================================= */
+
+:root[data-theme="bicicletta"] {
+  color-scheme: light;
+  --bg: #f7fbff;
+  --bg-soft: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eef6fc;
+  --border: rgba(28, 35, 64, 0.1);
+  --border-strong: rgba(28, 35, 64, 0.2);
+  --text: #1c2340;
+  --muted: #4c5677;
+  --faint: #737c98;
+  --accent: #c4467a;
+  --accent-strong: #b03a6b;
+  --accent-soft: rgba(245, 169, 184, 0.28);
+  --accent-2: #2f8fc4;
+  --green: #1a7f56;
+  --green-soft: rgba(31, 143, 97, 0.11);
+  --red: #cf3f4f;
+  --red-soft: rgba(207, 63, 79, 0.09);
+  --amber: #a86d00;
+  --ring-track: rgba(28, 35, 64, 0.07);
+  --shadow: 0 18px 40px rgba(47, 143, 196, 0.12);
+  --radius: 24px;
+  --radius-sm: 16px;
+  --selection: rgba(245, 169, 184, 0.6);
+  --accent-border: rgba(91, 206, 250, 0.6);
+  --accent-grad: linear-gradient(135deg, #5bcefa, #f5a9b8);
+  --accent-shadow: 0 8px 22px rgba(245, 169, 184, 0.5);
+  --avatar-grad: linear-gradient(180deg, #5bcefa 0 20%, #f5a9b8 20% 40%, #fff 40% 60%, #f5a9b8 60% 80%, #5bcefa 80%);
+  --on-accent: #1c2340;
+  --logo-1: #5bcefa;
+  --logo-2: #f5a9b8;
+  --logo-3: #5bcefa;
+  --logo-shadow: 0 8px 22px rgba(91, 206, 250, 0.4);
+  --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
+  --flag-h: linear-gradient(180deg, #5bcefa 0 20%, #f5a9b8 20% 40%, #ffffff 40% 60%, #f5a9b8 60% 80%, #5bcefa 80%);
+  --flag-v: linear-gradient(90deg, #5bcefa 0 20%, #f5a9b8 20% 40%, #ffffff 40% 60%, #f5a9b8 60% 80%, #5bcefa 80%);
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 60% 40% at 90% -5%, rgba(245, 169, 184, 0.35), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(91, 206, 250, 0.25), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/bicicletta/bicycle.svg");
+  --ring-art: conic-gradient(#5bcefa 0 20%, #f5a9b8 20% 40%, #ffffff 40% 60%, #f5a9b8 60% 80%, #5bcefa 80%);
+}
+
+[data-theme="bicicletta"] h1 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="bicicletta"] .page-header {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+[data-theme="bicicletta"] .page-header::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 16px;
+  background: var(--flag-h);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(28, 35, 64, 0.08);
+}
+
+[data-theme="bicicletta"] .page-header::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  right: 6px;
+  width: 46px;
+  height: 46px;
+  background: url("/themes/bicicletta/butterfly.svg") center / contain no-repeat;
+  animation: flutter 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes flutter {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-8deg) scaleX(1);
+  }
+  25% {
+    transform: translate(-10px, -8px) rotate(4deg) scaleX(0.7);
+  }
+  50% {
+    transform: translate(-22px, 2px) rotate(-4deg) scaleX(1);
+  }
+  75% {
+    transform: translate(-8px, 6px) rotate(6deg) scaleX(0.75);
+  }
+}
+
+[data-theme="bicicletta"] .side-link.active,
+[data-theme="bicicletta"] .segment.active {
+  background: var(--flag-h);
+  box-shadow: inset 0 0 0 1px rgba(28, 35, 64, 0.08);
+  border-color: transparent;
+  color: #1c2340;
+  font-weight: 650;
+}
+
+[data-theme="bicicletta"] .side-link.active svg {
+  color: #1c2340;
+}
+
+[data-theme="bicicletta"] .day-cell.today .day-number {
+  color: #fff;
+}
+
+[data-theme="bicicletta"] .ring::before {
+  box-shadow: inset 0 0 0 1px rgba(28, 35, 64, 0.08);
+}
+
+[data-theme="bicicletta"] .bar {
+  background: var(--flag-h);
+}
+
+[data-theme="bicicletta"] .bar-track {
+  height: 10px;
+}
+
+[data-theme="bicicletta"] .theme-cheer {
+  background: var(--flag-h);
+  color: #1c2340;
+}
+
+/* =========================================================
+   CHANTALLE — Scorri per sbloccare
+   ========================================================= */
+
+:root[data-theme="chantalle"] {
+  color-scheme: light;
+  --bg: #f2f2f7;
+  --bg-soft: #f9f9fb;
+  --surface: #ffffff;
+  --surface-2: #e9e9ef;
+  --border: rgba(60, 60, 67, 0.12);
+  --border-strong: rgba(60, 60, 67, 0.24);
+  --text: #000000;
+  --muted: #636366;
+  --faint: #7c7c80;
+  --accent: #0068da;
+  --accent-strong: #0062cc;
+  --accent-soft: rgba(0, 122, 255, 0.1);
+  --accent-2: #34c759;
+  --green: #1f7a37;
+  --green-soft: rgba(52, 199, 89, 0.14);
+  --red: #d70015;
+  --red-soft: rgba(255, 59, 48, 0.11);
+  --amber: #b25000;
+  --ring-track: rgba(118, 118, 128, 0.14);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --selection: rgba(0, 122, 255, 0.22);
+  --accent-border: transparent;
+  --accent-grad: linear-gradient(#0071eb, #0071eb);
+  --accent-shadow: none;
+  --danger-grad: linear-gradient(#ff3b30, #ff3b30);
+  --danger-shadow: none;
+  --avatar-grad: linear-gradient(180deg, #a1a1aa, #6e6e76);
+  --on-accent: #fff;
+  --logo-1: #5ac8fa;
+  --logo-2: #007aff;
+  --logo-3: #5856d6;
+  --logo-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --font-body: -apple-system, "SF Pro Text", "Inter", system-ui, sans-serif;
+  --font-display: -apple-system, "SF Pro Display", "Inter", system-ui, sans-serif;
+  --body-bg: var(--bg);
+  --art: none;
+  --empty-art: url("/themes/chantalle/nails.svg");
+  --ring-art: conic-gradient(#34c759, #30d158);
+}
+
+[data-theme="chantalle"] .page-header h1 {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="chantalle"] .eyebrow {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="chantalle"] .event-card,
+[data-theme="chantalle"] .stats-hero,
+[data-theme="chantalle"] .card,
+[data-theme="chantalle"] .sync-line,
+[data-theme="chantalle"] .stat-chip {
+  border-color: transparent;
+}
+
+[data-theme="chantalle"] .event-card::before {
+  display: none;
+}
+
+[data-theme="chantalle"] .sidebar {
+  background: rgba(249, 249, 251, 0.82);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+[data-theme="chantalle"] .side-link.active {
+  background: #007aff;
+  border-color: transparent;
+  color: #fff;
+}
+
+[data-theme="chantalle"] .side-link.active svg {
+  color: #fff;
+}
+
+[data-theme="chantalle"] .segmented {
+  padding: 2px;
+  background: rgba(118, 118, 128, 0.12);
+  border: 0;
+  border-radius: 9px;
+}
+
+[data-theme="chantalle"] .segment.active {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.12),
+    0 3px 1px rgba(0, 0, 0, 0.04);
+  color: #000;
+}
+
+[data-theme="chantalle"] .status-button {
+  border: 0;
+  background: rgba(118, 118, 128, 0.12);
+  border-radius: 10px;
+}
+
+[data-theme="chantalle"] .toast {
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+[data-theme="chantalle"] .theme-cheer {
+  top: calc(12px + env(safe-area-inset-top));
+  bottom: auto;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-radius: 22px;
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  [data-theme="chantalle"] .topbar,
+  [data-theme="chantalle"] .bottom-nav {
+    background: rgba(249, 249, 249, 0.78);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  [data-theme="chantalle"] .topbar::before {
+    content: "";
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    width: 112px;
+    height: 32px;
+    background: #000;
+    border-radius: 20px;
+    transform: translateX(-50%);
+  }
+
+  [data-theme="chantalle"] .topbar::after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: calc(50% + 38px);
+    width: 8px;
+    height: 8px;
+    background: #30d158;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #30d158;
+  }
+
+  [data-theme="chantalle"] .toast-stack {
+    top: calc(10px + env(safe-area-inset-top));
+    bottom: auto;
+  }
+
+  [data-theme="chantalle"] .bottom-link.active {
+    color: #007aff;
+  }
+}
+
+/* =========================================================
+   BABA — Slay
+   ========================================================= */
+
+:root[data-theme="baba"] {
+  color-scheme: dark;
+  --bg: #14101f;
+  --bg-soft: #181327;
+  --surface: #1e1830;
+  --surface-2: #2a2242;
+  --border: rgba(255, 246, 251, 0.1);
+  --border-strong: rgba(255, 246, 251, 0.22);
+  --text: #fff6fb;
+  --muted: #d0c2db;
+  --faint: #9e90af;
+  --accent: #ff6fae;
+  --accent-strong: #ff3d8b;
+  --accent-soft: rgba(255, 95, 162, 0.16);
+  --accent-2: #9d85ff;
+  --green: #5fe39a;
+  --green-soft: rgba(95, 227, 154, 0.14);
+  --red: #ff6b7a;
+  --red-soft: rgba(255, 107, 122, 0.14);
+  --amber: #ffd23f;
+  --ring-track: rgba(255, 246, 251, 0.08);
+  --radius: 22px;
+  --selection: rgba(255, 95, 162, 0.45);
+  --accent-border: rgba(255, 95, 162, 0.5);
+  --rainbow: linear-gradient(90deg, #e40303, #ff8c00, #ffed00, #008026, #24408e, #732982);
+  --accent-grad: linear-gradient(90deg, #ff3d8b, #ff8c00, #e0c400, #1fa85a, #3b6cff, #a24cd6);
+  --accent-shadow: 0 8px 26px rgba(255, 61, 139, 0.45);
+  --avatar-grad: conic-gradient(#e40303, #ff8c00, #ffed00, #008026, #24408e, #732982, #e40303);
+  --on-accent: #fff;
+  --logo-1: #ff3d8b;
+  --logo-2: #ffb800;
+  --logo-3: #7c5cff;
+  --logo-shadow: 0 0 26px rgba(255, 95, 162, 0.6);
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 50% 35% at 85% 0%, rgba(255, 95, 162, 0.25), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 0% 100%, rgba(124, 92, 255, 0.22), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/baba/unicorn.svg");
+  --ring-art: conic-gradient(#e40303, #ff8c00, #ffed00, #008026, #24408e, #732982, #e40303);
+}
+
+[data-theme="baba"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 30%, #fff 0.6px, transparent 1.4px) 0 0 / 70px 70px,
+    radial-gradient(circle at 60% 70%, #ff9ccc 0.8px, transparent 1.6px) 0 0 / 110px 110px,
+    radial-gradient(circle at 40% 10%, #c9b8ff 0.7px, transparent 1.5px) 0 0 / 90px 90px;
+  opacity: 0.5;
+  animation: glitter 3s ease-in-out infinite alternate;
+}
+
+@keyframes glitter {
+  to {
+    opacity: 0.15;
+    background-position: 6px 4px, -5px 3px, 3px -6px;
+  }
+}
+
+[data-theme="baba"] h1 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+[data-theme="baba"] .page-header h1 {
+  font-size: clamp(36px, 6vw, 56px);
+  background: var(--rainbow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgba(255, 95, 162, 0.35));
+}
+
+[data-theme="baba"] .button-primary {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="baba"] .side-link.active,
+[data-theme="baba"] .segment.active {
+  background: linear-gradient(90deg, #e40303, #ff8c00, #ffed00, #008026, #24408e, #732982, #e40303) 0 0 / 300% 100%;
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  animation: rainbow-slide 6s linear infinite;
+}
+
+[data-theme="baba"] .side-link.active svg {
+  color: #fff;
+}
+
+@keyframes rainbow-slide {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+[data-theme="baba"] .event-card,
+[data-theme="baba"] .stats-hero,
+[data-theme="baba"] .card {
+  background:
+    linear-gradient(125deg, rgba(255, 95, 162, 0.1), rgba(124, 92, 255, 0.08) 35%, rgba(0, 209, 255, 0.06) 65%, rgba(255, 237, 0, 0.06)),
+    var(--surface);
+  background-size: 200% 200%;
+  transition: background-position 0.6s ease;
+}
+
+[data-theme="baba"] .event-card:hover {
+  background-position: 100% 100%;
+}
+
+[data-theme="baba"] .bar {
+  background: var(--rainbow);
+}
+
+[data-theme="baba"] .theme-cheer {
+  background: var(--accent-grad);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-size: 22px;
+}
+
+/* ---------- Movimento ridotto: niente decorazioni animate ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme] body::after,
+  [data-theme] .page-header::before,
+  [data-theme] .page-header::after,
+  [data-theme] .sidebar-footer::before,
+  [data-theme] .bar::after,
+  [data-theme] .side-link.active,
+  [data-theme] .section-head h2::before,
+  [data-theme] .avatar-fallback::before,
+  .odds-track,
+  .odds-live,
+  .theme-cheer {
+    animation: none !important;
+  }
+}

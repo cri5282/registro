@@ -5,6 +5,7 @@ import { useSync } from "../sync";
 import { EmptyState, ErrorBanner } from "../components/ui";
 import { addDays, fmtShort, startOfDay, startOfMonth, addMonths } from "../date";
 import type { Stats } from "../types";
+import { useTheme } from "../themes/ThemeProvider";
 
 type Period = "month" | "30d" | "all";
 
@@ -13,8 +14,8 @@ const PERIODS: { value: Period; label: string }[] = [
   { value: "30d", label: "Ultimi 30 giorni" },
   { value: "all", label: "Tutto" },
 ];
-
 export default function StatsPage() {
+  const { copy } = useTheme();
   const { version } = useSync();
   const [period, setPeriod] = useState<Period>("month");
   const [stats, setStats] = useState<Stats | null>(null);
@@ -58,8 +59,7 @@ export default function StatsPage() {
     <div className="page">
       <header className="page-header">
         <div>
-          <p className="eyebrow">Andamento</p>
-          <h1>Statistiche</h1>
+          <h1>{copy.titles.stats ?? "Statistiche"}</h1>
           <p className="page-subtitle">Solo le lezioni a cui hai assegnato uno stato.</p>
         </div>
       </header>
@@ -97,6 +97,7 @@ export default function StatsPage() {
               className="ring"
               style={{
                 background: `conic-gradient(${ringColor} ${(rate ?? 0) * 3.6}deg, var(--ring-track) 0deg)`,
+                ["--rate" as string]: `${(rate ?? 0) * 3.6}deg`,
               }}
             >
               <div className="ring-inner">
@@ -143,7 +144,7 @@ export default function StatsPage() {
 
           <section className="section">
             <div className="section-head">
-              <h2>Per materia</h2>
+              <h2>{copy.titles.bySubject ?? "Per materia"}</h2>
               <span className="section-count">{stats.groups.length}</span>
             </div>
             <div className="group-list">

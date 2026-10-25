@@ -14,12 +14,15 @@ import { useAuth } from "../auth";
 import { useSync } from "../sync";
 import { LogoMark } from "./Logo";
 import { timeAgo } from "../date";
+import { useTheme } from "../themes/ThemeProvider";
+import type { NavKey } from "../themes/registry";
+import ThemeWidget from "../themes/ThemeWidget";
 
-const BASE_NAV = [
-  { to: "/", label: "Oggi", icon: CalendarCheck, end: true },
-  { to: "/calendario", label: "Calendario", icon: CalendarDays, end: false },
-  { to: "/statistiche", label: "Statistiche", icon: BarChart3, end: false },
-  { to: "/impostazioni", label: "Impostazioni", icon: Settings, end: false },
+const BASE_NAV: { key: NavKey; to: string; label: string; icon: typeof Users; end: boolean }[] = [
+  { key: "today", to: "/", label: "Oggi", icon: CalendarCheck, end: true },
+  { key: "calendar", to: "/calendario", label: "Calendario", icon: CalendarDays, end: false },
+  { key: "stats", to: "/statistiche", label: "Statistiche", icon: BarChart3, end: false },
+  { key: "settings", to: "/impostazioni", label: "Impostazioni", icon: Settings, end: false },
 ];
 
 export default function Layout() {
@@ -27,13 +30,14 @@ export default function Layout() {
   const { syncing, syncNow, lastError, lastSyncAt } = useSync();
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] = useState(false);
+  const { copy } = useTheme();
 
   const name = user?.name?.split(" ")[0] || "Studente";
   const isAdmin = user?.role === "admin";
   const nav = isAdmin
     ? [
         ...BASE_NAV.slice(0, 3),
-        { to: "/admin/utenti", label: "Utenti", icon: Users, end: false },
+        { key: "users" as const, to: "/admin/utenti", label: "Utenti", icon: Users, end: false },
         ...BASE_NAV.slice(3),
       ]
     : BASE_NAV;
@@ -50,8 +54,8 @@ export default function Layout() {
         <div className="brand">
           <LogoMark size={40} />
           <div>
-            <strong>Registro</strong>
-            <span>{isAdmin ? "Amministrazione" : "Registro personale"}</span>
+            <strong>{copy.brand}</strong>
+            <span>{isAdmin ? "Amministrazione" : (copy.tagline ?? "Registro personale")}</span>
           </div>
         </div>
 
@@ -65,12 +69,18 @@ export default function Layout() {
                 end={item.end}
                 className={({ isActive }) => `side-link${isActive ? " active" : ""}`}
               >
-                <Icon size={19} />
-                <span>{item.label}</span>
+                {copy.nav[item.key] ? (
+                  <span className="nav-emoji" aria-hidden="true">{copy.nav[item.key]!.icon}</span>
+                ) : (
+                  <Icon size={19} />
+                )}
+                <span>{copy.nav[item.key]?.label ?? item.label}</span>
               </NavLink>
             );
           })}
         </nav>
+
+        <ThemeWidget />
 
         <div className="sidebar-footer">
           {isAdmin ? (
@@ -100,8 +110,7 @@ export default function Layout() {
                 <ShieldCheck size={14} />
                 <span>Calendario della classe</span>
               </div>
-              <p>Aggiornato {timeAgo(lastSyncAt)}</p>
-              <p className="sync-note">La sincronizzazione è gestita dall'amministratore.</p>
+              <p>Aggiornato {timeAgo(lastSyncAt)} dall'amministratore</p>
             </div>
           )}
 
@@ -131,7 +140,7 @@ export default function Layout() {
         <header className="topbar">
           <div className="topbar-brand">
             <LogoMark size={30} />
-            <span>Registro</span>
+            <span>{copy.brand}</span>
           </div>
           <div className="topbar-actions">
             {isAdmin ? (
@@ -167,8 +176,12 @@ export default function Layout() {
               end={item.end}
               className={({ isActive }) => `bottom-link${isActive ? " active" : ""}`}
             >
-              <Icon size={21} />
-              <span>{item.label}</span>
+              {copy.nav[item.key] ? (
+                <span className="nav-emoji" aria-hidden="true">{copy.nav[item.key]!.icon}</span>
+              ) : (
+                <Icon size={21} />
+              )}
+              <span>{copy.nav[item.key]?.label ?? item.label}</span>
             </NavLink>
           );
         })}

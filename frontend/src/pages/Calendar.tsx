@@ -19,24 +19,27 @@ import {
   WEEKDAYS,
 } from "../date";
 import { isCancelled, type AttendanceStatus, type EventItem } from "../types";
+import { useTheme } from "../themes/ThemeProvider";
 
 const DOT_ORDER = ["absent", "present", "unmarked"] as const;
 type DotStatus = (typeof DOT_ORDER)[number];
 
-function dayDots(events: EventItem[]): { dots: DotStatus[]; allDay: boolean } {
-  const statuses = new Set<DotStatus>();
+/** Un pallino per lezione, ordinati per stato, così si vede a colpo d'occhio quante e come. */
+function dayDots(events: EventItem[]): { dots: DotStatus[]; allDay: boolean; lessons: number } {
+  const dots: DotStatus[] = [];
   let allDay = false;
   for (const event of events) {
     if (event.all_day) {
       allDay = true;
     } else if (!isCancelled(event)) {
-      statuses.add(event.attendance?.status ?? "unmarked");
+      dots.push(event.attendance?.status ?? "unmarked");
     }
   }
-  return { dots: DOT_ORDER.filter((status) => statuses.has(status)), allDay };
+  dots.sort((a, b) => DOT_ORDER.indexOf(a) - DOT_ORDER.indexOf(b));
+  return { dots, allDay, lessons: dots.length };
 }
-
 export default function CalendarPage() {
+  const { copy } = useTheme();
   const { version } = useSync();
   const { push } = useToast();
   const [view, setView] = useState(() => startOfMonth(new Date()));
@@ -215,8 +218,7 @@ export default function CalendarPage() {
     <div className="page">
       <header className="page-header">
         <div>
-          <p className="eyebrow">Vista mensile</p>
-          <h1>Calendario</h1>
+          <h1>{copy.titles.calendar ?? "Calendario"}</h1>
           <p className="page-subtitle">Tocca un giorno per vedere e segnare le lezioni.</p>
         </div>
       </header>
@@ -263,10 +265,9 @@ export default function CalendarPage() {
             {grid.map((day) => {
               const key = localDateKey(day);
               const dayEvents = byDay.get(key) ?? [];
-              const { dots, allDay } = dayDots(dayEvents);
+              const { dots, allDay, lessons } = dayDots(dayEvents);
               const outside = day.getMonth() !== view.getMonth();
               const selected = key === selectedKey;
-              const preview = dayEvents.find((event) => !event.all_day) ?? dayEvents[0];
               return (
                 <button
                   key={key}
@@ -286,11 +287,13 @@ export default function CalendarPage() {
                   <span className="day-number">{day.getDate()}</span>
                   <span className="day-dots">
                     {allDay ? <span className="dot dot-allday" /> : null}
-                    {dots.map((status) => (
-                      <span key={status} className={`dot dot-${status}`} />
+                    {dots.map((status, index) => (
+                      <span key={index} className={`dot dot-${status}`} />
                     ))}
                   </span>
-                  {preview ? <span className="day-preview">{preview.title}</span> : null}
+                  {lessons > 0 ? (
+                    <span className="day-preview">{lessons === 1 ? "1 lezione" : `${lessons} lezioni`}</span>
+                  ) : null}
                 </button>
               );
             })}
