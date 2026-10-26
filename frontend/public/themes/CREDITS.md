@@ -13,7 +13,7 @@ Le foto sono state ridimensionate e convertite in WebP.
 ## Emoji (OpenMoji)
 
 Tutti i file `*.svg` nelle cartelle dei temi e i cursori `*-cursor.png` ricavati da essi
-provengono da [OpenMoji](https://openmoji.org/), il progetto open source di emoji
+(tranne la palla da pallavolo di `bellesia/`, disegnata a mano) provengono da [OpenMoji](https://openmoji.org/), il progetto open source di emoji
 dell'HfG Schwäbisch Gmünd, con licenza
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
@@ -29,7 +29,8 @@ con licenza SIL Open Font License 1.1.
 
 La waifu del tema "overthinker" (`src/themes/Waifu.tsx`), l'avatar a blocchi del tema "roblox"
 (`src/themes/Noob.tsx`), l'auto numero 95 del tema "saetta" (`src/themes/RaceCar.tsx`),
-l'annaffiatoio del tema "ortol" (`src/themes/WateringCan.tsx`) e il testo storico del tema "uomo"
+l'annaffiatoio del tema "ortol" (`src/themes/WateringCan.tsx`), la palla da pallavolo rosa del tema
+"bellesia" (`bellesia/volleyball.svg` e il cursore che ne deriva) e il testo storico del tema "uomo"
 (`src/themes/uomoText.ts`) sono stati disegnati e scritti apposta per questo progetto.
 Nessun logo ufficiale: i temi si ispirano ai marchi senza riprodurli.
 

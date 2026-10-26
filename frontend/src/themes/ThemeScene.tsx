@@ -129,6 +129,19 @@ const SCENES: Partial<Record<ThemeId, () => ReactNode>> = {
       <img className="ts-or-snail" src={asset("ortol/snail.svg")} alt="" />
     </div>
   ),
+  bellesia: () => (
+    <div className="ts-bl" aria-hidden="true">
+      {Array.from({ length: 8 }, (_, i) =>
+        i % 3 === 1 ? (
+          <img key={i} src={asset("bellesia/volleyball.svg")} alt="" style={{ left: `${6 + i * 12}%`, animationDelay: `${i * 2.3}s` }} />
+        ) : (
+          <span key={i} style={{ left: `${6 + i * 12}%`, animationDelay: `${i * 2.3}s` }}>
+            ♥
+          </span>
+        ),
+      )}
+    </div>
+  ),
 };
 
 export default function ThemeScene({ theme }: { theme: ThemeId }) {

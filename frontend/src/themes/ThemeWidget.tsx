@@ -378,6 +378,22 @@ const WIDGETS: Partial<Record<ThemeId, () => ReactNode>> = {
       <p className="tw-text">4° quarto · palla in mano a te</p>
     </div>
   ),
+  bellesia: () => (
+    <div className="tw tw-bl">
+      <div className="tw-bl-court" aria-hidden="true">
+        <span className="tw-bl-net" />
+        <img className="tw-bl-ball" src={asset("bellesia/volleyball.svg")} alt="" />
+      </div>
+      <div className="tw-bl-score">
+        <span>4ªB</span>
+        <b>24</b>
+        <i>SET 5</i>
+        <b>23</b>
+        <span>PROF</span>
+      </div>
+      <p className="tw-text">Match point · tocca a te servire 💖</p>
+    </div>
+  ),
 };
 
 /** Il "pezzo da collezione" del tema: in barra laterale su desktop, in fondo a Oggi su telefono. */

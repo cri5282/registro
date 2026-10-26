@@ -283,4 +283,16 @@ export const FLAVOR: Record<ThemeId, Partial<ThemeCopy>> = {
     },
     titles: { today: "Palla a due", calendar: "La stagione", stats: "Tabellino", settings: "Spogliatoio", lessons: "Quarti di oggi", bySubject: "Punti per materia" },
   },
+  bellesia: {
+    brand: "Bellesia Volley",
+    tagline: "Bagher, palleggio, schiacciata 💖",
+    nav: {
+      today: { label: "Match", icon: "🏐" },
+      calendar: { label: "Campionato", icon: "🗓️" },
+      stats: { label: "Referto", icon: "📋" },
+      settings: { label: "Panchina", icon: "🎀" },
+      users: { label: "Squadra", icon: "👯" },
+    },
+    titles: { today: "Il match di oggi", calendar: "Il campionato", stats: "Referto", settings: "Panchina", lessons: "I set di oggi", bySubject: "Punti per materia" },
+  },
 };

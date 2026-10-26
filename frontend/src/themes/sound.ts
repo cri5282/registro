@@ -324,6 +324,15 @@ const SOUNDS: Record<ThemeId, (ac: AudioContext, out: AudioNode) => void> = {
     tone(ac, out, 247, 1.9, 0.9, { type: "square", gain: 0.05 });
     noise(ac, out, 2.1, 1.4, { freq: 1000, q: 0.5, gain: 0.18, attack: 0.3 });
   },
+  // Fischio dell'arbitro, battuta, palla a terra, il palazzetto che esplode e un trillo per il punto.
+  bellesia(ac, out) {
+    tone(ac, out, 2900, 0.05, 0.35, { type: "triangle", gain: 0.08, vibrato: 0.04 });
+    noise(ac, out, 0.6, 0.08, { freq: 1200, q: 1.5, gain: 0.45 });
+    noise(ac, out, 0.65, 1.1, { freq: 700, q: 0.6, gain: 0.06, attack: 0.5 });
+    tone(ac, out, 150, 1.8, 0.15, { type: "triangle", glideTo: 70, gain: 0.45 });
+    noise(ac, out, 1.85, 1.5, { freq: 1100, q: 0.5, gain: 0.2, attack: 0.25 });
+    [84, 88, 91, 96].forEach((n, i) => tone(ac, out, NOTE(n), 1.9 + i * 0.09, 0.35, { gain: 0.08 }));
+  },
   default(ac, out) {
     tone(ac, out, 420, 0, 0.18, { glideTo: 980, gain: 0.18 });
   },
@@ -455,6 +464,13 @@ const EGG_SOUNDS: Record<ThemeId, (ac: AudioContext, out: AudioNode) => void> = 
     noise(ac, out, 0.5, 0.15, { freq: 900, gain: 0.6 });
     for (let i = 0; i < 10; i += 1) tone(ac, out, 2500 + Math.random() * 3000, 0.55 + i * 0.03, 0.2, { gain: 0.05 });
     noise(ac, out, 0.8, 1.6, { freq: 1000, q: 0.5, gain: 0.2, attack: 0.2 });
+  },
+  // Rincorsa, schiacciata a terra e fischio lungo dell'arbitro.
+  bellesia(ac, out) {
+    noise(ac, out, 0.3, 0.6, { freq: 900, q: 0.7, gain: 0.2, attack: 0.5 });
+    noise(ac, out, 0.9, 0.15, { filter: "lowpass", freq: 900, gain: 0.7, attack: 0.002 });
+    tone(ac, out, 110, 0.9, 0.35, { glideTo: 45, gain: 0.55 });
+    tone(ac, out, 2900, 1.5, 0.7, { type: "triangle", gain: 0.08, vibrato: 0.04 });
   },
 };
 

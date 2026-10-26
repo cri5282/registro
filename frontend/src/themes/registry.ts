@@ -377,4 +377,18 @@ export const THEMES: Record<ThemeId, ThemeDef> = {
     },
     Animation: lazy(() => import("./animations/Basket")),
   },
+  bellesia: {
+    themeColor: "#fff1f7",
+    font: () => import("@fontsource/cherry-bomb-one/latin-400.css"),
+    assets: ["bellesia/volleyball.svg"],
+    copy: {
+      greeting: "Forza {name}, palla alta! 🏐💖",
+      present: "Punto",
+      absent: "Fuori",
+      presentCount: "punti",
+      absentCount: "fuori",
+      cheer: { present: "ACE! 🏐💖", absent: "Murata… 🧱💔" },
+    },
+    Animation: lazy(() => import("./animations/Bellesia")),
+  },
 };

@@ -943,6 +943,114 @@
   font: normal 700 16px/1 "Courier New", monospace;
 }
 
+/* ---------- Bellesia ---------- */
+
+.tw-bl-court {
+  position: relative;
+  height: 96px;
+  margin: 0 0 8px;
+  background: linear-gradient(180deg, transparent 0 82%, #fbcfe8 82%);
+  border-radius: 10px;
+}
+
+/* La rete vista di lato: palo e maglie, con la banda bianca in cima. */
+.tw-bl-net {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  width: 3px;
+  height: 48%;
+  background: #7a3b5e;
+  transform: translateX(-50%);
+}
+
+.tw-bl-net::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 3px;
+  width: 9px;
+  height: 55%;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 4px, rgba(122, 59, 94, 0.6) 4px 5px),
+    repeating-linear-gradient(90deg, transparent 0 4px, rgba(122, 59, 94, 0.6) 4px 5px);
+  border-top: 4px solid #fff;
+  box-shadow: 0 -1px 0 #f472b6;
+}
+
+/* La palla va avanti e indietro sopra la rete: orizzontale costante, verticale a parabola. */
+.tw-bl-ball {
+  position: absolute;
+  bottom: 18%;
+  left: 6%;
+  width: 26px;
+  animation:
+    tw-bl-x 2.4s linear infinite alternate,
+    tw-bl-y 1.2s ease-out infinite alternate,
+    tw-bl-spin 1.2s linear infinite;
+}
+
+@keyframes tw-bl-x {
+  to {
+    left: calc(94% - 26px);
+  }
+}
+
+@keyframes tw-bl-y {
+  to {
+    bottom: 70%;
+  }
+}
+
+@keyframes tw-bl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tw-bl-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  background: #3d0f2a;
+  border-radius: 12px;
+  color: #fde4f0;
+  font: 400 12px/1 var(--font-display);
+}
+
+.tw-bl-score b {
+  color: #ff8fcf;
+  font: 700 24px/1 "Courier New", monospace;
+  text-shadow: 0 0 8px rgba(255, 143, 207, 0.7);
+}
+
+.tw-bl-score i {
+  padding: 3px 6px;
+  background: #db2777;
+  border-radius: 999px;
+  color: #fff;
+  font: normal 400 12px/1 var(--font-display);
+}
+
+.ts-bl span,
+.ts-bl img {
+  position: absolute;
+  bottom: -40px;
+  animation: ts-cf-rise 18s linear infinite;
+}
+
+.ts-bl span {
+  color: rgba(219, 39, 119, 0.12);
+  font-size: 34px;
+}
+
+.ts-bl img {
+  width: 34px;
+  opacity: 0.16;
+}
+
 @media (max-width: 900px) {
   .ts-je,
   .ts-or {
@@ -960,7 +1068,10 @@
   .tw-cf-eq i,
   .ts-cf span,
   .tw-or-bed img,
-  .ts-or-snail {
+  .ts-or-snail,
+  .tw-bl-ball,
+  .ts-bl span,
+  .ts-bl img {
     animation: none;
   }
 }

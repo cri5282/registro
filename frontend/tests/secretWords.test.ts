@@ -44,6 +44,7 @@ describe("parole segrete", () => {
     expect(type(createMatcher(SECRET_WORDS), "cryptofix")).toBe("cryptofix");
     expect(type(createMatcher(SECRET_WORDS), "ortol")).toBe("ortol");
     expect(type(createMatcher(SECRET_WORDS), "loscopatroie")).toBe("basket");
+    expect(type(createMatcher(SECRET_WORDS), "bellesia")).toBe("bellesia");
   });
 
   it("nessuna parola ne contiene un'altra (scatterebbe a metà)", () => {

@@ -454,6 +454,27 @@ function SlamDunk(props: EggProps) {
   );
 }
 
+/* ---------- bellesia: la schiacciata che fa tremare il palazzetto ---------- */
+function Spike(props: EggProps) {
+  useEgg(props, 3800, "egg-slap");
+  const [hit, setHit] = useState(false);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setHit(true), 900);
+    return () => window.clearTimeout(timer);
+  }, []);
+  return (
+    <>
+      <img className="egg-spike-ball" src={asset("bellesia/volleyball.svg")} alt="" />
+      <span className="egg-spike-mark" />
+      {hit && <Confetti colors={["#db2777", "#f472b6", "#fbcfe8", "#ffffff"]} />}
+      <p className="egg-spike-text">SCHIACCIATA!</p>
+      <Caption delay={1.6} className="egg-caption-bl">
+        Il muro avversario ha chiesto il cambio 🏐💖
+      </Caption>
+    </>
+  );
+}
+
 const EFFECTS: Record<ThemeId, (props: EggProps) => ReactNode> = {
   default: BarrelRoll,
   peru: LlamaSpit,
@@ -479,6 +500,7 @@ const EFFECTS: Record<ThemeId, (props: EggProps) => ReactNode> = {
   cryptofix: PumpDump,
   ortol: GiantTomato,
   basket: SlamDunk,
+  bellesia: Spike,
 };
 
 export default function EggEffect({ theme, onDone }: { theme: ThemeId; onDone: () => void }) {
