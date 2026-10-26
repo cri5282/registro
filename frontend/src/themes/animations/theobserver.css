@@ -1,0 +1,229 @@
+.anim-observer {
+  font-family: Caveat, "Comic Sans MS", cursive;
+}
+
+.ob-paper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, transparent 54px, rgba(214, 40, 40, 0.35) 54px 56px, transparent 56px),
+    linear-gradient(rgba(26, 79, 214, 0.12) 1px, transparent 1px) 0 0 / 100% 28px,
+    #f6f1e3;
+  opacity: 0;
+  animation:
+    ob-in 0.25s forwards,
+    ob-out 0.6s 3.65s ease-in forwards;
+}
+
+.ob-lens {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: min(30vmin, 220px);
+  transform: translate(-40vw, 60vh) rotate(-20deg);
+  will-change: transform;
+  animation: ob-lens 1.3s 0.15s cubic-bezier(0.5, 0, 0.5, 1) forwards;
+}
+
+.ob-question {
+  position: absolute;
+  top: 6%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #d62828;
+  font-size: clamp(36px, 7vw, 70px);
+  font-weight: 700;
+  text-align: center;
+  opacity: 0;
+  transform: rotate(-3deg) scale(0.6);
+  animation:
+    ob-pop 0.3s 0.6s cubic-bezier(0.2, 1.5, 0.4, 1) forwards,
+    ob-out 0.25s 1.3s forwards;
+}
+
+/* Le frecce se ne vanno prima del timbro finale. */
+.ob-arrow {
+  animation: ob-out 0.25s 3.25s forwards;
+}
+
+.ob-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ob-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.4);
+  opacity: 0;
+  animation: ob-eye-in 0.4s 0.9s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+}
+
+.ob-lid {
+  transform-box: fill-box;
+  animation:
+    ob-open 0.35s 1.1s ease-out forwards,
+    ob-blink 0.32s 3.4s ease-in-out forwards;
+}
+
+.ob-lid-top {
+  transform-origin: top;
+}
+
+.ob-lid-bottom {
+  transform-origin: bottom;
+}
+
+.ob-look {
+  animation: ob-look 2s 1.6s ease-in-out forwards;
+}
+
+.ob-pupil {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ob-dilate 0.4s 3.05s ease-out forwards;
+}
+
+.ob-line,
+.ob-head {
+  fill: none;
+  stroke: #1a4fd6;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ob-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ob-draw 0.3s var(--d) ease-out forwards;
+}
+
+.ob-head {
+  opacity: 0;
+  animation: ob-show 0.1s calc(var(--d) + 0.28s) forwards;
+}
+
+.ob-arrow text {
+  fill: #1a4fd6;
+  font: 700 30px Caveat, "Comic Sans MS", cursive;
+  opacity: 0;
+  animation: ob-show 0.2s calc(var(--d) + 0.05s) forwards;
+}
+
+.ob-arrow:nth-child(odd) text,
+.ob-arrow:nth-child(odd) .ob-line,
+.ob-arrow:nth-child(odd) .ob-head {
+  fill: #d62828;
+  stroke: #d62828;
+}
+
+.ob-arrow:nth-child(odd) .ob-line {
+  fill: none;
+}
+
+.ob-stamp {
+  position: absolute;
+  bottom: 7%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #1b1b1b;
+  font-size: clamp(48px, 10vw, 100px);
+  font-weight: 700;
+  text-align: center;
+  opacity: 0;
+  transform: scale(1.8) rotate(4deg);
+  animation: ob-pop 0.25s 3.45s ease-out forwards;
+}
+
+@keyframes ob-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ob-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes ob-lens {
+  40% {
+    transform: translate(30vw, 20vh) rotate(10deg);
+  }
+  to {
+    transform: translate(110vw, 4vh) rotate(25deg);
+  }
+}
+
+@keyframes ob-pop {
+  to {
+    opacity: 1;
+    transform: rotate(-3deg);
+  }
+}
+
+@keyframes ob-eye-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ob-open {
+  to {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes ob-blink {
+  from {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes ob-look {
+  20%,
+  35% {
+    transform: translateX(-46px);
+  }
+  55%,
+  70% {
+    transform: translateX(46px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes ob-dilate {
+  to {
+    transform: scale(1.6);
+  }
+}
+
+@keyframes ob-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ob-show {
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,507 @@
+/* =========================================================
+   Seconda ondata di temi segreti.
+   ========================================================= */
+
+/* Resta in linea anche dove gli span hanno stili propri (es. sottotitolo del marchio). */
+.brand .uomo-word,
+.topbar-brand .uomo-word,
+.uomo-word {
+  display: inline;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* =========================================================
+   OVERTHINKER — gamer român cu waifu
+   ========================================================= */
+
+@property --rgb-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root[data-theme="overthinker"] {
+  color-scheme: dark;
+  --bg: #0b0814;
+  --bg-soft: #0e0a1a;
+  --surface: #151026;
+  --surface-2: #201838;
+  --border: rgba(180, 140, 255, 0.14);
+  --border-strong: rgba(180, 140, 255, 0.3);
+  --text: #f2eefc;
+  --muted: #c3b6e0;
+  --faint: #9283b3;
+  --accent: #ff4fd8;
+  --accent-strong: #e02cbb;
+  --accent-soft: rgba(255, 79, 216, 0.15);
+  --accent-2: #2de2ff;
+  --green: #3dffa8;
+  --green-soft: rgba(61, 255, 168, 0.12);
+  --red: #ff5577;
+  --red-soft: rgba(255, 85, 119, 0.14);
+  --amber: #fcd116;
+  --ring-track: rgba(180, 140, 255, 0.1);
+  --radius: 10px;
+  --radius-sm: 8px;
+  --selection: rgba(255, 79, 216, 0.4);
+  --accent-border: rgba(255, 79, 216, 0.5);
+  --accent-grad: linear-gradient(90deg, #ff4fd8, #8b5cff, #2de2ff);
+  --accent-shadow: 0 0 22px rgba(255, 79, 216, 0.45);
+  --avatar-grad: linear-gradient(90deg, #002b7f 0 33%, #fcd116 33% 66%, #ce1126 66%);
+  --on-accent: #fff;
+  --logo-1: #ff4fd8;
+  --logo-2: #8b5cff;
+  --logo-3: #2de2ff;
+  --logo-shadow: 0 0 24px rgba(255, 79, 216, 0.6);
+  --font-display: "Orbitron", "Eurostile", system-ui, sans-serif;
+  --rgb: conic-gradient(from var(--rgb-angle), #ff4fd8, #8b5cff, #2de2ff, #3dffa8, #fcd116, #ff4fd8);
+  --body-bg: var(--bg);
+  --art:
+    linear-gradient(transparent 0 calc(100% - 1px), rgba(139, 92, 255, 0.07) 0) 0 0 / 100% 42px,
+    linear-gradient(90deg, transparent 0 calc(100% - 1px), rgba(139, 92, 255, 0.07) 0) 0 0 / 42px 100%,
+    radial-gradient(ellipse 60% 40% at 80% 0%, rgba(255, 79, 216, 0.22), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(45, 226, 255, 0.16), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/overthinker/gamepad.svg");
+  --ring-art: conic-gradient(#ff4fd8, #8b5cff, #2de2ff, #3dffa8, #ff4fd8);
+}
+
+[data-theme="overthinker"] h1,
+[data-theme="overthinker"] h2 {
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+[data-theme="overthinker"] .page-header {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+[data-theme="overthinker"] .page-header h1 {
+  text-shadow:
+    -3px 0 0 rgba(45, 226, 255, 0.85),
+    3px 0 0 rgba(255, 79, 216, 0.85);
+  animation: ot-glitch 4s steps(1) infinite;
+}
+
+[data-theme="overthinker"] .page-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  height: 8px;
+  background: linear-gradient(90deg, #002b7f 0 33.3%, #fcd116 33.3% 66.6%, #ce1126 66.6%);
+  border-radius: 2px;
+  box-shadow: 0 0 16px rgba(252, 209, 22, 0.35);
+}
+
+@keyframes ot-glitch {
+  0%,
+  90%,
+  100% {
+    transform: none;
+  }
+  92% {
+    transform: translate(3px, -1px) skewX(-6deg);
+  }
+  95% {
+    transform: translate(-3px, 1px);
+  }
+}
+
+[data-theme="overthinker"] .event-card,
+[data-theme="overthinker"] .stats-hero {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    var(--rgb) border-box;
+  animation: ot-rgb 5s linear infinite;
+}
+
+[data-theme="overthinker"] .event-card:nth-child(2n) {
+  animation-delay: -1.2s;
+}
+
+@keyframes ot-rgb {
+  to {
+    --rgb-angle: 360deg;
+  }
+}
+
+[data-theme="overthinker"] .stat-chip {
+  background: #07050d;
+  border: 1px solid var(--accent-border);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+[data-theme="overthinker"] .stat-chip strong {
+  text-shadow: 0 0 12px currentColor;
+}
+
+[data-theme="overthinker"] .bar-track {
+  height: 10px;
+  background: #07050d;
+  border-radius: 2px;
+}
+
+[data-theme="overthinker"] .bar {
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 9px, #07050d 9px 11px),
+    linear-gradient(90deg, #ff4fd8, #8b5cff, #2de2ff);
+  box-shadow: 0 0 12px rgba(255, 79, 216, 0.5);
+}
+
+[data-theme="overthinker"] .status-button {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+[data-theme="overthinker"] .side-link.active {
+  background: linear-gradient(90deg, rgba(255, 79, 216, 0.25), rgba(45, 226, 255, 0.08));
+  box-shadow: inset 3px 0 0 #ff4fd8;
+}
+
+[data-theme="overthinker"] .theme-cheer {
+  background: var(--accent-grad);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================================
+   FRE — movimento zero tentazioni
+   ========================================================= */
+
+:root[data-theme="fre"] {
+  color-scheme: light;
+  --bg: #eef6fb;
+  --bg-soft: #f8fcff;
+  --surface: #ffffff;
+  --surface-2: #e3f0f8;
+  --border: rgba(15, 36, 51, 0.1);
+  --border-strong: rgba(15, 36, 51, 0.2);
+  --text: #0f2433;
+  --muted: #46606f;
+  --faint: #66808f;
+  --accent: #c41f30;
+  --accent-strong: #a51a28;
+  --accent-soft: rgba(214, 40, 57, 0.09);
+  --accent-2: #2f8fd1;
+  --green: #16805a;
+  --green-soft: rgba(22, 128, 90, 0.1);
+  --red: #c41f30;
+  --red-soft: rgba(214, 40, 57, 0.08);
+  --amber: #a66a00;
+  --ring-track: rgba(15, 36, 51, 0.07);
+  --shadow: 0 16px 36px rgba(47, 143, 209, 0.12);
+  --radius: 4px;
+  --radius-sm: 3px;
+  --selection: rgba(47, 143, 209, 0.3);
+  --accent-border: rgba(214, 40, 57, 0.35);
+  --accent-grad: linear-gradient(180deg, #2f8fd1, #1f6fa6);
+  --accent-shadow: 0 6px 16px rgba(47, 143, 209, 0.3);
+  --avatar-grad: linear-gradient(135deg, #bfe3f7, #2f8fd1);
+  --on-accent: #fff;
+  --logo-1: #bfe3f7;
+  --logo-2: #2f8fd1;
+  --logo-3: #1f6fa6;
+  --logo-shadow: 0 6px 18px rgba(47, 143, 209, 0.35);
+  --font-display: "Archivo Black", Impact, sans-serif;
+  --icicles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 18'%3E%3Cpath d='M0 0H60V3L56 3L54 14L51 3L44 3L42 9L40 3L32 3L29 17L26 3L18 3L16 10L14 3L7 3L5 12L3 3H0Z' fill='%23d9f0fb' stroke='%23a8d8f0' stroke-width='0.6'/%3E%3C/svg%3E");
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(191, 227, 247, 0.6), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/fre/ice.svg");
+  --ring-art: conic-gradient(#bfe3f7, #2f8fd1, #bfe3f7);
+}
+
+[data-theme="fre"] h1,
+[data-theme="fre"] h2 {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+[data-theme="fre"] .page-header {
+  position: relative;
+  padding-bottom: 26px;
+}
+
+[data-theme="fre"] .page-header::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 18px;
+  background: var(--icicles) 0 0 / 60px 18px repeat-x;
+}
+
+[data-theme="fre"] .section-head h2::before {
+  content: "💔";
+  margin-right: 8px;
+  filter: grayscale(0.3);
+}
+
+[data-theme="fre"] .event-card,
+[data-theme="fre"] .stats-hero,
+[data-theme="fre"] .card {
+  box-shadow:
+    inset 0 2px 0 #d9f0fb,
+    inset 0 0 22px rgba(191, 227, 247, 0.45);
+}
+
+[data-theme="fre"] .stat-chip {
+  border: 2px solid var(--text);
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+[data-theme="fre"] .status-absent.active {
+  background: repeating-linear-gradient(-45deg, var(--red-soft) 0 6px, transparent 6px 12px);
+}
+
+[data-theme="fre"] .side-link.active {
+  background: #0f2433;
+  color: #fff;
+}
+
+[data-theme="fre"] .side-link.active svg {
+  color: #fff;
+}
+
+/* =========================================================
+   ROBOT — REGISTRO-3000
+   ========================================================= */
+
+:root[data-theme="robot"] {
+  color-scheme: dark;
+  --bg: #0e1316;
+  --bg-soft: #0b1013;
+  --surface: #172026;
+  --surface-2: #1f2b33;
+  --border: rgba(62, 240, 255, 0.14);
+  --border-strong: rgba(62, 240, 255, 0.3);
+  --text: #d8f3ff;
+  --muted: #9fbccb;
+  --faint: #718e9d;
+  --accent: #3ef0ff;
+  --accent-strong: #12c8d9;
+  --accent-soft: rgba(62, 240, 255, 0.12);
+  --accent-2: #ff9f1c;
+  --green: #39ff88;
+  --green-soft: rgba(57, 255, 136, 0.1);
+  --red: #ff4d5e;
+  --red-soft: rgba(255, 77, 94, 0.12);
+  --amber: #ffb020;
+  --ring-track: rgba(62, 240, 255, 0.08);
+  --radius: 4px;
+  --radius-sm: 3px;
+  --selection: rgba(62, 240, 255, 0.3);
+  --accent-border: rgba(62, 240, 255, 0.45);
+  --accent-grad: linear-gradient(180deg, #3ef0ff, #12a9b8);
+  --accent-shadow: 0 0 18px rgba(62, 240, 255, 0.4);
+  --avatar-grad: linear-gradient(135deg, #3b4a54, #1c252b);
+  --on-accent: #041316;
+  --logo-1: #3b4a54;
+  --logo-2: #1c252b;
+  --logo-3: #3ef0ff;
+  --logo-shadow: 0 0 20px rgba(62, 240, 255, 0.4);
+  --font-display: "Share Tech Mono", ui-monospace, monospace;
+  --circuit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%233ef0ff' stroke-opacity='.12' stroke-width='1.5'%3E%3Cpath d='M0 20H40L55 35V60H90L100 50H120'/%3E%3Cpath d='M20 120V90L35 75H70'/%3E%3Cpath d='M80 0V25L95 40V80L110 95V120'/%3E%3Cpath d='M0 100H15'/%3E%3C/g%3E%3Cg fill='%233ef0ff' fill-opacity='.22'%3E%3Ccircle cx='40' cy='20' r='3'/%3E%3Ccircle cx='55' cy='60' r='3'/%3E%3Ccircle cx='70' cy='75' r='3'/%3E%3Ccircle cx='95' cy='40' r='3'/%3E%3Ccircle cx='15' cy='100' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  --body-bg: var(--bg);
+  --art:
+    var(--circuit) 0 0 / 240px 240px,
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(62, 240, 255, 0.12), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/robot/robot.svg");
+  --ring-art: repeating-conic-gradient(#3ef0ff 0 8deg, transparent 8deg 11deg);
+}
+
+[data-theme="robot"] h1,
+[data-theme="robot"] h2 {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+[data-theme="robot"] .page-header h1::after {
+  content: "_";
+  color: var(--accent);
+  animation: rb-caret 1s steps(2) infinite;
+}
+
+@keyframes rb-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+[data-theme="robot"] .page-header {
+  position: relative;
+  padding-bottom: 22px;
+}
+
+[data-theme="robot"] .page-header::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 8px;
+  background: repeating-linear-gradient(-45deg, #ffb020 0 10px, #111 10px 20px);
+  border-radius: 1px;
+}
+
+[data-theme="robot"] .event-card,
+[data-theme="robot"] .stats-hero,
+[data-theme="robot"] .card {
+  background:
+    radial-gradient(circle at 9px 9px, #3b4a54 2.5px, #0b1013 3px, transparent 3.6px),
+    radial-gradient(circle at calc(100% - 9px) 9px, #3b4a54 2.5px, #0b1013 3px, transparent 3.6px),
+    radial-gradient(circle at 9px calc(100% - 9px), #3b4a54 2.5px, #0b1013 3px, transparent 3.6px),
+    radial-gradient(circle at calc(100% - 9px) calc(100% - 9px), #3b4a54 2.5px, #0b1013 3px, transparent 3.6px),
+    linear-gradient(180deg, #1b252c, #151d22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="robot"] .stat-chip {
+  background: #06150d;
+  border: 1px solid rgba(57, 255, 136, 0.35);
+  color: #39ff88;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+[data-theme="robot"] .stat-chip strong {
+  color: #39ff88 !important;
+  text-shadow: 0 0 10px rgba(57, 255, 136, 0.7);
+}
+
+[data-theme="robot"] .bar-track {
+  height: 10px;
+  background: #06150d;
+  border-radius: 0;
+}
+
+[data-theme="robot"] .bar {
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, #39ff88 0 6px, transparent 6px 8px);
+  box-shadow: 0 0 10px rgba(57, 255, 136, 0.4);
+}
+
+[data-theme="robot"] .status-button,
+[data-theme="robot"] .button {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+[data-theme="robot"] .theme-cheer {
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+/* =========================================================
+   UOMO — parole ovunque, "uomo" in rosso
+   ========================================================= */
+
+:root[data-theme="uomo"] {
+  color-scheme: light;
+  --bg: #f3efe4;
+  --bg-soft: rgba(247, 243, 233, 0.86);
+  --surface: rgba(255, 253, 247, 0.9);
+  --surface-2: rgba(236, 229, 212, 0.92);
+  --border: rgba(30, 27, 22, 0.14);
+  --border-strong: rgba(30, 27, 22, 0.28);
+  --text: #1e1b16;
+  --muted: #4c463b;
+  --faint: #6c6455;
+  --accent: #c8102e;
+  --accent-strong: #a50d26;
+  --accent-soft: rgba(200, 16, 46, 0.1);
+  --accent-2: #1e1b16;
+  --green: #2f6b3a;
+  --green-soft: rgba(47, 107, 58, 0.12);
+  --red: #c8102e;
+  --red-soft: rgba(200, 16, 46, 0.09);
+  --amber: #8a5a00;
+  --ring-track: rgba(30, 27, 22, 0.08);
+  --shadow: 0 12px 30px rgba(30, 27, 22, 0.12);
+  --radius: 2px;
+  --radius-sm: 2px;
+  --selection: rgba(200, 16, 46, 0.25);
+  --accent-border: rgba(200, 16, 46, 0.4);
+  --accent-grad: linear-gradient(180deg, #d4142f, #a50d26);
+  --accent-shadow: none;
+  --avatar-grad: linear-gradient(135deg, #1e1b16, #4c463b);
+  --on-accent: #fff;
+  --logo-1: #c8102e;
+  --logo-2: #a50d26;
+  --logo-3: #1e1b16;
+  --logo-shadow: none;
+  --font-display: "EB Garamond", Garamond, Georgia, serif;
+  --body-bg: var(--bg);
+  --art: none;
+  --empty-art: url("/themes/uomo/scroll.svg");
+  --ring-art: conic-gradient(#c8102e, #a50d26);
+}
+
+[data-theme="uomo"] .uomo-word,
+[data-theme="uomo"] .brand .uomo-word,
+[data-theme="uomo"] .topbar-brand .uomo-word {
+  color: var(--red);
+  font-weight: 700;
+}
+
+[data-theme="uomo"] h1,
+[data-theme="uomo"] h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="uomo"] .page-header h1 {
+  font-size: clamp(38px, 5.5vw, 58px);
+  font-style: italic;
+}
+
+[data-theme="uomo"] .page-header {
+  padding-bottom: 14px;
+  border-bottom: 3px double var(--text);
+}
+
+[data-theme="uomo"] .sidebar {
+  backdrop-filter: blur(1.5px);
+}
+
+[data-theme="uomo"] .event-card,
+[data-theme="uomo"] .stats-hero,
+[data-theme="uomo"] .card {
+  border-color: var(--border-strong);
+  box-shadow: 4px 4px 0 rgba(30, 27, 22, 0.12);
+}
+
+[data-theme="uomo"] .stat-chip {
+  border: 1px solid var(--text);
+  border-radius: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="overthinker"] .event-card,
+  [data-theme="overthinker"] .stats-hero,
+  [data-theme="overthinker"] .page-header h1,
+  [data-theme="robot"] .page-header h1::after {
+    animation: none !important;
+  }
+}

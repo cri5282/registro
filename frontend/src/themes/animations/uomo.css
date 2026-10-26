@@ -1,0 +1,169 @@
+.anim-uomo {
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+}
+
+.uo-page {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(120, 90, 40, 0.18)),
+    #f3efe4;
+  opacity: 0;
+  animation:
+    uo-in 0.25s forwards,
+    uo-out 0.7s 3.35s ease-in forwards;
+}
+
+.uo-columns {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: 24px;
+  height: 100%;
+  padding: 3vh 2.5vw;
+  color: #1e1b16;
+  font-size: 15px;
+  line-height: 1.45;
+  text-align: justify;
+  hyphens: auto;
+  animation: uo-fade-text 0.45s 1.35s forwards;
+}
+
+.uo-col {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.uo-col p {
+  margin: 0 0 10px;
+}
+
+.uo-red {
+  white-space: nowrap;
+  hyphens: none;
+  position: relative;
+  color: #c8102e;
+  font-weight: 700;
+}
+
+/* Il cerchio a penna rossa attorno a ogni "uomo". */
+.uo-red::after {
+  content: "";
+  position: absolute;
+  inset: -3px -6px;
+  border: 2px solid #c8102e;
+  border-radius: 50%;
+  transform: rotate(-4deg) scale(0.2);
+  opacity: 0;
+  animation: uo-circle 0.3s 1.45s ease-out forwards;
+}
+
+/* Quando gli "uomo" partono, gli originali spariscono e restano i fantasmi che volano. */
+.uo-flying .uo-red {
+  visibility: hidden;
+}
+
+/* Il foglio bianco che scende e scopre il testo, come un rullo di macchina da scrivere. */
+.uo-cover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, #f3efe4 40px);
+  will-change: transform;
+  animation: uo-reveal 1.05s 0.2s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+.uo-flyers {
+  position: absolute;
+  inset: 0;
+}
+
+.uo-flyer {
+  position: absolute;
+  color: #c8102e;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  will-change: transform, opacity;
+  animation: uo-fly 0.55s cubic-bezier(0.6, 0, 0.8, 0.6) forwards;
+}
+
+.uo-big {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #c8102e;
+  font: italic 700 clamp(90px, 28vw, 360px) / 1 "EB Garamond", Garamond, Georgia, serif;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-shadow:
+    0 0 40px rgba(200, 16, 46, 0.35),
+    8px 8px 0 #1e1b16;
+  opacity: 0;
+  transform: translateY(-50%) scale(0.2);
+  will-change: transform, opacity;
+  animation:
+    uo-slam 0.4s 2.45s cubic-bezier(0.2, 1.5, 0.4, 1) forwards,
+    uo-away 0.75s 3.4s ease-in forwards;
+}
+
+@keyframes uo-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes uo-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes uo-reveal {
+  to {
+    transform: translateY(105%);
+  }
+}
+
+/* Il testo normale sbiadisce, gli "uomo" restano. */
+@keyframes uo-fade-text {
+  to {
+    color: rgba(30, 27, 22, 0.14);
+  }
+}
+
+@keyframes uo-circle {
+  to {
+    opacity: 1;
+    transform: rotate(-4deg) scale(1);
+  }
+}
+
+@keyframes uo-fly {
+  70% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(2.2);
+  }
+}
+
+@keyframes uo-slam {
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1) rotate(-4deg);
+  }
+}
+
+@keyframes uo-away {
+  from {
+    opacity: 1;
+    transform: translateY(-50%) scale(1) rotate(-4deg);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50%) scale(2.6) rotate(-4deg);
+  }
+}

@@ -16,6 +16,7 @@
     <script>
       try {
         var t = localStorage.getItem("registro.theme");
+        if (t === "chantalle") localStorage.setItem("registro.theme", (t = "chantal"));
         if (t && t !== "default") document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>

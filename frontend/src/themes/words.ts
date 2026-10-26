@@ -8,8 +8,21 @@ export type ThemeId =
   | "puglia"
   | "kalashmikov"
   | "bicicletta"
-  | "chantalle"
-  | "baba";
+  | "chantal"
+  | "baba"
+  | "overthinker"
+  | "fre"
+  | "robot"
+  | "uomo"
+  | "roblox"
+  | "saetta"
+  | "theobserver"
+  | "darko"
+  | "justeat"
+  | "greentheory"
+  | "cryptofix"
+  | "ortol"
+  | "basket";
 
 export const THEME_IDS: ThemeId[] = [
   "default",
@@ -21,8 +34,21 @@ export const THEME_IDS: ThemeId[] = [
   "puglia",
   "kalashmikov",
   "bicicletta",
-  "chantalle",
+  "chantal",
   "baba",
+  "overthinker",
+  "fre",
+  "robot",
+  "uomo",
+  "roblox",
+  "saetta",
+  "theobserver",
+  "darko",
+  "justeat",
+  "greentheory",
+  "cryptofix",
+  "ortol",
+  "basket",
 ];
 
 export const SECRET_WORDS: Record<string, ThemeId> = {
@@ -36,8 +62,21 @@ export const SECRET_WORDS: Record<string, ThemeId> = {
   kalashmikov: "kalashmikov",
   kalashnikov: "kalashmikov",
   bicicletta: "bicicletta",
-  chantalle: "chantalle",
+  chantal: "chantal",
   baba: "baba",
+  overthinker: "overthinker",
+  fre: "fre",
+  robot: "robot",
+  uomo: "uomo",
+  roblox: "roblox",
+  saetta: "saetta",
+  theobserver: "theobserver",
+  darko: "darko",
+  justeat: "justeat",
+  greentheory: "greentheory",
+  cryptofix: "cryptofix",
+  ortol: "ortol",
+  loscopatroie: "basket",
 };
 
 export function isThemeId(value: unknown): value is ThemeId {

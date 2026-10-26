@@ -1,0 +1,237 @@
+.anim-darko {
+  font-family: "Permanent Marker", "Comic Sans MS", cursive;
+}
+
+.dk-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 120%, #2b2b2b, transparent 60%),
+    #070707;
+  opacity: 0;
+  animation:
+    dk-in 0.2s forwards,
+    dk-out 0.6s 3.75s ease-in forwards;
+}
+
+.dk-spot {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: 70vmin;
+  height: 140%;
+  background: radial-gradient(ellipse at 50% 100%, rgba(255, 245, 220, 0.18), transparent 70%);
+  clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%);
+  opacity: 0;
+  transform: translateX(-50%);
+  animation: dk-flicker 0.4s 1.95s forwards;
+}
+
+/* Il vinile gira finché qualcuno non lo graffia. */
+.dk-vinyl {
+  position: absolute;
+  right: -12vmin;
+  bottom: -12vmin;
+  width: 55vmin;
+  opacity: 0.85;
+  animation:
+    dk-spin 0.9s linear 2 forwards,
+    dk-scratch 0.35s 1.7s ease-out forwards;
+}
+
+.dk-lines {
+  position: absolute;
+  top: 26%;
+  left: 7%;
+  right: 7%;
+  animation: dk-glitch 0.3s 1.7s steps(3) forwards;
+}
+
+.dk-line {
+  margin: 0 0 10px;
+  color: #f2f2f2;
+  font-size: clamp(30px, 6vw, 66px);
+  line-height: 1.1;
+  clip-path: inset(0 100% 0 0);
+}
+
+.dk-line-1 {
+  animation: dk-type 0.6s 0.25s steps(18) forwards;
+}
+
+.dk-line-2 {
+  color: #f5c518;
+  animation: dk-type 0.4s 1s steps(12) forwards;
+}
+
+.dk-who {
+  position: absolute;
+  top: 46%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #9a9a9a;
+  font-size: clamp(20px, 3.4vw, 30px);
+  text-align: center;
+  opacity: 0;
+  animation: dk-show 0.2s 2.05s forwards, dk-out 0.2s 2.4s forwards;
+}
+
+.dk-404 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  margin: 0;
+  color: #e11d2a;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(2.6) rotate(-8deg);
+  animation: dk-slam 0.25s 2.4s cubic-bezier(0.5, 0, 0.6, 1.4) forwards;
+}
+
+.dk-404 strong {
+  font: 400 clamp(110px, 26vw, 260px) / 0.9 Anton, Impact, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.dk-404 span {
+  color: #f2f2f2;
+  font-size: clamp(22px, 4vw, 40px);
+  text-transform: uppercase;
+}
+
+/* Mic drop. */
+.dk-mic {
+  position: absolute;
+  top: 0;
+  left: 18%;
+  width: min(22vmin, 150px);
+  transform: translateY(-110%) rotate(-20deg);
+  animation: dk-drop 0.45s 2.6s cubic-bezier(0.6, 0, 1, 0.6) forwards;
+}
+
+.dk-sticker {
+  position: absolute;
+  right: 6%;
+  bottom: 7%;
+  display: grid;
+  width: min(36vmin, 240px);
+  padding: 8px 10px;
+  background: #fff;
+  border: 6px solid #000;
+  outline: 3px solid #fff;
+  color: #000;
+  font: 400 clamp(14px, 2.2vmin, 18px) / 1 Anton, Impact, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: scale(2.2) rotate(10deg);
+  animation: dk-sticker 0.25s 3.1s cubic-bezier(0.5, 0, 0.6, 1.4) forwards;
+}
+
+.dk-sticker strong {
+  margin: 4px -10px;
+  padding: 3px 0;
+  background: #000;
+  color: #fff;
+  font-size: 2.1em;
+  font-weight: 400;
+}
+
+@keyframes dk-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dk-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dk-show {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dk-flicker {
+  0%,
+  30% {
+    opacity: 1;
+  }
+  15%,
+  45% {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dk-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dk-scratch {
+  from {
+    transform: rotate(0);
+  }
+  40% {
+    transform: rotate(-80deg);
+  }
+  to {
+    transform: rotate(-60deg);
+    opacity: 0.35;
+  }
+}
+
+@keyframes dk-type {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes dk-glitch {
+  33% {
+    transform: translate(-8px, 2px) skewX(-8deg);
+  }
+  66% {
+    transform: translate(6px, -2px) skewX(6deg);
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dk-slam {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-4deg);
+  }
+}
+
+@keyframes dk-drop {
+  80% {
+    transform: translateY(calc(100vh - 100%)) rotate(70deg);
+  }
+  90% {
+    transform: translateY(calc(100vh - 110%)) rotate(80deg);
+  }
+  to {
+    transform: translateY(calc(100vh - 100%)) rotate(90deg);
+  }
+}
+
+@keyframes dk-sticker {
+  to {
+    opacity: 1;
+    transform: rotate(-6deg);
+  }
+}

@@ -20,6 +20,7 @@ import {
 } from "../date";
 import { isCancelled, type AttendanceStatus, type EventItem } from "../types";
 import { useTheme } from "../themes/ThemeProvider";
+import { uomo } from "../themes/Uomo";
 
 const DOT_ORDER = ["absent", "present", "unmarked"] as const;
 type DotStatus = (typeof DOT_ORDER)[number];
@@ -218,7 +219,7 @@ export default function CalendarPage() {
     <div className="page">
       <header className="page-header">
         <div>
-          <h1>{copy.titles.calendar ?? "Calendario"}</h1>
+          <h1>{uomo(copy.titles.calendar ?? "Calendario")}</h1>
           <p className="page-subtitle">Tocca un giorno per vedere e segnare le lezioni.</p>
         </div>
       </header>

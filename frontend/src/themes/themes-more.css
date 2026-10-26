@@ -1,0 +1,1047 @@
+/* =========================================================
+   Terza ondata di temi segreti.
+   ========================================================= */
+
+/* =========================================================
+   ROBLOX — Benvenuto nel server
+   ========================================================= */
+
+:root[data-theme="roblox"] {
+  --glow-1: #00a2ff;
+  --glow-2: #00b06f;
+  color-scheme: dark;
+  --bg: #232527;
+  --bg-soft: #1d1f21;
+  --surface: #2e3134;
+  --surface-2: #393b3d;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --text: #ffffff;
+  --muted: #bdbebe;
+  --faint: #9a9c9e;
+  --accent: #00a2ff;
+  --accent-strong: #0084d1;
+  --accent-soft: rgba(0, 162, 255, 0.14);
+  --accent-2: #00b06f;
+  --green: #00b06f;
+  --green-soft: rgba(0, 176, 111, 0.14);
+  --red: #ff4b4b;
+  --red-soft: rgba(255, 75, 75, 0.14);
+  --amber: #f5cd30;
+  --ring-track: rgba(255, 255, 255, 0.08);
+  --radius: 10px;
+  --radius-sm: 8px;
+  --selection: rgba(0, 162, 255, 0.35);
+  --accent-border: rgba(0, 162, 255, 0.5);
+  --accent-grad: linear-gradient(180deg, #33b5ff, #0084d1);
+  --accent-shadow: 0 4px 0 #005d94;
+  --avatar-grad: linear-gradient(135deg, #f5cd30, #e0a800);
+  --on-accent: #fff;
+  --logo-1: #f5cd30;
+  --logo-2: #0d69ac;
+  --logo-3: #a4bd47;
+  --logo-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+  --font-display: "Lilita One", "Arial Black", sans-serif;
+  /* I bottoncini dei mattoncini, ovunque. */
+  --studs: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.07) 0 28%, rgba(0, 0, 0, 0.18) 32% 38%, transparent 40%);
+  --body-bg: var(--bg);
+  --art:
+    var(--studs) 0 0 / 28px 28px,
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0, 162, 255, 0.12), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/roblox/brick.svg");
+  --ring-art: conic-gradient(#00b06f, #00a2ff, #f5cd30, #00b06f);
+}
+
+[data-theme="roblox"] h1,
+[data-theme="roblox"] h2 {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+[data-theme="roblox"] .page-header h1 {
+  font-size: clamp(34px, 5vw, 50px);
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Le schede sembrano le copertine dei giochi, con la barra dei "mi piace". */
+[data-theme="roblox"] .event-card,
+[data-theme="roblox"] .stats-hero,
+[data-theme="roblox"] .card {
+  background:
+    var(--studs) 0 0 / 22px 22px,
+    linear-gradient(180deg, #33363a, #2a2c30);
+  border: 2px solid #191a1c;
+  box-shadow: 0 4px 0 #161718;
+}
+
+[data-theme="roblox"] .stat-chip {
+  background: #191a1c;
+  border: 2px solid #3d4044;
+  border-radius: 10px;
+  font-family: var(--font-display);
+}
+
+[data-theme="roblox"] .stat-chip strong::before {
+  content: "⬢ ";
+  color: #00b06f;
+  font-size: 0.7em;
+  vertical-align: 0.15em;
+}
+
+[data-theme="roblox"] .button,
+[data-theme="roblox"] .status-button {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="roblox"] .status-button.active.status-present {
+  background: #00b06f;
+  border-color: #00b06f;
+  color: #fff;
+}
+
+[data-theme="roblox"] .bar-track {
+  height: 12px;
+  background: #191a1c;
+  border-radius: 3px;
+}
+
+[data-theme="roblox"] .bar {
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(0, 0, 0, 0.25) 18px 20px),
+    linear-gradient(180deg, #33d18f, #00b06f);
+}
+
+[data-theme="roblox"] .side-link.active {
+  background: #00a2ff;
+  color: #fff;
+  box-shadow: 0 3px 0 #005d94;
+}
+
+[data-theme="roblox"] .theme-cheer {
+  background: #fff;
+  border-radius: 14px;
+  color: #1b1b1b;
+  font-family: system-ui, sans-serif;
+  font-weight: 700;
+}
+
+/* =========================================================
+   SAETTA — Ka-ciao!
+   ========================================================= */
+
+:root[data-theme="saetta"] {
+  --glow-1: #ff9a3c;
+  --glow-2: #d7141a;
+  color-scheme: light;
+  --bg: #fbefe0;
+  --bg-soft: #fff6ec;
+  --surface: #fffaf3;
+  --surface-2: #f6e3cc;
+  --border: rgba(122, 40, 10, 0.16);
+  --border-strong: rgba(122, 40, 10, 0.3);
+  --text: #1f1410;
+  --muted: #5c4334;
+  --faint: #7d6150;
+  --accent: #d7141a;
+  --accent-strong: #a50f15;
+  --accent-soft: rgba(215, 20, 26, 0.1);
+  --accent-2: #ffc72c;
+  --green: #187a3a;
+  --green-soft: rgba(24, 122, 58, 0.12);
+  --red: #c4161c;
+  --red-soft: rgba(196, 22, 28, 0.1);
+  --amber: #a86400;
+  --ring-track: rgba(31, 20, 16, 0.08);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --selection: rgba(255, 199, 44, 0.5);
+  --accent-border: rgba(215, 20, 26, 0.45);
+  --accent-grad: linear-gradient(180deg, #ef2b31, #b30f15);
+  --accent-shadow: 0 6px 16px rgba(215, 20, 26, 0.3);
+  --avatar-grad: linear-gradient(135deg, #d7141a, #ffc72c);
+  --on-accent: #fff;
+  --logo-1: #d7141a;
+  --logo-2: #a50f15;
+  --logo-3: #ffc72c;
+  --logo-shadow: 0 6px 16px rgba(215, 20, 26, 0.3);
+  --font-display: "Racing Sans One", Impact, sans-serif;
+  --checker: repeating-conic-gradient(#1f1410 0 25%, #fff 0 50%);
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255, 154, 60, 0.35), transparent 70%),
+    linear-gradient(180deg, #ffe2bd, var(--bg) 40%);
+  --empty-art: url("/themes/saetta/trophy.svg");
+  --ring-art: conic-gradient(#d7141a, #ffc72c, #d7141a);
+  cursor: url("/themes/saetta/car-cursor.png") 4 16, auto;
+}
+
+[data-theme="saetta"] h1,
+[data-theme="saetta"] h2 {
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+[data-theme="saetta"] .page-header {
+  position: relative;
+  padding-bottom: 24px;
+}
+
+/* Bandiera a scacchi sotto il titolo e saetta che lo segue. */
+[data-theme="saetta"] .page-header::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 10px;
+  background: var(--checker) 0 0 / 10px 10px;
+  -webkit-mask: linear-gradient(90deg, #000 40%, transparent);
+  mask: linear-gradient(90deg, #000 40%, transparent);
+}
+
+[data-theme="saetta"] .page-header h1 {
+  font-size: clamp(36px, 5.4vw, 56px);
+  color: #d7141a;
+  text-shadow:
+    2px 2px 0 #ffc72c,
+    4px 4px 0 #1f1410;
+}
+
+[data-theme="saetta"] .page-header h1::after {
+  content: "";
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 0.15em;
+  background: url("/themes/saetta/bolt.svg") center / contain no-repeat;
+  vertical-align: -0.05em;
+}
+
+/* Ogni lezione è una macchina in griglia: fiancata rossa e numero di gara. */
+[data-theme="saetta"] .event-card {
+  position: relative;
+  border-left: 6px solid #d7141a;
+  overflow: hidden;
+}
+
+[data-theme="saetta"] .event-card::after {
+  content: "95";
+  position: absolute;
+  right: 10px;
+  bottom: -14px;
+  color: rgba(215, 20, 26, 0.08);
+  font: italic 400 76px/1 var(--font-display);
+  pointer-events: none;
+}
+
+/* I numeri come cartelli dei box. */
+[data-theme="saetta"] .stat-chip {
+  background: #1f1410;
+  border: 3px solid #ffc72c;
+  border-radius: 6px;
+  color: #ffe9b0;
+  font-family: var(--font-display);
+}
+
+[data-theme="saetta"] .stat-chip strong {
+  color: #fff !important;
+}
+
+[data-theme="saetta"] .bar-track {
+  height: 14px;
+  background: #3a3a3e;
+  border-radius: 7px;
+  box-shadow: inset 0 0 0 2px #1f1410;
+}
+
+[data-theme="saetta"] .bar {
+  position: relative;
+  border-radius: 7px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 14px, rgba(255, 255, 255, 0.7) 14px 22px) center / 100% 2px no-repeat,
+    linear-gradient(90deg, #ffc72c, #d7141a);
+}
+
+[data-theme="saetta"] .side-link.active,
+[data-theme="saetta"] .button-primary {
+  font-family: var(--font-display);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="saetta"] .theme-cheer {
+  background: #d7141a;
+  border: 3px solid #ffc72c;
+  font-style: italic;
+}
+
+/* =========================================================
+   THEOBSERVER — ogni cosa ha la sua freccia
+   ========================================================= */
+
+:root[data-theme="theobserver"] {
+  --glow-1: #1a4fd6;
+  --glow-2: #d62828;
+  color-scheme: light;
+  --bg: #fbfaf5;
+  --bg-soft: #f6f4ea;
+  --surface: #ffffff;
+  --surface-2: #f2efe4;
+  --border: rgba(26, 30, 40, 0.14);
+  --border-strong: rgba(26, 30, 40, 0.28);
+  --text: #1d1d1f;
+  --muted: #4c4d55;
+  --faint: #6b6c75;
+  --accent: #1a4fd6;
+  --accent-strong: #123ba6;
+  --accent-soft: rgba(26, 79, 214, 0.1);
+  --accent-2: #d62828;
+  --green: #1f7a3a;
+  --green-soft: rgba(31, 122, 58, 0.1);
+  --red: #d62828;
+  --red-soft: rgba(214, 40, 40, 0.09);
+  --amber: #9a5b00;
+  --ring-track: rgba(26, 30, 40, 0.08);
+  --radius: 8px;
+  --radius-sm: 6px;
+  --selection: rgba(255, 230, 0, 0.55);
+  --accent-border: rgba(26, 79, 214, 0.4);
+  --accent-grad: linear-gradient(180deg, #2a5fe6, #123ba6);
+  --accent-shadow: none;
+  --avatar-grad: linear-gradient(135deg, #1a4fd6, #d62828);
+  --on-accent: #fff;
+  --logo-1: #1a4fd6;
+  --logo-2: #123ba6;
+  --logo-3: #d62828;
+  --logo-shadow: none;
+  --font-note: Caveat, "Comic Sans MS", cursive;
+  --body-bg: var(--bg);
+  /* Carta a quadretti, come un quaderno di appunti. */
+  --art:
+    linear-gradient(rgba(26, 79, 214, 0.07) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, rgba(26, 79, 214, 0.07) 1px, transparent 1px) 0 0 / 24px 24px,
+    var(--bg);
+  --empty-art: url("/themes/theobserver/magnifier.svg");
+  --ring-art: conic-gradient(#1a4fd6, #d62828, #1a4fd6);
+  cursor: url("/themes/theobserver/magnifier-cursor.png") 12 12, auto;
+}
+
+[data-theme="theobserver"] .page-header h1 {
+  text-decoration: underline wavy #d62828 2px;
+  text-underline-offset: 8px;
+}
+
+[data-theme="theobserver"] .event-card,
+[data-theme="theobserver"] .stats-hero,
+[data-theme="theobserver"] .card {
+  border: 1.5px dashed var(--border-strong);
+  box-shadow: none;
+}
+
+[data-theme="theobserver"] .stat-chip {
+  border: 1.5px dashed var(--border-strong);
+}
+
+[data-theme="theobserver"] .theme-cheer {
+  background: #fff8a8;
+  border-radius: 2px;
+  color: #1d1d1f;
+  font: 700 22px/1.2 var(--font-note);
+  transform-origin: center;
+}
+
+/* =========================================================
+   DARKO — rapper, niente mamma
+   ========================================================= */
+
+:root[data-theme="darko"] {
+  --glow-1: #f5c518;
+  --glow-2: #e11d2a;
+  color-scheme: dark;
+  --bg: #0c0c0c;
+  --bg-soft: #080808;
+  --surface: #161616;
+  --surface-2: #202020;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(245, 197, 24, 0.35);
+  --text: #f2f2f2;
+  --muted: #b9b9b9;
+  --faint: #8c8c8c;
+  --accent: #f5c518;
+  --accent-strong: #d9a900;
+  --accent-soft: rgba(245, 197, 24, 0.12);
+  --accent-2: #e11d2a;
+  --green: #3ddc84;
+  --green-soft: rgba(61, 220, 132, 0.1);
+  --red: #ff3b47;
+  --red-soft: rgba(255, 59, 71, 0.12);
+  --amber: #f5c518;
+  --ring-track: rgba(255, 255, 255, 0.07);
+  --radius: 4px;
+  --radius-sm: 3px;
+  --selection: rgba(245, 197, 24, 0.35);
+  --accent-border: rgba(245, 197, 24, 0.5);
+  --accent-grad: linear-gradient(180deg, #ffe066, #c99a00);
+  --accent-shadow: 0 0 18px rgba(245, 197, 24, 0.25);
+  --avatar-grad: linear-gradient(135deg, #f5c518, #8a6a00);
+  --on-accent: #111;
+  --logo-1: #f5c518;
+  --logo-2: #8a6a00;
+  --logo-3: #e11d2a;
+  --logo-shadow: 0 0 18px rgba(245, 197, 24, 0.3);
+  --font-display: "Permanent Marker", "Comic Sans MS", cursive;
+  /* Catena d'oro: maglie ripetute. */
+  --chain: radial-gradient(ellipse 7px 5px at 50% 50%, transparent 55%, #f5c518 60% 85%, transparent 90%) 0 50% / 12px 100% repeat-x;
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 60% 35% at 50% 0%, rgba(245, 197, 24, 0.08), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0 2px, transparent 2px 140px),
+    var(--bg);
+  --empty-art: url("/themes/darko/mic.svg");
+  --ring-art: conic-gradient(#f5c518, #fff3b0, #c99a00, #f5c518);
+  cursor: url("/themes/darko/mic-cursor.png") 6 6, auto;
+}
+
+[data-theme="darko"] h1,
+[data-theme="darko"] h2 {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+[data-theme="darko"] .page-header {
+  position: relative;
+  padding-right: 120px;
+}
+
+[data-theme="darko"] .page-header h1 {
+  font-size: clamp(36px, 5.4vw, 56px);
+  transform: rotate(-2deg);
+  text-shadow: 3px 3px 0 #e11d2a;
+}
+
+/* Il bollino nero e bianco, versione orfano. */
+[data-theme="darko"] .page-header::after {
+  content: "PARENTAL\A ADVISORY\A parents not found";
+  white-space: pre;
+  position: absolute;
+  top: 4px;
+  right: 0;
+  padding: 4px 8px;
+  background: #fff;
+  border: 4px solid #000;
+  outline: 2px solid #fff;
+  color: #000;
+  font: 400 11px/1.1 Anton, Impact, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(6deg);
+}
+
+/* Tracklist: ogni lezione è una traccia. */
+[data-theme="darko"] .event-list {
+  counter-reset: track;
+}
+
+[data-theme="darko"] .event-list .event-card {
+  counter-increment: track;
+  position: relative;
+}
+
+[data-theme="darko"] .event-list .event-card::before {
+  content: "TRACCIA " counter(track, decimal-leading-zero);
+  position: absolute;
+  top: -9px;
+  left: 14px;
+  padding: 1px 8px;
+  background: #f5c518;
+  border-radius: 2px;
+  color: #111;
+  font: 400 11px/1.4 Anton, Impact, sans-serif;
+  letter-spacing: 0.08em;
+}
+
+[data-theme="darko"] .event-card,
+[data-theme="darko"] .stats-hero,
+[data-theme="darko"] .card {
+  background: linear-gradient(180deg, #181818, #121212);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Numeri con la catena d'oro sotto. */
+[data-theme="darko"] .stat-chip {
+  padding-bottom: 16px;
+  background:
+    var(--chain) bottom 4px left / 100% 10px no-repeat,
+    #111;
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  font-family: Anton, Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="darko"] .bar-track {
+  height: 10px;
+  background: #222;
+}
+
+[data-theme="darko"] .bar {
+  background: linear-gradient(90deg, #c99a00, #ffe066, #f5c518);
+  box-shadow: 0 0 10px rgba(245, 197, 24, 0.4);
+}
+
+[data-theme="darko"] .theme-cheer {
+  background: #111;
+  border: 2px solid #f5c518;
+  color: #f5c518;
+}
+
+@media (max-width: 640px) {
+  [data-theme="darko"] .page-header {
+    padding-right: 0;
+  }
+
+  [data-theme="darko"] .page-header::after {
+    position: static;
+    display: inline-block;
+    margin-top: 10px;
+  }
+}
+
+/* =========================================================
+   JUSTEAT — il tuo ordine è in arrivo
+   ========================================================= */
+
+:root[data-theme="justeat"] {
+  --glow-1: #ff8000;
+  --glow-2: #ffb36b;
+  color-scheme: light;
+  --bg: #fff7ef;
+  --bg-soft: #fffaf5;
+  --surface: #ffffff;
+  --surface-2: #fdeee0;
+  --border: rgba(36, 46, 48, 0.1);
+  --border-strong: rgba(36, 46, 48, 0.2);
+  --text: #242e30;
+  --muted: #4f5b5d;
+  --faint: #6f7b7d;
+  --accent: #e86f00;
+  --accent-strong: #c25c00;
+  --accent-soft: rgba(255, 128, 0, 0.12);
+  --accent-2: #242e30;
+  --green: #017a3c;
+  --green-soft: rgba(1, 122, 60, 0.1);
+  --red: #d50525;
+  --red-soft: rgba(213, 5, 37, 0.08);
+  --amber: #a85800;
+  --ring-track: rgba(36, 46, 48, 0.08);
+  --radius: 18px;
+  --radius-sm: 14px;
+  --selection: rgba(255, 128, 0, 0.3);
+  --accent-border: rgba(255, 128, 0, 0.5);
+  --accent-grad: linear-gradient(180deg, #ff8f1f, #e86f00);
+  --accent-shadow: 0 6px 16px rgba(255, 128, 0, 0.3);
+  --avatar-grad: linear-gradient(135deg, #ff8000, #ffb36b);
+  --on-accent: #fff;
+  --logo-1: #ff8000;
+  --logo-2: #e86f00;
+  --logo-3: #fff;
+  --logo-shadow: 0 6px 16px rgba(255, 128, 0, 0.35);
+  --font-display: Fredoka, system-ui, sans-serif;
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255, 128, 0, 0.14), transparent 70%),
+    var(--bg);
+  --empty-art: url("/themes/justeat/pizza.svg");
+  --ring-art: conic-gradient(#ff8000, #ffb36b, #ff8000);
+  cursor: url("/themes/justeat/scooter-cursor.png") 4 16, auto;
+}
+
+[data-theme="justeat"] h1,
+[data-theme="justeat"] h2 {
+  font-weight: 700;
+}
+
+[data-theme="justeat"] .page-header h1 {
+  color: #ff8000;
+}
+
+/* Ogni lezione è un ordine: scontrino con stato di consegna. */
+[data-theme="justeat"] .event-card {
+  border: 0;
+  box-shadow: 0 6px 20px rgba(36, 46, 48, 0.08);
+}
+
+[data-theme="justeat"] .event-card::after {
+  content: "🛵 in consegna";
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  color: var(--faint);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+[data-theme="justeat"] .event-card {
+  position: relative;
+}
+
+[data-theme="justeat"] .stat-chip {
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(36, 46, 48, 0.08);
+}
+
+[data-theme="justeat"] .button,
+[data-theme="justeat"] .status-button {
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+[data-theme="justeat"] .bar {
+  background: linear-gradient(90deg, #ffb36b, #ff8000);
+}
+
+[data-theme="justeat"] .side-link.active {
+  background: #ff8000;
+  color: #fff;
+}
+
+[data-theme="justeat"] .theme-cheer {
+  background: #242e30;
+  color: #fff;
+}
+
+/* =========================================================
+   GREENTHEORY — disciplina, aperto 24/7
+   ========================================================= */
+
+:root[data-theme="greentheory"] {
+  --glow-1: #39e75f;
+  --glow-2: #1e7a35;
+  color-scheme: dark;
+  --bg: #0a0f0b;
+  --bg-soft: #070b08;
+  --surface: #121a14;
+  --surface-2: #19241b;
+  --border: rgba(57, 231, 95, 0.12);
+  --border-strong: rgba(57, 231, 95, 0.3);
+  --text: #eef7f0;
+  --muted: #a9bcae;
+  --faint: #7f9384;
+  --accent: #39e75f;
+  --accent-strong: #22c447;
+  --accent-soft: rgba(57, 231, 95, 0.12);
+  --accent-2: #ffffff;
+  --green: #39e75f;
+  --green-soft: rgba(57, 231, 95, 0.12);
+  --red: #ff5a4f;
+  --red-soft: rgba(255, 90, 79, 0.12);
+  --amber: #ffcc4d;
+  --ring-track: rgba(57, 231, 95, 0.08);
+  --radius: 4px;
+  --radius-sm: 3px;
+  --selection: rgba(57, 231, 95, 0.35);
+  --accent-border: rgba(57, 231, 95, 0.5);
+  --accent-grad: linear-gradient(180deg, #5cff7e, #22c447);
+  --accent-shadow: 0 0 18px rgba(57, 231, 95, 0.35);
+  --avatar-grad: linear-gradient(135deg, #39e75f, #0f3a1a);
+  --on-accent: #04170a;
+  --logo-1: #39e75f;
+  --logo-2: #0f3a1a;
+  --logo-3: #fff;
+  --logo-shadow: 0 0 20px rgba(57, 231, 95, 0.4);
+  --font-display: Anton, Impact, sans-serif;
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(57, 231, 95, 0.12), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0 2px, transparent 2px 90px),
+    var(--bg);
+  --empty-art: url("/themes/greentheory/lifter.svg");
+  --ring-art: conic-gradient(#39e75f, #b6ffc6, #39e75f);
+  cursor: url("/themes/greentheory/biceps-cursor.png") 6 6, auto;
+}
+
+[data-theme="greentheory"] h1,
+[data-theme="greentheory"] h2 {
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+[data-theme="greentheory"] .page-header h1 {
+  font-size: clamp(38px, 5.6vw, 60px);
+  text-shadow: 0 0 24px rgba(57, 231, 95, 0.35);
+}
+
+/* Le lezioni sono serie della scheda: barra al neon a sinistra. */
+[data-theme="greentheory"] .event-card,
+[data-theme="greentheory"] .stats-hero,
+[data-theme="greentheory"] .card {
+  background: linear-gradient(180deg, #141d16, #0f1611);
+  border: 1px solid rgba(57, 231, 95, 0.14);
+}
+
+[data-theme="greentheory"] .event-card {
+  box-shadow: inset 3px 0 0 #39e75f, 0 0 0 transparent;
+}
+
+[data-theme="greentheory"] .stat-chip {
+  background: #050805;
+  border: 1px solid rgba(57, 231, 95, 0.4);
+  font-family: Anton, Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+[data-theme="greentheory"] .stat-chip strong {
+  text-shadow: 0 0 12px currentColor;
+}
+
+[data-theme="greentheory"] .bar-track {
+  height: 12px;
+  background: #050805;
+  border-radius: 0;
+}
+
+/* Il bilanciere: dischi alle estremità. */
+[data-theme="greentheory"] .bar {
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, #111 0 6px, #39e75f 6px 10px, transparent 10px) left / 10px 100% no-repeat,
+    linear-gradient(180deg, #e8ece9, #8a948d);
+}
+
+[data-theme="greentheory"] .button,
+[data-theme="greentheory"] .status-button {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+[data-theme="greentheory"] .theme-cheer {
+  background: #39e75f;
+  color: #04170a;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   CRYPTOFIX — decentralizza il rumore
+   ========================================================= */
+
+:root[data-theme="cryptofix"] {
+  --glow-1: #c84bff;
+  --glow-2: #3ff0ff;
+  color-scheme: dark;
+  --bg: #0c0718;
+  --bg-soft: #090512;
+  --surface: rgba(24, 15, 44, 0.9);
+  --surface-2: rgba(36, 22, 64, 0.92);
+  --border: rgba(63, 240, 255, 0.14);
+  --border-strong: rgba(200, 75, 255, 0.4);
+  --text: #f0ecff;
+  --muted: #b8b0d6;
+  --faint: #8d84ad;
+  --accent: #3ff0ff;
+  --accent-strong: #19c9dc;
+  --accent-soft: rgba(63, 240, 255, 0.12);
+  --accent-2: #c84bff;
+  --green: #48f5a0;
+  --green-soft: rgba(72, 245, 160, 0.12);
+  --red: #ff4f8b;
+  --red-soft: rgba(255, 79, 139, 0.14);
+  --amber: #ffb627;
+  --ring-track: rgba(63, 240, 255, 0.08);
+  --radius: 6px;
+  --radius-sm: 4px;
+  --selection: rgba(200, 75, 255, 0.4);
+  --accent-border: rgba(63, 240, 255, 0.5);
+  --accent-grad: linear-gradient(135deg, #3ff0ff, #c84bff);
+  --accent-shadow: 0 0 20px rgba(200, 75, 255, 0.45);
+  --avatar-grad: linear-gradient(135deg, #3ff0ff, #c84bff);
+  --on-accent: #0c0718;
+  --logo-1: #3ff0ff;
+  --logo-2: #c84bff;
+  --logo-3: #fff;
+  --logo-shadow: 0 0 22px rgba(63, 240, 255, 0.5);
+  --font-display: Orbitron, system-ui, sans-serif;
+  --body-bg: var(--bg);
+  /* La copertina della band, scurita, come scenografia. */
+  --art:
+    linear-gradient(180deg, rgba(12, 7, 24, 0.82), rgba(12, 7, 24, 0.94) 50%, #0c0718),
+    url("/themes/cryptofix/poster.webp") center top / cover no-repeat;
+  --empty-art: url("/themes/cryptofix/guitar.svg");
+  --ring-art: conic-gradient(#3ff0ff, #c84bff, #3ff0ff);
+  cursor: url("/themes/cryptofix/guitar-cursor.png") 4 4, auto;
+}
+
+[data-theme="cryptofix"] h1,
+[data-theme="cryptofix"] h2 {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Il titolo come la scritta al neon della copertina. */
+[data-theme="cryptofix"] .page-header h1 {
+  color: #e6fdff;
+  font: 400 clamp(32px, 5vw, 54px) / 1.1 Monoton, Orbitron, sans-serif;
+  text-shadow:
+    0 0 6px #3ff0ff,
+    0 0 18px #3ff0ff,
+    0 0 36px #c84bff;
+}
+
+[data-theme="cryptofix"] .event-card,
+[data-theme="cryptofix"] .stats-hero,
+[data-theme="cryptofix"] .card {
+  border: 1px solid rgba(63, 240, 255, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(200, 75, 255, 0.12),
+    0 0 24px rgba(200, 75, 255, 0.12);
+}
+
+[data-theme="cryptofix"] .stat-chip {
+  background: rgba(12, 7, 24, 0.85);
+  border: 1px solid #c84bff;
+  box-shadow: 0 0 14px rgba(200, 75, 255, 0.35);
+  font-family: var(--font-display);
+}
+
+[data-theme="cryptofix"] .stat-chip strong::after {
+  content: " ₿";
+  color: #ffb627;
+  font-size: 0.6em;
+}
+
+[data-theme="cryptofix"] .bar {
+  background: linear-gradient(90deg, #3ff0ff, #c84bff);
+  box-shadow: 0 0 12px rgba(63, 240, 255, 0.5);
+}
+
+[data-theme="cryptofix"] .side-link.active {
+  box-shadow: inset 0 0 0 1px #3ff0ff, 0 0 16px rgba(63, 240, 255, 0.3);
+}
+
+[data-theme="cryptofix"] .theme-cheer {
+  background: #0c0718;
+  border: 2px solid #3ff0ff;
+  color: #e6fdff;
+  box-shadow: 0 0 24px rgba(200, 75, 255, 0.6);
+}
+
+/* =========================================================
+   ORTOL — l'orto, a km 0
+   ========================================================= */
+
+:root[data-theme="ortol"] {
+  --glow-1: #8bc34a;
+  --glow-2: #ffd23f;
+  color-scheme: light;
+  --bg: #f4f0e2;
+  --bg-soft: #f8f5ea;
+  --surface: #fffdf6;
+  --surface-2: #ece5cf;
+  --border: rgba(74, 52, 28, 0.15);
+  --border-strong: rgba(74, 52, 28, 0.3);
+  --text: #2b2216;
+  --muted: #5a4a36;
+  --faint: #7a6850;
+  --accent: #3f7d3a;
+  --accent-strong: #2f6129;
+  --accent-soft: rgba(63, 125, 58, 0.12);
+  --accent-2: #c8553d;
+  --green: #3f7d3a;
+  --green-soft: rgba(63, 125, 58, 0.12);
+  --red: #b5432c;
+  --red-soft: rgba(181, 67, 44, 0.1);
+  --amber: #9a6a00;
+  --ring-track: rgba(74, 52, 28, 0.1);
+  --radius: 16px;
+  --radius-sm: 12px;
+  --selection: rgba(139, 195, 74, 0.4);
+  --accent-border: rgba(63, 125, 58, 0.45);
+  --accent-grad: linear-gradient(180deg, #4f9a48, #2f6129);
+  --accent-shadow: 0 6px 14px rgba(47, 97, 41, 0.25);
+  --avatar-grad: linear-gradient(135deg, #8bc34a, #c8553d);
+  --on-accent: #fff;
+  --logo-1: #4f9a48;
+  --logo-2: #2f6129;
+  --logo-3: #ffd23f;
+  --logo-shadow: 0 6px 14px rgba(47, 97, 41, 0.25);
+  --font-display: "Amatic SC", "Comic Sans MS", cursive;
+  --body-bg: var(--bg);
+  --art:
+    radial-gradient(circle at 92% 6%, rgba(255, 210, 63, 0.35), transparent 22%),
+    linear-gradient(180deg, #e6f2dd, var(--bg) 35%);
+  --empty-art: url("/themes/ortol/seedling.svg");
+  --ring-art: conic-gradient(#3f7d3a, #8bc34a, #c8553d, #3f7d3a);
+  cursor: url("/themes/ortol/seedling-cursor.png") 6 26, auto;
+}
+
+[data-theme="ortol"] h1,
+[data-theme="ortol"] h2 {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="ortol"] .page-header h1 {
+  font-size: clamp(46px, 7vw, 72px);
+  color: #2f6129;
+}
+
+[data-theme="ortol"] .section-head h2 {
+  font-size: 30px;
+}
+
+/* Filari: ogni lezione è un'aiuola con la terra sotto. */
+[data-theme="ortol"] .event-card {
+  border-bottom: 8px solid #7a4f2a;
+  background:
+    linear-gradient(180deg, transparent calc(100% - 6px), rgba(63, 125, 58, 0.25) calc(100% - 6px)),
+    var(--surface);
+}
+
+[data-theme="ortol"] .stat-chip {
+  background: #fffdf6;
+  border: 2px dashed rgba(63, 125, 58, 0.45);
+}
+
+[data-theme="ortol"] .stat-chip strong {
+  font-family: var(--font-display);
+  font-size: 2.2em;
+  font-weight: 700;
+  line-height: 0.9;
+}
+
+[data-theme="ortol"] .bar-track {
+  background: #d9c9a8;
+}
+
+[data-theme="ortol"] .bar {
+  background: repeating-linear-gradient(90deg, #4f9a48 0 10px, #3f7d3a 10px 14px);
+}
+
+[data-theme="ortol"] .theme-cheer {
+  background: #3f7d3a;
+  font-size: 26px;
+}
+
+/* =========================================================
+   BASKET — palla a due
+   ========================================================= */
+
+:root[data-theme="basket"] {
+  --glow-1: #ee6730;
+  --glow-2: #3a5ba0;
+  color-scheme: dark;
+  --bg: #0f1a30;
+  --bg-soft: #0c1526;
+  --surface: #17243f;
+  --surface-2: #1f2f50;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(238, 103, 48, 0.4);
+  --text: #f5f1ea;
+  --muted: #b9c2d6;
+  --faint: #8e99b2;
+  --accent: #ee6730;
+  --accent-strong: #d4521c;
+  --accent-soft: rgba(238, 103, 48, 0.14);
+  --accent-2: #ffd23f;
+  --green: #4ee08a;
+  --green-soft: rgba(78, 224, 138, 0.12);
+  --red: #ff5c5c;
+  --red-soft: rgba(255, 92, 92, 0.12);
+  --amber: #ffd23f;
+  --ring-track: rgba(255, 255, 255, 0.08);
+  --radius: 10px;
+  --radius-sm: 8px;
+  --selection: rgba(238, 103, 48, 0.4);
+  --accent-border: rgba(238, 103, 48, 0.55);
+  --accent-grad: linear-gradient(180deg, #ff7d45, #d4521c);
+  --accent-shadow: 0 6px 16px rgba(238, 103, 48, 0.35);
+  --avatar-grad: linear-gradient(135deg, #ee6730, #ffd23f);
+  --on-accent: #fff;
+  --logo-1: #ee6730;
+  --logo-2: #d4521c;
+  --logo-3: #fff;
+  --logo-shadow: 0 6px 16px rgba(238, 103, 48, 0.4);
+  --font-display: Graduate, "Courier New", serif;
+  --body-bg: var(--bg);
+  /* Parquet del palazzetto in fondo alla pagina. */
+  --art:
+    linear-gradient(180deg, var(--bg) 0, var(--bg) 70%, transparent),
+    repeating-linear-gradient(90deg, #5a3a1f 0 60px, #4d3119 60px 62px, #613f22 62px 122px, #4d3119 122px 124px);
+  --empty-art: url("/themes/loscopatroie/ball.svg");
+  --ring-art: conic-gradient(#ee6730, #ffd23f, #ee6730);
+  cursor: url("/themes/loscopatroie/ball-cursor.png") 16 16, auto;
+}
+
+[data-theme="basket"] h1,
+[data-theme="basket"] h2 {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+[data-theme="basket"] .page-header h1 {
+  font-size: clamp(32px, 5vw, 50px);
+  color: #ee6730;
+  text-shadow: 3px 3px 0 #000;
+}
+
+/* Le lezioni sono i quarti della partita. */
+[data-theme="basket"] .event-list {
+  counter-reset: quarter;
+}
+
+[data-theme="basket"] .event-list .event-card {
+  position: relative;
+  counter-increment: quarter;
+}
+
+[data-theme="basket"] .event-list .event-card::after {
+  content: "Q" counter(quarter);
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  color: rgba(238, 103, 48, 0.5);
+  font: 400 12px/1 var(--font-display);
+}
+
+/* Numeri come il tabellone: led rossi su nero. */
+[data-theme="basket"] .stat-chip {
+  background: #050505;
+  border: 2px solid #333;
+  border-radius: 6px;
+  font-family: var(--font-display);
+}
+
+[data-theme="basket"] .stat-chip strong {
+  color: #ff3b2f !important;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 10px rgba(255, 59, 47, 0.7);
+}
+
+[data-theme="basket"] .bar {
+  background: linear-gradient(90deg, #d4521c, #ee6730);
+}
+
+[data-theme="basket"] .button,
+[data-theme="basket"] .status-button {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+[data-theme="basket"] .theme-cheer {
+  background: #ee6730;
+  border: 3px solid #000;
+  text-transform: uppercase;
+}

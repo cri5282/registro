@@ -1,0 +1,303 @@
+.anim-justeat {
+  font-family: Fredoka, system-ui, sans-serif;
+}
+
+.je-app {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18) 0 8%, transparent 9%) 0 0 / 140px 140px,
+    #ff8000;
+  opacity: 0;
+  animation:
+    je-in 0.25s forwards,
+    je-fade 0.35s 3s forwards;
+}
+
+.je-card {
+  width: min(100%, 420px);
+  padding: 20px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 30px 70px rgba(120, 40, 0, 0.35);
+  color: #242e30;
+  transform: translateY(40px) scale(0.95);
+  animation: je-card 0.4s 0.05s cubic-bezier(0.2, 1.2, 0.4, 1) forwards;
+}
+
+.je-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.je-eta {
+  margin: 6px 0 12px;
+  color: #ff8000;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.je-eta-n {
+  display: inline-grid;
+  min-width: 1.4em;
+  text-align: center;
+}
+
+.je-eta-n b {
+  grid-area: 1 / 1;
+  opacity: 0;
+  animation: je-tick 0.6s linear forwards;
+}
+
+.je-eta-n b:last-child {
+  animation-name: je-in;
+  animation-duration: 0.01s;
+}
+
+.je-steps {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.je-steps li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #a6b0b2;
+  animation: je-step 0.2s forwards;
+}
+
+.je-steps li::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 3px solid currentColor;
+  border-radius: 50%;
+}
+
+@keyframes je-step {
+  to {
+    color: #242e30;
+  }
+}
+
+.je-steps li:last-child {
+  font-weight: 700;
+}
+
+.je-map {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 14px;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+    #f3efe6;
+}
+
+.je-road {
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 0 0 1px #e4ddcf;
+}
+
+.je-road-h {
+  left: 0;
+  right: 0;
+  top: 96px;
+  height: 18px;
+}
+
+.je-road-v {
+  top: 0;
+  bottom: 0;
+  left: 62%;
+  width: 18px;
+}
+
+/* Il percorso: a destra lungo la strada, poi su verso casa. */
+.je-route {
+  position: absolute;
+  left: 26px;
+  top: 103px;
+  width: calc(62% - 17px);
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #ff8000 0 8px, transparent 8px 13px);
+}
+
+.je-route::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: 0;
+  width: 4px;
+  height: 70px;
+  background: repeating-linear-gradient(180deg, #ff8000 0 8px, transparent 8px 13px);
+}
+
+.je-pin {
+  position: absolute;
+  top: 82px;
+  left: 6px;
+  font-size: 26px;
+}
+
+.je-house {
+  position: absolute;
+  top: 2px;
+  left: calc(62% - 22px);
+  width: 56px;
+}
+
+.je-scooter {
+  position: absolute;
+  top: 78px;
+  left: 14px;
+  width: 44px;
+  will-change: transform;
+  animation: je-ride 1.4s 0.95s ease-in-out forwards;
+}
+
+@keyframes je-ride {
+  65% {
+    transform: translateX(calc(min(420px, 100vw - 32px) * 0.62 - 52px));
+  }
+  to {
+    transform: translate(calc(min(420px, 100vw - 32px) * 0.62 - 52px), -48px) scale(0.8);
+  }
+}
+
+.je-ding {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  padding: 4px 10px;
+  background: #242e30;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0;
+  transform: scale(0.5);
+  animation: je-pop 0.25s 2.4s cubic-bezier(0.2, 1.5, 0.4, 1) forwards;
+}
+
+/* Il cartone della pizza: arriva, si apre, il tema esce dal cartone. */
+.je-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(60vmin, 360px);
+  aspect-ratio: 1;
+  perspective: 900px;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+  animation:
+    je-box-in 0.35s 2.75s cubic-bezier(0.2, 1.3, 0.4, 1) forwards,
+    je-box-out 0.7s 3.35s ease-in forwards;
+}
+
+.je-box-base,
+.je-box-lid {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 50%),
+    #c8955a;
+  box-shadow: inset 0 0 0 6px #b07c42;
+}
+
+.je-box-inside {
+  position: absolute;
+  inset: 12px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, #fff6e0, #ffd27a);
+  border-radius: 4px;
+  color: #242e30;
+  font-size: clamp(18px, 3.4vmin, 26px);
+  font-weight: 700;
+  text-align: center;
+}
+
+.je-box-lid {
+  display: grid;
+  place-items: center;
+  color: #7a4a14;
+  font-size: clamp(18px, 4vmin, 28px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transform-origin: top;
+  backface-visibility: hidden;
+  animation: je-lid 0.4s 3.05s ease-in forwards;
+}
+
+@keyframes je-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes je-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes je-card {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes je-tick {
+  from,
+  99% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes je-pop {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes je-box-in {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-3deg);
+  }
+}
+
+@keyframes je-lid {
+  to {
+    transform: rotateX(-105deg);
+  }
+}
+
+@keyframes je-box-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-3deg);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(4);
+  }
+}

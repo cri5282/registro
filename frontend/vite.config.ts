@@ -41,7 +41,8 @@ export default defineConfig(({ mode }) => {
           // I temi segreti si scaricano solo quando servono, poi restano in cache.
           globIgnores: [
             "**/themes/**",
-            "**/assets/{alfa-slab-one,cinzel,anton,dm-serif-display,barlow-condensed,fraunces,black-ops-one,fredoka,inter,bricolage-grotesque}-latin-*",
+            // I caratteri dei temi (Fontsource) arrivano solo quando un tema li usa.
+            "**/assets/*-latin-*-normal-*",
           ],
           runtimeCaching: [
             {

@@ -23,6 +23,7 @@ import { fmtDateTime, timeAgo } from "../date";
 import { PasswordInput, Spinner } from "../components/ui";
 import type { CalendarInfo } from "../types";
 import { useTheme } from "../themes/ThemeProvider";
+import { uomo } from "../themes/Uomo";
 
 export default function SettingsPage() {
   const { copy } = useTheme();
@@ -150,7 +151,7 @@ export default function SettingsPage() {
     <div className="page">
       <header className="page-header">
         <div>
-          <h1>{copy.titles.settings ?? "Impostazioni"}</h1>
+          <h1>{uomo(copy.titles.settings ?? "Impostazioni")}</h1>
           <p className="page-subtitle">Account, calendario condiviso e sicurezza.</p>
         </div>
       </header>

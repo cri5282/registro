@@ -2,6 +2,12 @@ import type { ReactNode } from "react";
 import { asset } from "./registry";
 import type { ThemeId } from "./words";
 import "./decor.css";
+import "./decor-extra.css";
+import "./decor-more.css";
+import { splitUomo, UOMO_TEXT } from "./uomoText";
+import Noob from "./Noob";
+import RaceCar from "./RaceCar";
+import { FollowEye } from "./ObserverNotes";
 
 /** Scenografie fisse dietro ai contenuti: non si cliccano e non coprono niente di importante. */
 const SCENES: Partial<Record<ThemeId, () => ReactNode>> = {
@@ -40,6 +46,89 @@ const SCENES: Partial<Record<ThemeId, () => ReactNode>> = {
     </div>
   ),
   baba: () => <div className="ts-disco-lights" aria-hidden="true" />,
+  overthinker: () => (
+    <div className="ts-thoughts" aria-hidden="true">
+      {["e se…?", "ma forse…", "e se il prof…", "ho chiuso il gas?", "e se domani…", "ok ma se…"].map((text, i) => (
+        <span key={text} style={{ left: `${8 + i * 15}%`, animationDelay: `${i * 3.1}s` }}>
+          {text}
+        </span>
+      ))}
+    </div>
+  ),
+  fre: () => (
+    <div className="ts-snow" aria-hidden="true">
+      <img className="ts-no" src={asset("fre/prohibited.svg")} alt="" />
+      {Array.from({ length: 18 }, (_, i) => (
+        <span key={i} style={{ left: `${(i * 37) % 100}%`, animationDelay: `${(i * 1.7) % 12}s`, fontSize: `${12 + (i % 4) * 6}px` }}>
+          ❄
+        </span>
+      ))}
+    </div>
+  ),
+  robot: () => <span className="ts-scan" aria-hidden="true" />,
+  uomo: () => (
+    <div className="ts-uomo" aria-hidden="true">
+      {[...UOMO_TEXT, ...UOMO_TEXT, ...UOMO_TEXT].map((paragraph, i) => (
+        <p key={i}>
+          {splitUomo(paragraph).map((part, j) => (j % 2 ? <b key={j}>{part}</b> : part))}
+        </p>
+      ))}
+    </div>
+  ),
+  roblox: () => (
+    <div className="ts-rx" aria-hidden="true">
+      <Noob className="ts-rx-noob" />
+    </div>
+  ),
+  saetta: () => (
+    <div className="ts-desert" aria-hidden="true">
+      <svg className="ts-mesas" viewBox="0 0 1200 220" preserveAspectRatio="none">
+        <path d="M0 220V150H60V110L90 100V60H170L180 70V110H230V150H330V120L350 90H420L440 120V160H560V170H700V100L720 70H800V90L820 100V160H930V130H980V90L1000 80H1070V140H1200V220Z" fill="#c8572b" opacity="0.55" />
+        <path d="M0 220V190H160V170H300V185H520V175H760V190H980V175H1200V220Z" fill="#a8401c" opacity="0.6" />
+      </svg>
+      <div className="ts-sa-run">
+        <RaceCar />
+      </div>
+    </div>
+  ),
+  theobserver: () => (
+    <div className="ts-ob" aria-hidden="true">
+      <FollowEye className="ts-ob-eye" />
+    </div>
+  ),
+  darko: () => (
+    <div className="ts-graffiti" aria-hidden="true">
+      <span className="ts-tag ts-tag-1">DARKO</span>
+      <span className="ts-tag ts-tag-2">MAMMA DOVE 6?</span>
+      <span className="ts-tag ts-tag-3">👑 KING</span>
+      <span className="ts-tag ts-tag-4">no mamma no party</span>
+      <span className="ts-smoke" />
+    </div>
+  ),
+  justeat: () => (
+    <div className="ts-je" aria-hidden="true">
+      <img className="ts-je-scooter" src={asset("justeat/scooter.svg")} alt="" />
+    </div>
+  ),
+  greentheory: () => (
+    <div className="ts-gt" aria-hidden="true">
+      <span className="ts-gt-sign">NO EXCUSES</span>
+    </div>
+  ),
+  cryptofix: () => (
+    <div className="ts-cf" aria-hidden="true">
+      {Array.from({ length: 8 }, (_, i) => (
+        <span key={i} style={{ left: `${6 + i * 12}%`, animationDelay: `${i * 2.3}s` }}>
+          ₿
+        </span>
+      ))}
+    </div>
+  ),
+  ortol: () => (
+    <div className="ts-or" aria-hidden="true">
+      <img className="ts-or-snail" src={asset("ortol/snail.svg")} alt="" />
+    </div>
+  ),
 };
 
 export default function ThemeScene({ theme }: { theme: ThemeId }) {

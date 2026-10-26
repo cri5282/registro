@@ -7,6 +7,8 @@ import { ToastProvider } from "./toast";
 import { ThemeProvider } from "./themes/ThemeProvider";
 import "./styles.css";
 import "./themes/themes.css";
+import "./themes/themes-extra.css";
+import "./themes/themes-more.css";
 
 registerSW({ immediate: true });
 

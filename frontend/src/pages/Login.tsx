@@ -14,6 +14,7 @@ import { friendlyError } from "../errors";
 import { isFirebaseConfigured } from "../firebase";
 import { PasswordInput, Spinner } from "../components/ui";
 import { useTheme } from "../themes/ThemeProvider";
+import { uomo } from "../themes/Uomo";
 
 export default function LoginPage() {
   const { copy } = useTheme();
@@ -63,7 +64,7 @@ export default function LoginPage() {
         <div className="login-brand">
           <LogoMark size={60} />
           <div>
-            <h1>{copy.brand}</h1>
+            <h1>{uomo(copy.brand)}</h1>
             <p>Il registro condiviso della classe, con i dati di ognuno separati.</p>
           </div>
         </div>

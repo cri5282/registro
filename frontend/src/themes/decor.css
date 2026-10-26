@@ -418,8 +418,8 @@
   font-size: 14px;
 }
 
-/* Chantalle: widget batterie stile iOS. */
-.tw-chantalle {
+/* Chantal: widget batterie stile iOS. */
+.tw-chantal {
   background: rgba(255, 255, 255, 0.82);
   border: 0;
   border-radius: 22px;
@@ -427,13 +427,13 @@
   backdrop-filter: blur(20px);
 }
 
-.tw-chantalle-rings {
+.tw-chantal-rings {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-.tw-chantalle-rings span {
+.tw-chantal-rings span {
   display: grid;
   place-items: center;
   width: 46px;
@@ -445,7 +445,7 @@
   font-size: 18px;
 }
 
-.tw-chantalle-time {
+.tw-chantal-time {
   margin: 10px 0 0;
   font: 800 34px/1 var(--font-display);
   letter-spacing: -0.02em;

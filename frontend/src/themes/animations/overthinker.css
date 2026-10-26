@@ -1,0 +1,357 @@
+.anim-overthinker {
+  font-family: "Orbitron", "Eurostile", system-ui, sans-serif;
+}
+
+/* ---------- Schermata di avvio ---------- */
+
+.ot-boot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: radial-gradient(ellipse at 50% 40%, #1d1236, #05030a 70%);
+  opacity: 0;
+  animation:
+    ot-in 0.3s forwards,
+    ot-hide 0.01s 1.15s forwards;
+}
+
+.ot-logo {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(30px, 8vw, 84px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-shadow:
+    -4px 0 #2de2ff,
+    4px 0 #ff4fd8,
+    0 0 30px rgba(255, 79, 216, 0.6);
+  animation: ot-glitch-in 0.5s 0.15s steps(4) both;
+}
+
+.ot-start {
+  margin: 0;
+  color: #fcd116;
+  font-size: clamp(14px, 2.4vw, 20px);
+  letter-spacing: 0.3em;
+  animation: ot-blink 0.4s steps(2) infinite;
+}
+
+.ot-keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4vh;
+}
+
+.ot-row {
+  display: flex;
+  gap: 6px;
+}
+
+.ot-row span {
+  width: min(4.4vw, 34px);
+  height: min(4.4vw, 34px);
+  background: #120c22;
+  border-radius: 5px;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.5);
+  animation: ot-key 0.9s var(--d) linear infinite;
+}
+
+/* ---------- Visual novel ---------- */
+
+.ot-vn {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #2b1a55, #4a2470 60%, #6a2f7d);
+  opacity: 0;
+  animation:
+    ot-in 0.25s 1.1s forwards,
+    ot-hide 0.01s 3.55s forwards;
+}
+
+.ot-window {
+  position: absolute;
+  top: 10%;
+  left: 8%;
+  width: 30%;
+  height: 40%;
+  background:
+    radial-gradient(circle at 70% 30%, #fff6c8 0 9%, transparent 10%),
+    radial-gradient(circle at 20% 70%, #fff 0.8px, transparent 1.6px) 0 0 / 40px 36px,
+    #170d33;
+  border: 8px solid #3b2a6e;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 4px #2a1d52;
+}
+
+.ot-waifu {
+  position: absolute;
+  right: 6%;
+  bottom: 18vh;
+  width: min(46vmin, 380px);
+  transform: translateX(60vw);
+  animation: ot-slide 0.45s 1.25s cubic-bezier(0.2, 1.2, 0.4, 1) forwards;
+}
+
+.ot-waifu .waifu-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ot-eyes 2.2s 1.6s infinite;
+}
+
+.ot-thoughts span {
+  position: absolute;
+  padding: 8px 14px;
+  background: #fff;
+  border-radius: 20px;
+  color: #3b2a6e;
+  font: 700 clamp(12px, 2vw, 16px) / 1 system-ui, sans-serif;
+  opacity: 0;
+  animation: ot-thought 1.6s ease-out forwards;
+}
+
+.ot-thoughts span:nth-child(1) {
+  top: 14%;
+  right: 34%;
+  animation-delay: 1.55s;
+}
+
+.ot-thoughts span:nth-child(2) {
+  top: 24%;
+  right: 8%;
+  animation-delay: 1.75s;
+}
+
+.ot-thoughts span:nth-child(3) {
+  top: 6%;
+  right: 16%;
+  animation-delay: 1.95s;
+}
+
+.ot-dialog {
+  position: absolute;
+  right: 4%;
+  bottom: 4vh;
+  left: 4%;
+  padding: 26px 22px 18px;
+  background: rgba(16, 9, 32, 0.88);
+  border: 3px solid #ff4fd8;
+  border-radius: 14px;
+  box-shadow: 0 0 30px rgba(255, 79, 216, 0.4);
+  color: #fff;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: ot-dialog 0.3s 1.4s ease-out forwards;
+}
+
+.ot-name {
+  position: absolute;
+  top: -16px;
+  left: 18px;
+  padding: 6px 14px;
+  background: #ff4fd8;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ot-line {
+  margin: 0;
+  font: 600 clamp(15px, 2.6vw, 24px) / 1.3 system-ui, sans-serif;
+  clip-path: inset(0 100% 0 0);
+  animation: ot-type 0.9s 1.6s steps(38, end) forwards;
+}
+
+.ot-choices {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  opacity: 0;
+  animation: ot-in 0.2s 2.5s forwards;
+}
+
+.ot-choices span {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font: 600 14px/1 system-ui, sans-serif;
+}
+
+.ot-pick {
+  animation: ot-pick 0.3s 2.85s forwards;
+}
+
+.ot-levelup {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #fcd116;
+  font-size: clamp(44px, 12vw, 120px);
+  font-weight: 900;
+  text-align: center;
+  text-shadow:
+    0 0 20px #fcd116,
+    5px 5px 0 #ce1126,
+    10px 10px 0 #002b7f;
+  opacity: 0;
+  transform: scale(0.3);
+  animation: ot-level 0.4s 3s cubic-bezier(0.2, 1.7, 0.4, 1) forwards;
+}
+
+/* ---------- Bandiera rumena che spazza via tutto ---------- */
+
+.ot-flag {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.ot-flag span {
+  flex: 1;
+  margin-right: -1px;
+  transform: translateY(-101%);
+  will-change: transform;
+  animation-name: ot-drop, ot-away;
+  animation-duration: 0.35s, 0.5s;
+  animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1), cubic-bezier(0.6, 0, 0.8, 0.4);
+  animation-fill-mode: forwards;
+}
+
+@keyframes ot-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ot-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes ot-glitch-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px) skewX(20deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(14px) skewX(-12deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ot-blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes ot-key {
+  0%,
+  100% {
+    background: #120c22;
+  }
+  15% {
+    background: #ff4fd8;
+    box-shadow: 0 0 12px #ff4fd8;
+  }
+  30% {
+    background: #8b5cff;
+  }
+  45% {
+    background: #2de2ff;
+    box-shadow: 0 0 12px #2de2ff;
+  }
+  60% {
+    background: #3dffa8;
+  }
+}
+
+@keyframes ot-slide {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes ot-eyes {
+  0%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes ot-thought {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.7);
+  }
+  25%,
+  70% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes ot-dialog {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ot-type {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes ot-pick {
+  to {
+    background: #ff4fd8;
+    border-color: #ff4fd8;
+    box-shadow: 0 0 16px #ff4fd8;
+  }
+}
+
+@keyframes ot-level {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ot-drop {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes ot-away {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(101%);
+  }
+}

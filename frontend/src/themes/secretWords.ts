@@ -1,8 +1,6 @@
 // Riconoscimento delle parole segrete digitate in giro per l'app.
 // Puro e senza DOM, così si può testare da solo.
 
-const BUFFER_SIZE = 16;
-
 /** Minuscolo, senza accenti e solo lettere: "Perù" → "peru". */
 export function normalize(text: string): string {
   return text
@@ -14,6 +12,8 @@ export function normalize(text: string): string {
 
 export function createMatcher<T extends string>(words: Record<string, T>) {
   const entries = Object.entries(words).map(([word, id]) => [normalize(word), id] as const);
+  // Il buffer deve contenere anche la parola più lunga.
+  const bufferSize = Math.max(16, ...entries.map(([word]) => word.length));
   let buffer = "";
 
   return {
@@ -21,7 +21,7 @@ export function createMatcher<T extends string>(words: Record<string, T>) {
     push(key: string): T | null {
       const letter = normalize(key);
       if (letter.length !== 1) return null;
-      buffer = (buffer + letter).slice(-BUFFER_SIZE);
+      buffer = (buffer + letter).slice(-bufferSize);
       for (const [word, id] of entries) {
         if (buffer.endsWith(word)) {
           buffer = "";

@@ -1,0 +1,228 @@
+.anim-cf {
+  font-family: Orbitron, system-ui, sans-serif;
+}
+
+.cf-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #07040f;
+  opacity: 0;
+  animation:
+    cf-in 0.25s forwards,
+    cf-pulse 0.25s 1.2s,
+    cf-pulse 0.25s 1.5s,
+    cf-hit 0.4s 2.2s,
+    cf-hide 0.01s 3.25s forwards;
+}
+
+.cf-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: cf-poster 2s 0.2s ease-in forwards;
+}
+
+.cf-dark {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(7, 4, 15, 0.35), rgba(7, 4, 15, 0.9) 75%),
+    rgba(7, 4, 15, 0.45);
+}
+
+.cf-cables {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cf-cables path {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: cf-draw 0.6s var(--d) ease-out forwards;
+}
+
+.cf-cables .cf-glow {
+  stroke-width: 16;
+  opacity: 0.3;
+}
+
+.cf-cable-cyan {
+  stroke: #3ff0ff;
+}
+
+.cf-cable-pink {
+  stroke: #c84bff;
+}
+
+.cf-logo {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #dffcff;
+  font: 400 clamp(46px, 11vw, 140px) / 1 Monoton, Orbitron, sans-serif;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow:
+    0 0 6px #3ff0ff,
+    0 0 18px #3ff0ff,
+    0 0 40px #c84bff;
+  opacity: 0;
+  animation: cf-neon 0.8s 1.1s forwards;
+}
+
+.cf-slogan {
+  position: absolute;
+  top: calc(34% + clamp(60px, 13vw, 170px));
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #c9c3d6;
+  font: 700 clamp(14px, 2.6vw, 28px) / 1 Orbitron, sans-serif;
+  letter-spacing: 0.22em;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: cf-up 0.4s 2.3s ease-out forwards;
+}
+
+/* Onda d'urto dell'accordo. */
+.cf-wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40vmin;
+  aspect-ratio: 1;
+  border: 4px solid #3ff0ff;
+  border-radius: 50%;
+  box-shadow: 0 0 30px #c84bff;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+  animation: cf-wave 0.8s 2.2s ease-out forwards;
+}
+
+.cf-coin {
+  position: absolute;
+  bottom: -50px;
+  color: #ffb627;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(255, 182, 39, 0.8);
+  opacity: 0;
+  animation: cf-coin 1.4s ease-out forwards;
+}
+
+/* I blocchi della catena: coprono e poi si staccano uno a uno. */
+.cf-blocks {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.cf-blocks span {
+  background: #120a24;
+  border: 1px solid rgba(63, 240, 255, 0.4);
+  box-shadow: inset 0 0 20px rgba(200, 75, 255, 0.3);
+  opacity: 0;
+  animation:
+    cf-in 0.01s 3.15s forwards,
+    cf-block 0.35s var(--d) cubic-bezier(0.6, 0, 0.8, 0.4) forwards;
+}
+
+@keyframes cf-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cf-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes cf-pulse {
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+@keyframes cf-hit {
+  20% {
+    transform: scale(1.05) translateX(-6px);
+  }
+  50% {
+    transform: scale(1.02) translateX(5px);
+  }
+}
+
+@keyframes cf-poster {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cf-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cf-neon {
+  0%,
+  20%,
+  40% {
+    opacity: 0;
+  }
+  10%,
+  30%,
+  50%,
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cf-up {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cf-wave {
+  20% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(4);
+  }
+}
+
+@keyframes cf-coin {
+  15% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-80vh) rotate(25deg);
+  }
+}
+
+@keyframes cf-block {
+  to {
+    opacity: 0;
+    transform: translateY(40px) scale(0.2) rotate(20deg);
+  }
+}

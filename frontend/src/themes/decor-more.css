@@ -1,0 +1,966 @@
+/* =========================================================
+   Decorazioni della terza ondata: widget, scenografie, note dell'osservatore.
+   ========================================================= */
+
+/* ---------- Roblox ---------- */
+
+.tw-rx {
+  padding-top: 0;
+}
+
+.tw-rx-stage {
+  display: grid;
+  place-items: end center;
+  height: 130px;
+  margin: 0 -16px 10px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.08) 0 28%, rgba(0, 0, 0, 0.2) 32% 38%, transparent 40%) 0 100% / 18px 18px,
+    linear-gradient(180deg, #4aa3f0, #bfe3ff 70%, #4b9a3d 70%);
+}
+
+.tw-rx-noob {
+  width: 64px;
+  margin-bottom: 8px;
+  animation: tw-rx-idle 2.4s ease-in-out infinite;
+}
+
+@keyframes tw-rx-idle {
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.tw-rx-name {
+  margin: 0;
+  font: 700 14px/1.2 system-ui, sans-serif;
+}
+
+.tw-rx-robux {
+  margin: 4px 0 10px;
+  color: #00b06f;
+  font: 400 22px/1 var(--font-display);
+}
+
+.tw-rx-play {
+  display: block;
+  padding: 8px;
+  background: #00b06f;
+  border-radius: 8px;
+  box-shadow: 0 3px 0 #007a4d;
+  color: #fff;
+  font: 400 16px/1 var(--font-display);
+}
+
+.ts-rx {
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+}
+
+.ts-rx-noob {
+  width: 56px;
+  opacity: 0.55;
+  animation: ts-rx-jump 7s ease-in-out infinite;
+}
+
+@keyframes ts-rx-jump {
+  0%,
+  86%,
+  100% {
+    transform: none;
+  }
+  90% {
+    transform: translateY(-46px);
+  }
+  94% {
+    transform: translateY(-46px) rotate(4deg);
+  }
+}
+
+/* ---------- Saetta ---------- */
+
+.tw-sa {
+  padding-top: 12px;
+  background:
+    repeating-conic-gradient(#1f1410 0 25%, #fff 0 50%) top left / 12px 12px repeat-x,
+    var(--surface);
+}
+
+.tw-sa-car {
+  display: block;
+  width: 100%;
+  margin: 6px 0 6px;
+  overflow: visible;
+}
+
+.tw-sa-car .rc-wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tw-sa:hover .tw-sa-car .rc-wheel {
+  animation: sa-wheel-idle 0.3s linear infinite;
+}
+
+@keyframes sa-wheel-idle {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tw-sa-standings {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  text-align: left;
+}
+
+.tw-sa-standings li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-top: 1px solid var(--border);
+}
+
+.tw-sa-standings b {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 20px;
+  background: #1f1410;
+  border-radius: 4px;
+  color: #ffc72c;
+  font: italic 400 13px/1 var(--font-display);
+}
+
+.tw-sa-standings li:first-child {
+  font-weight: 700;
+}
+
+.tw-sa-standings li:first-child b {
+  background: #d7141a;
+  color: #fff;
+}
+
+.ts-desert {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 160px;
+}
+
+.ts-mesas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ts-sa-run {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  width: 110px;
+  opacity: 0.8;
+  transform: translateX(-140px);
+  animation: ts-sa-run 16s 2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.ts-sa-run svg {
+  display: block;
+  width: 100%;
+}
+
+@keyframes ts-sa-run {
+  0% {
+    transform: translateX(-140px);
+  }
+  12%,
+  100% {
+    transform: translateX(calc(100vw + 40px));
+  }
+}
+
+/* ---------- Theobserver ---------- */
+
+.follow-eye {
+  --look-x: 0%;
+  --look-y: 0%;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 92px;
+  aspect-ratio: 1.6;
+  overflow: hidden;
+  background: #fff;
+  border: 3px solid #1b1b1b;
+  border-radius: 75% 15%;
+  transform: rotate(45deg) scale(0.72);
+}
+
+.follow-eye-iris {
+  width: 44%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 62% 38%, #fff 0 9%, transparent 10%),
+    radial-gradient(circle, #111 0 38%, #3f8f7a 40% 78%, #1d4d40 80%);
+  /* L'occhio è ruotato di 45°: si ruota indietro lo spostamento. */
+  transform: rotate(-45deg) translate(var(--look-x), var(--look-y));
+  transition: transform 0.12s ease-out;
+}
+
+.tw-ob {
+  padding-top: 18px;
+}
+
+.tw-ob-eye {
+  display: grid;
+  margin: 0 auto 4px;
+  cursor: pointer;
+  animation: follow-blink 6s infinite;
+}
+
+@keyframes follow-blink {
+  0%,
+  95%,
+  100% {
+    transform: rotate(45deg) scale(0.72);
+  }
+  97% {
+    transform: rotate(45deg) scale(0.72, 0.08);
+  }
+}
+
+.tw-ob-stats {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font: 700 18px/1.3 var(--font-note);
+}
+
+.tw-ob-stats b {
+  color: var(--red);
+}
+
+.ts-ob {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  opacity: 0.18;
+}
+
+.ts-ob-eye {
+  width: 260px;
+}
+
+@media (max-width: 900px) {
+  .ts-ob-eye {
+    width: 150px;
+  }
+}
+
+.obs-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 250;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.obs-layer.is-hidden {
+  opacity: 0;
+}
+
+.obs-sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.obs-sheet-fixed {
+  position: fixed;
+}
+
+.obs-arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+
+.obs-arrow path {
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.obs-blue path {
+  stroke: #1a4fd6;
+}
+
+.obs-red path {
+  stroke: #d62828;
+}
+
+.obs-note {
+  position: absolute;
+  width: max-content;
+  padding: 0 4px;
+  background: rgba(251, 250, 245, 0.85);
+  border-radius: 4px;
+  font: 700 17px/1.05 Caveat, "Comic Sans MS", cursive;
+  white-space: normal;
+  animation: obs-in 0.3s ease-out;
+}
+
+.obs-note.obs-blue {
+  color: #1a4fd6;
+}
+
+.obs-note.obs-red {
+  color: #d62828;
+}
+
+.obs-start-middle {
+  transform: translate(2px, -50%);
+}
+
+.obs-end-middle {
+  transform: translate(calc(-100% - 2px), -50%);
+  text-align: right;
+}
+
+.obs-mid-above {
+  transform: translate(-50%, -100%);
+  text-align: center;
+}
+
+.obs-mid-below {
+  transform: translate(-50%, 0);
+  text-align: center;
+}
+
+.obs-start-above {
+  transform: translate(0, -100%) rotate(-3deg);
+}
+
+.obs-end-above {
+  transform: translate(-100%, -100%) rotate(3deg);
+  text-align: right;
+}
+
+.obs-start-below {
+  transform: rotate(2deg);
+}
+
+.obs-end-below {
+  transform: translate(-100%, 0) rotate(-2deg);
+  text-align: right;
+}
+
+@keyframes obs-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------- Darko ---------- */
+
+/* Vinile nero con i solchi e l'etichetta rossa. */
+.vinyl {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #111 0 4%, #e11d2a 4.5% 30%, #111 31%) center / 100% 100%,
+    #111;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.vinyl::after {
+  content: "";
+  display: block;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle, transparent 0 3px, rgba(255, 255, 255, 0.05) 3px 4px),
+    conic-gradient(from 30deg, transparent 0 10%, rgba(255, 255, 255, 0.12) 14%, transparent 20% 60%, rgba(255, 255, 255, 0.1) 64%, transparent 70%);
+  -webkit-mask: radial-gradient(circle, transparent 31%, #000 32%);
+  mask: radial-gradient(circle, transparent 31%, #000 32%);
+}
+
+.tw-dk {
+  padding: 14px;
+}
+
+.tw-dk-cover {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 12px;
+}
+
+.tw-dk-vinyl {
+  position: absolute;
+  top: 6px;
+  right: -26px;
+  width: 138px;
+  animation: tw-dk-spin 3s linear infinite;
+}
+
+@keyframes tw-dk-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tw-dk-sleeve {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 2px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(245, 197, 24, 0.25), transparent 50%),
+    linear-gradient(135deg, #1c1c1c, #050505);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.tw-dk-sleeve strong {
+  color: #f5c518;
+  font: 400 34px/1 "Permanent Marker", cursive;
+  transform: rotate(-6deg);
+  text-shadow: 2px 2px 0 #e11d2a;
+}
+
+.tw-dk-sleeve span {
+  color: #f2f2f2;
+  font: 400 15px/1 Anton, Impact, sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.tw-dk-sleeve i {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  padding: 1px 3px;
+  background: #fff;
+  color: #000;
+  font: normal 400 7px/1.1 Anton, Impact, sans-serif;
+}
+
+.tw-dk-tracks {
+  margin: 0;
+  padding-left: 24px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.tw-dk-tracks li::marker {
+  color: var(--accent);
+  font-family: Anton, Impact, sans-serif;
+}
+
+.ts-graffiti {
+  position: absolute;
+  inset: 0;
+  font-family: "Permanent Marker", cursive;
+}
+
+.ts-tag {
+  position: absolute;
+  color: rgba(245, 197, 24, 0.07);
+  white-space: nowrap;
+}
+
+.ts-tag-1 {
+  right: 3%;
+  bottom: 8%;
+  font-size: clamp(90px, 16vw, 220px);
+  transform: rotate(-8deg);
+}
+
+.ts-tag-2 {
+  top: 14%;
+  right: 6%;
+  color: rgba(225, 29, 42, 0.1);
+  font-size: clamp(30px, 4vw, 54px);
+  transform: rotate(6deg);
+}
+
+.ts-tag-3 {
+  top: 48%;
+  left: 24%;
+  color: rgba(255, 255, 255, 0.05);
+  font-size: clamp(40px, 6vw, 80px);
+  transform: rotate(-4deg);
+}
+
+.ts-tag-4 {
+  bottom: 26%;
+  left: 30%;
+  color: rgba(255, 255, 255, 0.06);
+  font-size: clamp(22px, 3vw, 38px);
+  transform: rotate(3deg);
+}
+
+.ts-smoke {
+  position: absolute;
+  inset: -20% -10% auto;
+  height: 60%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.05), transparent 65%);
+  animation: ts-dk-smoke 12s ease-in-out infinite alternate;
+}
+
+@keyframes ts-dk-smoke {
+  to {
+    transform: translateX(8%) scale(1.1);
+  }
+}
+
+@media (max-width: 900px) {
+  .ts-rx {
+    bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+
+  .ts-desert {
+    bottom: calc(60px + env(safe-area-inset-bottom));
+    height: 110px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ts-rx-noob,
+  .ts-sa-run,
+  .tw-dk-vinyl,
+  .ts-smoke {
+    animation: none;
+  }
+}
+
+/* ---------- Just Eat ---------- */
+
+.tw-je {
+  text-align: left;
+}
+
+.tw-je-head {
+  margin: 0 0 10px;
+  font: 600 14px/1.2 var(--font-display);
+}
+
+.tw-je-road {
+  position: relative;
+  height: 54px;
+  margin: 0 -16px 10px;
+  background:
+    repeating-linear-gradient(90deg, #fff 0 14px, transparent 14px 26px) 0 38px / 100% 3px no-repeat,
+    #3a3f41;
+}
+
+.tw-je-scooter {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 40px;
+  cursor: pointer;
+  animation: tw-je-ride 6s ease-in-out infinite;
+}
+
+.tw-je-house {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 38px;
+}
+
+@keyframes tw-je-ride {
+  0% {
+    transform: translateX(10px);
+  }
+  70%,
+  100% {
+    transform: translateX(calc(100% + 90px));
+  }
+}
+
+.tw-je-steps {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.tw-je-steps li {
+  display: flex;
+  gap: 8px;
+  color: var(--faint);
+}
+
+.tw-je-steps li::before {
+  content: "○";
+}
+
+.tw-je-steps .is-done {
+  color: var(--text);
+}
+
+.tw-je-steps .is-done::before {
+  content: "✓";
+  color: #017a3c;
+  font-weight: 700;
+}
+
+.tw-je-steps .is-now {
+  color: #e86f00;
+  font-weight: 700;
+}
+
+.tw-je-steps .is-now::before {
+  content: "●";
+  animation: tw-blink 1s steps(2) infinite;
+}
+
+@keyframes tw-blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.ts-je {
+  position: absolute;
+  right: 0;
+  bottom: 14px;
+  left: 0;
+}
+
+.ts-je-scooter {
+  width: 46px;
+  opacity: 0.5;
+  transform: translateX(-60px);
+  animation: ts-je-ride 18s 3s linear infinite;
+}
+
+@keyframes ts-je-ride {
+  0% {
+    transform: translateX(-60px);
+  }
+  30%,
+  100% {
+    transform: translateX(calc(100vw + 60px));
+  }
+}
+
+/* ---------- Green Theory ---------- */
+
+.tw-gt {
+  text-align: left;
+}
+
+.tw-gt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 8px;
+  font: 400 20px/1 var(--font-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tw-gt-head span {
+  padding: 3px 6px;
+  border: 1px solid #39e75f;
+  color: #39e75f;
+  font-size: 12px;
+  box-shadow: 0 0 10px rgba(57, 231, 95, 0.4);
+}
+
+.tw-gt-sheet {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tw-gt-sheet td {
+  padding: 5px 0;
+  border-top: 1px solid var(--border);
+}
+
+.tw-gt-sheet td:nth-child(2) {
+  color: #39e75f;
+  font-family: Anton, Impact, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.tw-gt-sheet td:last-child {
+  text-align: right;
+}
+
+.tw-gt-streak {
+  margin: 10px 0 0;
+  font: 400 16px/1 var(--font-display);
+  letter-spacing: 0.04em;
+}
+
+.ts-gt {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+}
+
+.ts-gt-sign {
+  display: block;
+  padding: 6px 14px;
+  border: 3px solid rgba(57, 231, 95, 0.35);
+  border-radius: 10px;
+  color: rgba(182, 255, 198, 0.4);
+  font: 400 34px/1 Anton, Impact, sans-serif;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 18px rgba(57, 231, 95, 0.6);
+  animation: ts-gt-flicker 7s infinite;
+}
+
+@keyframes ts-gt-flicker {
+  0%,
+  92%,
+  96%,
+  100% {
+    opacity: 1;
+  }
+  94%,
+  98% {
+    opacity: 0.3;
+  }
+}
+
+/* ---------- Cryptofix ---------- */
+
+.tw-cf {
+  padding-top: 0;
+}
+
+.tw-cf-poster {
+  display: block;
+  width: calc(100% + 32px);
+  margin: 0 -16px 10px;
+}
+
+.tw-cf-eq {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+  height: 28px;
+  margin-bottom: 8px;
+}
+
+.tw-cf-eq i {
+  width: 6px;
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #c84bff, #3ff0ff);
+  transform-origin: bottom;
+  animation: tw-cf-eq 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes tw-cf-eq {
+  from {
+    transform: scaleY(0.2);
+  }
+}
+
+.ts-cf span {
+  position: absolute;
+  bottom: -40px;
+  color: rgba(255, 182, 39, 0.12);
+  font-size: 34px;
+  font-weight: 700;
+  animation: ts-cf-rise 18s linear infinite;
+}
+
+@keyframes ts-cf-rise {
+  to {
+    transform: translateY(-115vh) rotate(40deg);
+  }
+}
+
+/* ---------- Ortol ---------- */
+
+.tw-or-can {
+  display: block;
+  width: 84px;
+  margin: 0 auto 6px;
+  cursor: pointer;
+  transform-origin: 30% 80%;
+  transition: transform 0.2s;
+}
+
+.tw-or-can:hover {
+  transform: rotate(14deg);
+}
+
+.tw-or-bed {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 46px;
+  margin: 0 -16px 10px;
+  padding: 0 10px;
+  background: linear-gradient(180deg, transparent 70%, #7a4f2a 70%);
+}
+
+.tw-or-bed img {
+  width: 30px;
+  transform-origin: bottom;
+  animation: tw-or-sway 3s ease-in-out infinite alternate;
+}
+
+.tw-or-bed img:nth-child(even) {
+  animation-delay: -1.5s;
+}
+
+@keyframes tw-or-sway {
+  to {
+    transform: rotate(6deg);
+  }
+}
+
+.tw-or .tw-title {
+  font-size: 22px;
+}
+
+.ts-or {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 30px;
+  background: linear-gradient(180deg, transparent, rgba(63, 125, 58, 0.25));
+  clip-path: polygon(0 40%, 2% 0, 4% 40%, 6% 10%, 8% 40%, 10% 0, 12% 40%, 14% 15%, 16% 40%, 18% 0, 20% 40%, 22% 10%, 24% 40%, 26% 0, 28% 40%, 30% 15%, 32% 40%, 34% 0, 36% 40%, 38% 10%, 40% 40%, 42% 0, 44% 40%, 46% 15%, 48% 40%, 50% 0, 52% 40%, 54% 10%, 56% 40%, 58% 0, 60% 40%, 62% 15%, 64% 40%, 66% 0, 68% 40%, 70% 10%, 72% 40%, 74% 0, 76% 40%, 78% 15%, 80% 40%, 82% 0, 84% 40%, 86% 10%, 88% 40%, 90% 0, 92% 40%, 94% 15%, 96% 40%, 98% 0, 100% 40%, 100% 100%, 0 100%);
+}
+
+.ts-or-snail {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 34px;
+  opacity: 0.7;
+  transform: scaleX(-1);
+  animation: ts-or-crawl 120s linear infinite;
+}
+
+@keyframes ts-or-crawl {
+  from {
+    transform: translateX(-40px) scaleX(-1);
+  }
+  to {
+    transform: translateX(100vw) scaleX(-1);
+  }
+}
+
+/* ---------- Basket ---------- */
+
+.tw-bk-hoop {
+  position: relative;
+  width: 110px;
+  height: 100px;
+  margin: 0 auto 6px;
+  cursor: pointer;
+}
+
+.tw-bk-board {
+  position: absolute;
+  inset: 0 0 34px;
+  background: #fff;
+  border: 3px solid #d9d9d9;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 18px #fff, inset 0 0 0 21px #ee6730;
+}
+
+.tw-bk-rim {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 28px;
+  height: 9px;
+  border: 4px solid #ee6730;
+  border-radius: 50%;
+}
+
+.tw-bk-net {
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  bottom: 0;
+  height: 30px;
+  background:
+    repeating-linear-gradient(60deg, transparent 0 6px, rgba(255, 255, 255, 0.8) 6px 8px),
+    repeating-linear-gradient(-60deg, transparent 0 6px, rgba(255, 255, 255, 0.8) 6px 8px);
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+}
+
+.tw-bk-hoop:active .tw-bk-net {
+  transform: scaleY(1.3);
+  transform-origin: top;
+}
+
+.tw-bk-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  background: #050505;
+  border-radius: 6px;
+  color: #f2f2f2;
+  font: 400 12px/1 var(--font-display);
+}
+
+.tw-bk-score b {
+  color: #ff3b2f;
+  font: 700 24px/1 "Courier New", monospace;
+  text-shadow: 0 0 8px rgba(255, 59, 47, 0.7);
+}
+
+.tw-bk-score i {
+  padding: 3px 5px;
+  background: #1a1a1a;
+  border-radius: 3px;
+  color: #ffd23f;
+  font: normal 700 16px/1 "Courier New", monospace;
+}
+
+@media (max-width: 900px) {
+  .ts-je,
+  .ts-or {
+    bottom: calc(60px + env(safe-area-inset-bottom));
+  }
+
+  .ts-gt {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-je-scooter,
+  .ts-je-scooter,
+  .tw-cf-eq i,
+  .ts-cf span,
+  .tw-or-bed img,
+  .ts-or-snail {
+    animation: none;
+  }
+}

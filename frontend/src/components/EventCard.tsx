@@ -3,7 +3,8 @@ import { useEffect, useState, type FormEvent } from "react";
 import { fmtTime, isTimeInRange } from "../date";
 import { isCancelled, type AttendanceStatus, type EventItem } from "../types";
 import { useTheme } from "../themes/ThemeProvider";
-import { announceAttendance } from "../themes/ThemeExtras";
+import { announceAttendance, announceLate } from "../themes/ThemeExtras";
+import { uomo } from "../themes/Uomo";
 
 const OPTIONS: {
   value: AttendanceStatus;
@@ -88,7 +89,12 @@ export default function EventCard({
     }
     setTimeError(null);
     const saved = await onSaveTimes(entry, exit);
-    if (saved) setEditorOpen(false);
+    if (!saved) return;
+    setEditorOpen(false);
+    // Una nuova entrata dopo l'inizio della lezione è un ritardo.
+    if (entry && entry !== savedEntry && timeValue(entry) > timeValue(time)) {
+      announceLate(timeValue(entry) - timeValue(time));
+    }
   }
 
   async function removeTimes() {
@@ -170,12 +176,12 @@ export default function EventCard({
                     title={isActive ? "Tocca di nuovo per annullare" : undefined}
                     onClick={() => {
                       if (isActive) return onClear();
-                      announceAttendance(option.value);
+                      announceAttendance({ status: option.value, eventId: event.id, start: event.start });
                       onSet(option.value);
                     }}
                   >
                     <Icon size={15} strokeWidth={2.6} />
-                    <span>{copy[option.value]}</span>
+                    <span>{uomo(copy[option.value])}</span>
                   </button>
                 );
               })}

@@ -1,9 +1,9 @@
 import type { AnimationProps } from "../registry";
 import { useTimeline } from "./shared";
-import "./chantalle.css";
+import "./chantal.css";
 
 /** Schermata di blocco finta: orologio enorme, notifica, "scorri per sbloccare" e su. */
-export default function Chantalle(props: AnimationProps) {
+export default function Chantal(props: AnimationProps) {
   useTimeline(props, 320, 4500);
 
   const now = new Date();
@@ -11,7 +11,7 @@ export default function Chantalle(props: AnimationProps) {
   const date = now.toLocaleDateString("it-IT", { weekday: "long", day: "numeric", month: "long" });
 
   return (
-    <div className="anim anim-chantalle">
+    <div className="anim anim-chantal">
       <div className="ch-lock">
         <div className="ch-status">
           <span>{time}</span>
@@ -32,7 +32,7 @@ export default function Chantalle(props: AnimationProps) {
               <strong>Registro</strong>
               <span>ora</span>
             </p>
-            <p>Chantalle, il tuo tema è pronto 💅</p>
+            <p>Chantal, il tuo tema è pronto 💅</p>
           </div>
         </div>
         <p className="ch-slide">scorri per sbloccare</p>

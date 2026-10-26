@@ -6,6 +6,7 @@ import { EmptyState, ErrorBanner } from "../components/ui";
 import { addDays, fmtShort, startOfDay, startOfMonth, addMonths } from "../date";
 import type { Stats } from "../types";
 import { useTheme } from "../themes/ThemeProvider";
+import { uomo } from "../themes/Uomo";
 
 type Period = "month" | "30d" | "all";
 
@@ -59,7 +60,7 @@ export default function StatsPage() {
     <div className="page">
       <header className="page-header">
         <div>
-          <h1>{copy.titles.stats ?? "Statistiche"}</h1>
+          <h1>{uomo(copy.titles.stats ?? "Statistiche")}</h1>
           <p className="page-subtitle">Solo le lezioni a cui hai assegnato uno stato.</p>
         </div>
       </header>
@@ -144,7 +145,7 @@ export default function StatsPage() {
 
           <section className="section">
             <div className="section-head">
-              <h2>{copy.titles.bySubject ?? "Per materia"}</h2>
+              <h2>{uomo(copy.titles.bySubject ?? "Per materia")}</h2>
               <span className="section-count">{stats.groups.length}</span>
             </div>
             <div className="group-list">

@@ -1,0 +1,201 @@
+.anim-ortol {
+  font-family: "Amatic SC", "Comic Sans MS", cursive;
+}
+
+.or-garden {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #bfe6f7, #e9f6e6 62%);
+  opacity: 0;
+  animation:
+    or-in 0.25s forwards,
+    or-hide 0.01s 3.5s forwards;
+}
+
+.or-sun {
+  position: absolute;
+  top: 12%;
+  right: 12%;
+  width: min(22vmin, 150px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff3a8, #ffd23f 60%, #ffb000);
+  box-shadow: 0 0 60px rgba(255, 200, 0, 0.6);
+  transform: translateY(60vh);
+  animation: or-sun 1.6s 0.2s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.or-can-wrap {
+  position: absolute;
+  top: 14%;
+  left: 24%;
+  width: min(30vmin, 210px);
+  transform: translateX(-60vw) rotate(0);
+  animation:
+    or-can-in 0.45s 0.1s cubic-bezier(0.2, 1, 0.4, 1) forwards,
+    or-can-out 0.4s 1.5s ease-in forwards;
+}
+
+.or-can {
+  display: block;
+  width: 100%;
+  transform-origin: 30% 80%;
+  animation: or-tilt 1s 0.4s ease-in-out forwards;
+}
+
+.or-drop {
+  position: absolute;
+  top: 34%;
+  left: 100%;
+  width: 7px;
+  height: 12px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: #4aa8e0;
+  opacity: 0;
+  animation: or-drop 0.55s ease-in forwards;
+}
+
+.or-bed {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 30%;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 18px, rgba(0, 0, 0, 0.12) 18px 22px),
+    linear-gradient(180deg, #7a4f2a, #5c3a1e);
+}
+
+.or-plant {
+  position: absolute;
+  bottom: 70%;
+  width: min(14vmin, 100px);
+  transform: translateX(-50%);
+}
+
+.or-plant img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform-origin: bottom;
+}
+
+.or-sprout {
+  transform: scaleY(0);
+  animation:
+    or-grow 0.35s var(--d) cubic-bezier(0.2, 1.6, 0.4, 1) forwards,
+    or-out 0.15s calc(var(--d) + 0.75s) forwards;
+}
+
+.or-crop {
+  opacity: 0;
+  transform: scale(0.2);
+  animation: or-pop 0.4s calc(var(--d) + 0.8s) cubic-bezier(0.2, 1.6, 0.4, 1) forwards;
+}
+
+.or-title {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: #2f6b3a;
+  font-size: clamp(54px, 11vw, 120px);
+  font-weight: 700;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.6) rotate(-4deg);
+  animation: or-pop 0.4s 2.45s cubic-bezier(0.2, 1.5, 0.4, 1) forwards;
+}
+
+/* L'erba che cresce e copre tutto. */
+.or-grass {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 115%;
+  background: linear-gradient(180deg, #5cbf4a, #2f7a2a);
+  clip-path: polygon(0 6%, 3% 0, 6% 6%, 9% 1%, 12% 6%, 15% 0, 18% 6%, 21% 2%, 24% 6%, 27% 0, 30% 6%, 33% 1%, 36% 6%, 39% 0, 42% 6%, 45% 2%, 48% 6%, 51% 0, 54% 6%, 57% 1%, 60% 6%, 63% 0, 66% 6%, 69% 2%, 72% 6%, 75% 0, 78% 6%, 81% 1%, 84% 6%, 87% 0, 90% 6%, 93% 2%, 96% 6%, 100% 0, 100% 100%, 0 100%);
+  transform: translateY(100%);
+  will-change: transform, opacity;
+  animation:
+    or-grass 0.55s 3s cubic-bezier(0.3, 0, 0.3, 1) forwards,
+    or-out 0.55s 3.6s forwards;
+}
+
+@keyframes or-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes or-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes or-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes or-sun {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes or-can-in {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes or-can-out {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translate(-60vw, -10vh);
+  }
+}
+
+@keyframes or-tilt {
+  to {
+    transform: rotate(28deg);
+  }
+}
+
+@keyframes or-drop {
+  15% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.8;
+    transform: translate(var(--x), 46vh);
+  }
+}
+
+@keyframes or-grow {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes or-pop {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes or-grass {
+  to {
+    transform: translateY(-8%);
+  }
+}

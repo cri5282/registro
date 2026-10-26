@@ -358,16 +358,7 @@ h2,
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
 }
 
-[data-theme="peru"] .empty-icon,
-[data-theme="baba"] .empty-icon,
-[data-theme="holy"] .empty-icon,
-[data-theme="quattro"] .empty-icon,
-[data-theme="drum"] .empty-icon,
-[data-theme="surebet"] .empty-icon,
-[data-theme="puglia"] .empty-icon,
-[data-theme="kalashmikov"] .empty-icon,
-[data-theme="bicicletta"] .empty-icon,
-[data-theme="chantalle"] .empty-icon {
+[data-theme] .empty-icon {
   width: 76px;
   height: 76px;
   background: var(--empty-art) center / 82% no-repeat;
@@ -1338,7 +1329,7 @@ h2,
    CHANTALLE — Scorri per sbloccare
    ========================================================= */
 
-:root[data-theme="chantalle"] {
+:root[data-theme="chantal"] {
   color-scheme: light;
   --bg: #f2f2f7;
   --bg-soft: #f9f9fb;
@@ -1378,17 +1369,17 @@ h2,
   --font-display: -apple-system, "SF Pro Display", "Inter", system-ui, sans-serif;
   --body-bg: var(--bg);
   --art: none;
-  --empty-art: url("/themes/chantalle/nails.svg");
+  --empty-art: url("/themes/chantal/nails.svg");
   --ring-art: conic-gradient(#34c759, #30d158);
 }
 
-[data-theme="chantalle"] .page-header h1 {
+[data-theme="chantal"] .page-header h1 {
   font-size: 34px;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
-[data-theme="chantalle"] .eyebrow {
+[data-theme="chantal"] .eyebrow {
   color: var(--muted);
   font-size: 13px;
   font-weight: 600;
@@ -1396,41 +1387,41 @@ h2,
   letter-spacing: 0.02em;
 }
 
-[data-theme="chantalle"] .event-card,
-[data-theme="chantalle"] .stats-hero,
-[data-theme="chantalle"] .card,
-[data-theme="chantalle"] .sync-line,
-[data-theme="chantalle"] .stat-chip {
+[data-theme="chantal"] .event-card,
+[data-theme="chantal"] .stats-hero,
+[data-theme="chantal"] .card,
+[data-theme="chantal"] .sync-line,
+[data-theme="chantal"] .stat-chip {
   border-color: transparent;
 }
 
-[data-theme="chantalle"] .event-card::before {
+[data-theme="chantal"] .event-card::before {
   display: none;
 }
 
-[data-theme="chantalle"] .sidebar {
+[data-theme="chantal"] .sidebar {
   background: rgba(249, 249, 251, 0.82);
   backdrop-filter: saturate(180%) blur(20px);
 }
 
-[data-theme="chantalle"] .side-link.active {
+[data-theme="chantal"] .side-link.active {
   background: #007aff;
   border-color: transparent;
   color: #fff;
 }
 
-[data-theme="chantalle"] .side-link.active svg {
+[data-theme="chantal"] .side-link.active svg {
   color: #fff;
 }
 
-[data-theme="chantalle"] .segmented {
+[data-theme="chantal"] .segmented {
   padding: 2px;
   background: rgba(118, 118, 128, 0.12);
   border: 0;
   border-radius: 9px;
 }
 
-[data-theme="chantalle"] .segment.active {
+[data-theme="chantal"] .segment.active {
   background: #fff;
   border-radius: 7px;
   box-shadow:
@@ -1439,20 +1430,20 @@ h2,
   color: #000;
 }
 
-[data-theme="chantalle"] .status-button {
+[data-theme="chantal"] .status-button {
   border: 0;
   background: rgba(118, 118, 128, 0.12);
   border-radius: 10px;
 }
 
-[data-theme="chantalle"] .toast {
+[data-theme="chantal"] .toast {
   border: 0;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: saturate(180%) blur(20px);
 }
 
-[data-theme="chantalle"] .theme-cheer {
+[data-theme="chantal"] .theme-cheer {
   top: calc(12px + env(safe-area-inset-top));
   bottom: auto;
   padding: 14px 18px;
@@ -1465,13 +1456,13 @@ h2,
 }
 
 @media (max-width: 900px) {
-  [data-theme="chantalle"] .topbar,
-  [data-theme="chantalle"] .bottom-nav {
+  [data-theme="chantal"] .topbar,
+  [data-theme="chantal"] .bottom-nav {
     background: rgba(249, 249, 249, 0.78);
     backdrop-filter: saturate(180%) blur(20px);
   }
 
-  [data-theme="chantalle"] .topbar::before {
+  [data-theme="chantal"] .topbar::before {
     content: "";
     position: absolute;
     top: 13px;
@@ -1483,7 +1474,7 @@ h2,
     transform: translateX(-50%);
   }
 
-  [data-theme="chantalle"] .topbar::after {
+  [data-theme="chantal"] .topbar::after {
     content: "";
     position: absolute;
     top: 25px;
@@ -1495,12 +1486,12 @@ h2,
     box-shadow: 0 0 6px #30d158;
   }
 
-  [data-theme="chantalle"] .toast-stack {
+  [data-theme="chantal"] .toast-stack {
     top: calc(10px + env(safe-area-inset-top));
     bottom: auto;
   }
 
-  [data-theme="chantalle"] .bottom-link.active {
+  [data-theme="chantal"] .bottom-link.active {
     color: #007aff;
   }
 }

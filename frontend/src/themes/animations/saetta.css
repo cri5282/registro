@@ -1,0 +1,285 @@
+.anim-saetta {
+  font-family: "Racing Sans One", Impact, sans-serif;
+}
+
+/* ---------- Il mantra al buio ---------- */
+
+.sa-dark {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  background: #050505;
+  opacity: 0;
+  animation:
+    sa-in 0.2s forwards,
+    sa-hide 0.01s 1.6s forwards;
+}
+
+.sa-mantra {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(30px, 6vw, 64px);
+  font-style: italic;
+  text-align: center;
+  opacity: 0;
+  transform: scale(1.3);
+  animation: sa-word 0.3s ease-out forwards;
+}
+
+.sa-mantra:last-child {
+  color: #ffc72c;
+}
+
+/* ---------- La pista ---------- */
+
+.sa-track {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, transparent 62%, #3a3a3e 62% 64%, #2b2b2f 64%),
+    linear-gradient(180deg, #ff9a3c, #ffd27a 55%, #ffe6b0);
+  animation:
+    sa-shake 0.35s 1.8s,
+    sa-hide 0.01s 3.62s forwards;
+}
+
+/* Tribune piene di fari e cartelloni. */
+.sa-stands {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  right: 0;
+  height: 28%;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 2px, transparent 3px) 0 0 / 22px 18px,
+    linear-gradient(180deg, #59202a, #2a1015);
+}
+
+.sa-stands::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -12px;
+  height: 12px;
+  background: repeating-linear-gradient(90deg, #d7141a 0 30px, #fff 30px 60px);
+}
+
+.sa-flash {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 18%, rgba(255, 255, 255, 0.6) 30%, transparent 65%);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.3);
+  animation: sa-flash 0.28s ease-out forwards;
+}
+
+.sa-skid {
+  position: absolute;
+  left: 0;
+  bottom: 13%;
+  width: 60%;
+  height: 10px;
+  background: repeating-linear-gradient(90deg, #111 0 14px, transparent 14px 20px);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: sa-skid 0.5s 1.7s ease-out forwards;
+}
+
+.sa-car-move {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: min(62vw, 560px);
+  transform: translateX(-160vw);
+  will-change: transform;
+  animation:
+    sa-enter 0.6s 1.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards,
+    sa-leave 0.5s 2.95s cubic-bezier(0.7, 0, 1, 0.5) forwards;
+}
+
+.sa-car {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  animation: sa-bounce 0.3s 2.15s ease-out;
+}
+
+.sa-car .rc-wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sa-wheel 0.25s linear infinite;
+}
+
+/* Le scie di velocità dietro l'auto, con un po' di fiamme. */
+.sa-speed {
+  position: absolute;
+  top: 30%;
+  right: 88%;
+  width: 70vw;
+  height: 46%;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 8px, rgba(255, 255, 255, 0.85) 8px 11px, transparent 11px 22px),
+    linear-gradient(90deg, transparent, rgba(255, 199, 44, 0.6));
+  -webkit-mask: linear-gradient(90deg, transparent, #000);
+  mask: linear-gradient(90deg, transparent, #000);
+  opacity: 0;
+  animation:
+    sa-speed 0.6s 1.6s forwards,
+    sa-speed 0.5s 2.95s reverse forwards;
+}
+
+.sa-kachow {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  color: #ffc72c;
+  font-size: clamp(64px, 15vw, 170px);
+  font-style: italic;
+  line-height: 1;
+  text-shadow:
+    5px 5px 0 #d7141a,
+    10px 10px 0 #1b1b1b;
+  opacity: 0;
+  transform: scale(0.3) rotate(-10deg);
+  animation:
+    sa-kachow 0.35s 2.15s cubic-bezier(0.2, 1.6, 0.4, 1) forwards,
+    sa-fade 0.3s 3.3s forwards;
+}
+
+.sa-kachow img {
+  width: 0.9em;
+  filter: drop-shadow(5px 5px 0 #1b1b1b);
+}
+
+/* La bandiera a scacchi che passa e lascia il tema. */
+.sa-flag {
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  left: 0;
+  width: 140vw;
+  z-index: 3;
+  background: repeating-conic-gradient(#111 0 25%, #fff 0 50%) 0 0 / 70px 70px;
+  transform: translateX(-150vw) skewX(-12deg);
+  will-change: transform;
+  animation: sa-flag 0.75s 3.25s cubic-bezier(0.6, 0, 0.4, 1) forwards;
+}
+
+@keyframes sa-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sa-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes sa-word {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sa-shake {
+  25% {
+    transform: translate(-6px, 3px);
+  }
+  50% {
+    transform: translate(5px, -3px);
+  }
+  75% {
+    transform: translate(-3px, 2px);
+  }
+}
+
+@keyframes sa-flash {
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes sa-skid {
+  to {
+    opacity: 0.8;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes sa-enter {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes sa-leave {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}
+
+@keyframes sa-bounce {
+  40% {
+    transform: translateY(-4%) rotate(-2deg);
+  }
+}
+
+@keyframes sa-wheel {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sa-speed {
+  from {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sa-kachow {
+  to {
+    opacity: 1;
+    transform: rotate(-6deg);
+  }
+}
+
+@keyframes sa-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sa-flag {
+  to {
+    transform: translateX(110vw) skewX(-12deg);
+  }
+}

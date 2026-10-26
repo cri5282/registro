@@ -2,22 +2,47 @@ import { useEffect, useRef, useState } from "react";
 import { DEFAULT_COPY, THEMES } from "./registry";
 import type { ThemeId } from "./words";
 import ThemeScene from "./ThemeScene";
+import EasterEggs from "./EasterEggs";
+import ObserverNotes from "./ObserverNotes";
+import UltraWatcher from "./UltraWatcher";
+import LateWatcher from "./LateWatcher";
 
 export const ATTENDANCE_EVENT = "registro:attendance";
 
+export interface AttendanceDetail {
+  status: "present" | "absent";
+  /** La lezione appena segnata: chi ascolta sa già com'è, anche prima che il salvataggio finisca. */
+  eventId: string;
+  start: string;
+}
+
+export const LATE_EVENT = "registro:late";
+
+/** Da chiamare quando si salva un'entrata in ritardo: il Rosé del ritardo si teletrasporta qui. */
+export function announceLate(minutes: number) {
+  window.dispatchEvent(new CustomEvent(LATE_EVENT, { detail: minutes }));
+}
+
 /** Da chiamare quando l'utente segna una presenza: il tema attivo può reagire. */
-export function announceAttendance(status: "present" | "absent") {
-  window.dispatchEvent(new CustomEvent(ATTENDANCE_EVENT, { detail: status }));
+export function announceAttendance(detail: AttendanceDetail) {
+  window.dispatchEvent(new CustomEvent(ATTENDANCE_EVENT, { detail }));
 }
 
 /** Piccole aggiunte al DOM che il solo CSS non riesce a fare. */
 export default function ThemeExtras({ theme }: { theme: ThemeId }) {
-  if (theme === "default") return null;
   return (
     <>
-      <ThemeScene theme={theme} />
-      <Cheer theme={theme} />
-      {theme === "baba" ? <SparkleTrail /> : null}
+      <EasterEggs theme={theme} />
+      <UltraWatcher />
+      <LateWatcher />
+      {theme === "default" ? null : (
+        <>
+          <ThemeScene theme={theme} />
+          <Cheer theme={theme} />
+          {theme === "baba" ? <SparkleTrail /> : null}
+          {theme === "theobserver" ? <ObserverNotes /> : null}
+        </>
+      )}
     </>
   );
 }
@@ -31,7 +56,7 @@ function Cheer({ theme }: { theme: ThemeId }) {
     if (!lines) return;
     let timer = 0;
     function onAttendance(event: Event) {
-      const status = (event as CustomEvent<"present" | "absent">).detail;
+      const { status } = (event as CustomEvent<AttendanceDetail>).detail;
       counter.current += 1;
       setCheer({ text: lines![status], status, key: counter.current });
       window.clearTimeout(timer);

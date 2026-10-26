@@ -11,6 +11,7 @@ import { isCancelled, type AttendanceStatus, type EventItem } from "../types";
 import { themedGreeting, useTheme } from "../themes/ThemeProvider";
 import OddsTicker from "../themes/OddsTicker";
 import ThemeWidget from "../themes/ThemeWidget";
+import { uomo } from "../themes/Uomo";
 
 export default function TodayPage() {
   const { user } = useAuth();
@@ -178,9 +179,9 @@ export default function TodayPage() {
       <header className="page-header">
         <div>
           <p className="eyebrow">
-            {themedGreeting(copy, firstName) ?? `${greeting()}, ${firstName}`}
+            {uomo(themedGreeting(copy, firstName) ?? `${greeting()}, ${firstName}`)}
           </p>
-          <h1>{copy.titles.today ?? "Oggi"}</h1>
+          <h1>{uomo(copy.titles.today ?? "Oggi")}</h1>
           <p className="page-subtitle">
             {fmtFullDate(new Date())}
             <span className="page-subtitle-meta">
@@ -190,10 +191,10 @@ export default function TodayPage() {
         </div>
         <div className="today-stats">
           <span className="stat-chip stat-chip-ok">
-            <strong>{counts.present}</strong> {copy.presentCount}
+            <strong>{counts.present}</strong> {uomo(copy.presentCount)}
           </span>
           <span className="stat-chip stat-chip-bad">
-            <strong>{counts.absent}</strong> {copy.absentCount}
+            <strong>{counts.absent}</strong> {uomo(copy.absentCount)}
           </span>
         </div>
       </header>
@@ -215,7 +216,7 @@ export default function TodayPage() {
 
       <section className="section">
         <div className="section-head">
-          <h2>{copy.titles.lessons ?? "Lezioni"}</h2>
+          <h2>{uomo(copy.titles.lessons ?? "Lezioni")}</h2>
           {events ? <span className="section-count">{timed.length}</span> : null}
         </div>
 

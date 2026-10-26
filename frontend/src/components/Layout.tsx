@@ -17,6 +17,7 @@ import { timeAgo } from "../date";
 import { useTheme } from "../themes/ThemeProvider";
 import type { NavKey } from "../themes/registry";
 import ThemeWidget from "../themes/ThemeWidget";
+import { uomo } from "../themes/Uomo";
 
 const BASE_NAV: { key: NavKey; to: string; label: string; icon: typeof Users; end: boolean }[] = [
   { key: "today", to: "/", label: "Oggi", icon: CalendarCheck, end: true },
@@ -54,7 +55,7 @@ export default function Layout() {
         <div className="brand">
           <LogoMark size={40} />
           <div>
-            <strong>{copy.brand}</strong>
+            <strong>{uomo(copy.brand)}</strong>
             <span>{isAdmin ? "Amministrazione" : (copy.tagline ?? "Registro personale")}</span>
           </div>
         </div>
@@ -74,7 +75,7 @@ export default function Layout() {
                 ) : (
                   <Icon size={19} />
                 )}
-                <span>{copy.nav[item.key]?.label ?? item.label}</span>
+                <span>{uomo(copy.nav[item.key]?.label ?? item.label)}</span>
               </NavLink>
             );
           })}
@@ -140,7 +141,7 @@ export default function Layout() {
         <header className="topbar">
           <div className="topbar-brand">
             <LogoMark size={30} />
-            <span>{copy.brand}</span>
+            <span>{uomo(copy.brand)}</span>
           </div>
           <div className="topbar-actions">
             {isAdmin ? (
@@ -181,7 +182,7 @@ export default function Layout() {
               ) : (
                 <Icon size={21} />
               )}
-              <span>{copy.nav[item.key]?.label ?? item.label}</span>
+              <span>{uomo(copy.nav[item.key]?.label ?? item.label)}</span>
             </NavLink>
           );
         })}

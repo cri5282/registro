@@ -35,3 +35,6 @@ frontend/.env.production
 
 # Credenziali initiali generate localmente (non committare)
 migration/credenziali-iniziali-2026.txt
+
+# Cache locale di tsc -b
+*.tsbuildinfo

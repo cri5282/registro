@@ -29,16 +29,14 @@
   fill: none;
   stroke: rgba(255, 255, 255, 0.9);
   stroke-width: 0.25;
-  vector-effect: non-scaling-stroke;
   animation: q-fade-out 0.1s 0.5s forwards;
 }
 
 .q-cracks line,
 .q-cracks circle {
-  stroke-width: 2px;
+  stroke-width: 0.3;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  vector-effect: non-scaling-stroke;
   animation: q-draw 0.3s 0.08s ease-out forwards;
 }
 
