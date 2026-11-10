@@ -1710,11 +1710,77 @@ html.egg-deathdrop #root {
   color: #fff;
 }
 
+/* ---------- punk ---------- */
+
+html.egg-pogo #root {
+  animation: egg-pogo 0.32s 6 ease-in-out;
+}
+
+@keyframes egg-pogo {
+  40% {
+    transform: translateY(-34px) rotate(-1deg);
+  }
+  70% {
+    transform: translateY(-20px) rotate(1deg);
+  }
+}
+
+.egg-pogo-bit {
+  position: absolute;
+  bottom: -70px;
+  width: clamp(40px, 6vw, 64px);
+  opacity: 0;
+  animation: egg-pogo-fly 1.5s cubic-bezier(0.2, 0.7, 0.5, 1) forwards;
+}
+
+@keyframes egg-pogo-fly {
+  8% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(var(--y)) rotate(calc(var(--r) / 2));
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10vh) rotate(var(--r));
+  }
+}
+
+.egg-pogo-text {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  flex-wrap: nowrap;
+  width: max-content;
+  font-size: clamp(56px, 11vw, 150px);
+  opacity: 0;
+  transform: translateX(-50%) scale(2.4) rotate(8deg);
+  animation:
+    egg-pogo-slap 0.2s 0.15s cubic-bezier(0.5, 0, 0.7, 1.3) forwards,
+    egg-fade-out 0.4s 3.2s forwards;
+}
+
+@keyframes egg-pogo-slap {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) rotate(-4deg);
+  }
+}
+
+.egg-caption-pk {
+  background: #000;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 #ff2a8a;
+  color: #ffe14d;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html.egg-barrel #root,
   html.egg-levitate #root,
   html.egg-slap #root,
-  html.egg-deathdrop #root {
+  html.egg-deathdrop #root,
+  html.egg-pogo #root {
     animation: none;
   }
 }

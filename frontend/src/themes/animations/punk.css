@@ -1,0 +1,199 @@
+/* Il palco al buio, con la folla fotocopiata appena visibile. */
+.pk-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+  opacity: 0;
+  animation:
+    pk-in 0.15s forwards,
+    pk-hit 0.2s 0.2s,
+    pk-hit 0.2s 0.55s,
+    pk-hit 0.2s 0.9s,
+    pk-hit 0.25s 1.25s,
+    pk-hide 0.01s 1.95s forwards;
+}
+
+.pk-crowd {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.22;
+}
+
+/* Ogni numero del conteggio arriva come un adesivo sbattuto sul vetro, e resta. */
+.pk-count {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: clamp(44px, 9vw, 110px);
+  opacity: 0;
+  transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)) scale(2.6);
+  animation: pk-slap 0.16s cubic-bezier(0.5, 0, 0.7, 1.3) forwards;
+}
+
+.pk-count .ransom {
+  flex-wrap: nowrap;
+  width: max-content;
+}
+
+.pk-count:last-child {
+  font-size: clamp(46px, 10vw, 130px);
+}
+
+/* Il volantino: più grande dello schermo, così ruotato non lascia angoli scoperti. */
+.pk-flyer {
+  position: absolute;
+  inset: -12vmax;
+  opacity: 0;
+  transform: scale(1.7) rotate(-12deg);
+  will-change: transform;
+  animation: pk-flyer 0.28s 1.62s cubic-bezier(0.6, 0, 0.8, 1.2) forwards;
+}
+
+.pk-half {
+  position: absolute;
+  inset: 0;
+}
+
+.pk-half > div {
+  position: absolute;
+  inset: 0;
+}
+
+.pk-half-l {
+  transform-origin: 0 100%;
+  animation:
+    pk-edge 0.01s 2.75s forwards,
+    pk-tear-l 0.85s 2.75s cubic-bezier(0.5, 0, 0.9, 0.6) forwards;
+}
+
+.pk-half-r {
+  transform-origin: 100% 100%;
+  animation:
+    pk-edge 0.01s 2.75s forwards,
+    pk-tear-r 0.85s 2.8s cubic-bezier(0.5, 0, 0.9, 0.6) forwards;
+}
+
+.pk-paper {
+  position: absolute;
+  inset: 0;
+  background: #ff2a8a;
+}
+
+/* Foto in bianco e nero stampata sul rosa: il nero resta, il bianco prende il colore della carta. */
+.pk-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+}
+
+.pk-copy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 12vmax 16px;
+  text-align: center;
+}
+
+.pk-title {
+  font-size: clamp(72px, 21vw, 280px);
+}
+
+.pk-line {
+  max-width: 90vw;
+  margin: 0;
+  padding: 6px 14px;
+  background: #ffe14d;
+  color: #000;
+  font: 400 clamp(16px, 2.6vw, 26px) / 1.2 "Special Elite", "Courier New", monospace;
+  transform: rotate(-1.5deg);
+}
+
+.pk-line-2 {
+  background: #fbfbf8;
+  transform: rotate(1deg);
+}
+
+.pk-pin {
+  position: absolute;
+  width: clamp(80px, 11vw, 140px);
+}
+
+.pk-pin-a {
+  top: calc(12vmax + 4vh);
+  left: calc(12vmax + 5vw);
+  transform: rotate(-30deg);
+}
+
+.pk-pin-b {
+  right: calc(12vmax + 5vw);
+  bottom: calc(12vmax + 6vh);
+  transform: rotate(140deg);
+}
+
+@keyframes pk-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pk-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes pk-hit {
+  25% {
+    transform: translate(-14px, 8px) rotate(-0.6deg);
+  }
+  60% {
+    transform: translate(10px, -6px) rotate(0.5deg);
+  }
+}
+
+@keyframes pk-slap {
+  to {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r));
+  }
+}
+
+@keyframes pk-flyer {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-2deg);
+  }
+}
+
+/* Il bianco della carta che si vede lungo lo strappo, solo quando si strappa. */
+@keyframes pk-edge {
+  to {
+    filter: drop-shadow(4px 0 0 #fbfbf8) drop-shadow(-4px 0 0 #fbfbf8);
+  }
+}
+
+@keyframes pk-tear-l {
+  to {
+    transform: translate(-55vw, 70vh) rotate(-28deg);
+  }
+}
+
+@keyframes pk-tear-r {
+  to {
+    transform: translate(55vw, 80vh) rotate(24deg);
+  }
+}

@@ -391,4 +391,24 @@ export const THEMES: Record<ThemeId, ThemeDef> = {
     },
     Animation: lazy(() => import("./animations/Bellesia")),
   },
+  punk: {
+    themeColor: "#e6e5df",
+    font: () =>
+      Promise.all([
+        import("@fontsource/rubik-dirt/latin-400.css"),
+        import("@fontsource/special-elite/latin-400.css"),
+        import("@fontsource/anton/latin-400.css"),
+        import("@fontsource/unifrakturmaguntia/latin-400.css"),
+      ]),
+    assets: ["punk/flyer.png", "punk/safetypin.svg"],
+    copy: {
+      greeting: "Oi {name}! Tre accordi e si entra 🤘",
+      present: "Sul palco",
+      absent: "Disertato",
+      presentCount: "sul palco",
+      absentCount: "disertati",
+      cheer: { present: "1, 2, 3, 4! 🤘🧷", absent: "No future, no giustifica 💀" },
+    },
+    Animation: lazy(() => import("./animations/Punk")),
+  },
 };

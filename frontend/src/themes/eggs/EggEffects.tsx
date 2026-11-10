@@ -7,6 +7,7 @@ import { rand, useScatter, vars } from "../animations/shared";
 import Noob from "../Noob";
 import RaceCar from "../RaceCar";
 import Waifu from "../Waifu";
+import Ransom from "../Ransom";
 import "./eggs.css";
 
 interface EggProps {
@@ -475,6 +476,37 @@ function Spike(props: EggProps) {
   );
 }
 
+/* ---------- punk: pogo, la pagina salta e vola di tutto ---------- */
+const POGO_BITS = ["punk/safetypin.svg", "punk/skull.svg", "punk/horns.svg", "punk/bolt.svg"];
+
+function Pogo(props: EggProps) {
+  useEgg(props, 3800, "egg-pogo");
+  const bits = useScatter(22, (i) => ({
+    src: POGO_BITS[i % POGO_BITS.length],
+    x: rand(2, 92),
+    y: rand(-85, -45),
+    r: rand(-400, 400),
+    d: (i % 2) * 0.64 + rand(0, 0.5),
+  }));
+  return (
+    <>
+      {bits.map((bit, i) => (
+        <img
+          key={i}
+          className="egg-pogo-bit"
+          src={asset(bit.src)}
+          alt=""
+          style={vars({ left: `${bit.x}vw`, "--y": `${bit.y}vh`, "--r": `${bit.r}deg`, animationDelay: `${bit.d}s` })}
+        />
+      ))}
+      <Ransom text="POGO!" className="egg-pogo-text" />
+      <Caption delay={1.5} className="egg-caption-pk">
+        Il registro è finito nel pogo 🧷🤘
+      </Caption>
+    </>
+  );
+}
+
 const EFFECTS: Record<ThemeId, (props: EggProps) => ReactNode> = {
   default: BarrelRoll,
   peru: LlamaSpit,
@@ -501,6 +533,7 @@ const EFFECTS: Record<ThemeId, (props: EggProps) => ReactNode> = {
   ortol: GiantTomato,
   basket: SlamDunk,
   bellesia: Spike,
+  punk: Pogo,
 };
 
 export default function EggEffect({ theme, onDone }: { theme: ThemeId; onDone: () => void }) {

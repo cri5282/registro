@@ -31,6 +31,7 @@ export const EGGS: Record<ThemeId, EggTrigger> = {
   ortol: { click: ".tw-or-can", times: 3 },
   basket: { click: ".tw-bk-hoop", times: 3 },
   bellesia: { words: ["ace", "schiacciata"] },
+  punk: { words: ["pogo"] },
 };
 
 /** Scatta quando parte un easter egg: chi vuole reagire (note, widget…) ascolta questo. */

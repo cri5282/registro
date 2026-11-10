@@ -96,7 +96,7 @@ function oof(ac: AudioContext, out: AudioNode, at: number) {
 }
 
 /** Accordo di potenza distorto, da chitarra elettrica. */
-function powerChord(ac: AudioContext, out: AudioNode, at: number, dur: number) {
+function powerChord(ac: AudioContext, out: AudioNode, at: number, dur: number, root = 40) {
   const drive = ac.createWaveShaper();
   const curve = new Float32Array(256);
   for (let i = 0; i < curve.length; i += 1) {
@@ -108,7 +108,7 @@ function powerChord(ac: AudioContext, out: AudioNode, at: number, dur: number) {
   cab.type = "lowpass";
   cab.frequency.value = 2600;
   drive.connect(cab).connect(out);
-  [40, 47, 52].forEach((n) => tone(ac, drive, NOTE(n), at, dur, { type: "sawtooth", gain: 0.2, attack: 0.01 }));
+  [root, root + 7, root + 12].forEach((n) => tone(ac, drive, NOTE(n), at, dur, { type: "sawtooth", gain: 0.2, attack: 0.01 }));
 }
 
 /** Motore che sale o scende di giri. */
@@ -333,6 +333,13 @@ const SOUNDS: Record<ThemeId, (ac: AudioContext, out: AudioNode) => void> = {
     noise(ac, out, 1.85, 1.5, { freq: 1100, q: 0.5, gain: 0.2, attack: 0.25 });
     [84, 88, 91, 96].forEach((n, i) => tone(ac, out, NOTE(n), 1.9 + i * 0.09, 0.35, { gain: 0.08 }));
   },
+  // Bacchette del conteggio, accordo distorto quando arriva il volantino, carta strappata.
+  punk(ac, out) {
+    [0.2, 0.55, 0.9, 1.25].forEach((at) => noise(ac, out, at, 0.06, { filter: "highpass", freq: 2500, gain: 0.5 }));
+    powerChord(ac, out, 1.62, 1.1);
+    noise(ac, out, 1.62, 1.2, { freq: 5000, q: 0.4, gain: 0.18 });
+    noise(ac, out, 2.75, 0.5, { freq: 2600, q: 0.6, gain: 0.3, attack: 0.08 });
+  },
   default(ac, out) {
     tone(ac, out, 420, 0, 0.18, { glideTo: 980, gain: 0.18 });
   },
@@ -471,6 +478,17 @@ const EGG_SOUNDS: Record<ThemeId, (ac: AudioContext, out: AudioNode) => void> = 
     noise(ac, out, 0.9, 0.15, { filter: "lowpass", freq: 900, gain: 0.7, attack: 0.002 });
     tone(ac, out, 110, 0.9, 0.35, { glideTo: 45, gain: 0.55 });
     tone(ac, out, 2900, 1.5, 0.7, { type: "triangle", gain: 0.08, vibrato: 0.04 });
+  },
+  // Tempo in levare a tutta velocità: cassa, rullante e accordi in pennata Mi, La, Re.
+  punk(ac, out) {
+    for (let i = 0; i < 12; i += 1) {
+      const at = i * 0.16;
+      if (i % 2 === 0) tone(ac, out, 120, at, 0.12, { glideTo: 50, gain: 0.5 });
+      else noise(ac, out, at, 0.1, { freq: 1800, q: 0.6, gain: 0.35 });
+      powerChord(ac, out, at, 0.14, [40, 45, 38][Math.floor(i / 4)]);
+    }
+    noise(ac, out, 1.92, 1.2, { freq: 5000, q: 0.4, gain: 0.2 });
+    powerChord(ac, out, 1.92, 1.2);
   },
 };
 

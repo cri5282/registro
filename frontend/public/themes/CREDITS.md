@@ -7,8 +7,10 @@
 | `peru/machu-picchu.webp` | Martin St-Amant (S23678) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:80_-_Machu_Picchu_-_Juin_2009_-_edit.jpg |
 | `puglia/trulli.webp` | Bernard Gagnon | CC0 | https://commons.wikimedia.org/wiki/File:Alberobello,_Italy_05.jpg |
 | `holy/rosone.webp` | Joselodos | CC0 | https://commons.wikimedia.org/wiki/File:Stained_glass_window,_rose_window,_west_facade,_Le%C3%B3n_Cathedral,_Spain.jpg |
+| `punk/flyer.png` | Tyler Savitski | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Girl_Crowdsurfing_at_Rock_Concert.jpg |
 
-Le foto sono state ridimensionate e convertite in WebP.
+Le foto sono state ridimensionate e convertite in WebP, tranne `punk/flyer.png`, ridotta a retino
+in bianco e nero come una fotocopia (stessa licenza CC BY-SA 4.0).
 
 ## Emoji (OpenMoji)
 
@@ -22,7 +24,7 @@ dell'HfG Schwäbisch Gmünd, con licenza
 Alfa Slab One, Cinzel, Anton, DM Serif Display, Barlow Condensed, Fraunces, Black Ops One,
 Fredoka, Inter, Bricolage Grotesque, Orbitron, Merriweather, Archivo Black, Bebas Neue, Caveat,
 Cherry Bomb One, UnifrakturMaguntia, Share Tech Mono, EB Garamond, Lilita One, Racing Sans One,
-Permanent Marker, Monoton, Amatic SC e Graduate, distribuiti tramite [Fontsource](https://fontsource.org/)
+Permanent Marker, Monoton, Amatic SC, Graduate, Rubik Dirt e Special Elite, distribuiti tramite [Fontsource](https://fontsource.org/)
 con licenza SIL Open Font License 1.1.
 
 ## Illustrazioni originali

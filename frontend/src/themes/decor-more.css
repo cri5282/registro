@@ -1051,14 +1051,149 @@
   opacity: 0.16;
 }
 
+/* ---------- Punk ---------- */
+
+.tw-pk {
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* La cassetta: guscio nero, etichetta scritta a macchina, finestrella con le bobine che girano. */
+.tw-pk-tape {
+  position: relative;
+  max-width: 220px;
+  margin: 0 auto 10px;
+  padding: 10px 12px 18px;
+  background: #1c1c1c;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 2px #444;
+}
+
+.tw-pk-tape::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 22%;
+  right: 22%;
+  height: 12px;
+  background: #333;
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+}
+
+.tw-pk-label {
+  display: block;
+  padding: 3px 6px 30px;
+  background:
+    linear-gradient(#ff2a8a 0 6px, transparent 6px),
+    repeating-linear-gradient(180deg, transparent 0 13px, rgba(0, 0, 0, 0.15) 13px 14px),
+    #fbfbf8;
+  color: #000;
+  font: 400 13px/1.6 "Special Elite", "Courier New", monospace;
+  text-align: left;
+}
+
+.tw-pk-window {
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #3a3a3a;
+  border: 2px solid #000;
+  border-radius: 12px;
+  transform: translateX(-50%);
+}
+
+.tw-pk-window i {
+  width: 24px;
+  height: 24px;
+  background: repeating-conic-gradient(#fbfbf8 0 30deg, #1c1c1c 30deg 60deg);
+  border-radius: 50%;
+  mask: radial-gradient(circle, transparent 3px, #000 3.5px);
+  animation: tw-pk-spin 1.6s linear infinite;
+}
+
+/* Il nastro marrone che passa da una bobina all'altra. */
+.tw-pk-window span {
+  width: 34px;
+  height: 10px;
+  background: #4a2e1c;
+}
+
+@keyframes tw-pk-spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.tw-pk-now {
+  margin: 0;
+  font: 400 15px/1.3 "Special Elite", "Courier New", monospace;
+}
+
+.ts-pk-flyer {
+  position: absolute;
+  right: 2vw;
+  bottom: 3vh;
+  width: min(32vw, 420px);
+  background: #ff2a8a;
+  opacity: 0.13;
+  rotate: 4deg;
+  clip-path: polygon(0 2%, 22% 0, 48% 3%, 76% 0, 100% 2%, 99% 40%, 100% 97%, 70% 100%, 41% 96%, 12% 100%, 1% 98%, 2% 55%);
+}
+
+.ts-pk-photo {
+  display: block;
+  width: 100%;
+  mix-blend-mode: multiply;
+}
+
+.ts-pk-pin {
+  position: absolute;
+  top: -6px;
+  left: 44%;
+  width: 54px;
+  rotate: -60deg;
+}
+
+.ts-pk-sticker {
+  position: absolute;
+  padding: 4px 10px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.3);
+  font: 400 22px/1 "Rubik Dirt", Impact, sans-serif;
+}
+
+.ts-pk-sticker-a {
+  top: 14vh;
+  right: 3vw;
+  background: rgba(255, 225, 77, 0.35);
+  rotate: 6deg;
+}
+
+.ts-pk-sticker-b {
+  bottom: 8vh;
+  left: 2vw;
+  background: rgba(255, 42, 138, 0.18);
+  rotate: -5deg;
+}
+
 @media (max-width: 900px) {
   .ts-je,
   .ts-or {
     bottom: calc(60px + env(safe-area-inset-bottom));
   }
 
-  .ts-gt {
+  .ts-gt,
+  .ts-pk-sticker {
     display: none;
+  }
+
+  .ts-pk-flyer {
+    bottom: calc(70px + env(safe-area-inset-bottom));
+    width: 60vw;
   }
 }
 
@@ -1071,7 +1206,8 @@
   .ts-or-snail,
   .tw-bl-ball,
   .ts-bl span,
-  .ts-bl img {
+  .ts-bl img,
+  .tw-pk-window i {
     animation: none;
   }
 }

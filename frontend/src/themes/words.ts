@@ -23,7 +23,8 @@ export type ThemeId =
   | "cryptofix"
   | "ortol"
   | "basket"
-  | "bellesia";
+  | "bellesia"
+  | "punk";
 
 export const THEME_IDS: ThemeId[] = [
   "default",
@@ -51,6 +52,7 @@ export const THEME_IDS: ThemeId[] = [
   "ortol",
   "basket",
   "bellesia",
+  "punk",
 ];
 
 export const SECRET_WORDS: Record<string, ThemeId> = {
@@ -80,6 +82,7 @@ export const SECRET_WORDS: Record<string, ThemeId> = {
   ortol: "ortol",
   loscopatroie: "basket",
   bellesia: "bellesia",
+  punk: "punk",
 };
 
 export function isThemeId(value: unknown): value is ThemeId {

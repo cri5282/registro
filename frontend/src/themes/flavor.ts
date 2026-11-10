@@ -295,4 +295,16 @@ export const FLAVOR: Record<ThemeId, Partial<ThemeCopy>> = {
     },
     titles: { today: "Il match di oggi", calendar: "Il campionato", stats: "Referto", settings: "Panchina", lessons: "I set di oggi", bySubject: "Punti per materia" },
   },
+  punk: {
+    brand: "Registro Punk",
+    tagline: "Fotocopiato in 4ªB, fatto in casa 🧷",
+    nav: {
+      today: { label: "Live", icon: "🎸" },
+      calendar: { label: "Tour", icon: "🚐" },
+      stats: { label: "Danni", icon: "💥" },
+      settings: { label: "Garage", icon: "🔧" },
+      users: { label: "Band", icon: "🤘" },
+    },
+    titles: { today: "Il concerto di oggi", calendar: "Date del tour", stats: "Conta dei danni", settings: "Il garage", lessons: "Scaletta di oggi", bySubject: "Pezzi per materia" },
+  },
 };

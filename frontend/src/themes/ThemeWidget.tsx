@@ -394,6 +394,20 @@ const WIDGETS: Partial<Record<ThemeId, () => ReactNode>> = {
       <p className="tw-text">Match point · tocca a te servire 💖</p>
     </div>
   ),
+  punk: () => (
+    <div className="tw tw-pk">
+      <div className="tw-pk-tape" aria-hidden="true">
+        <span className="tw-pk-label">mixtape 4ªB, lato A</span>
+        <div className="tw-pk-window">
+          <i />
+          <span />
+          <i />
+        </div>
+      </div>
+      <p className="tw-pk-now">▶ Traccia 1: prima ora</p>
+      <p className="tw-text">Registrata dalla radio, volume al massimo 🤘</p>
+    </div>
+  ),
 };
 
 /** Il "pezzo da collezione" del tema: in barra laterale su desktop, in fondo a Oggi su telefono. */

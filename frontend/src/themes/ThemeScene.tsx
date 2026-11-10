@@ -142,6 +142,16 @@ const SCENES: Partial<Record<ThemeId, () => ReactNode>> = {
       )}
     </div>
   ),
+  punk: () => (
+    <div className="ts-pk" aria-hidden="true">
+      <div className="ts-pk-flyer">
+        <img className="ts-pk-photo" src={asset("punk/flyer.png")} alt="" />
+        <img className="ts-pk-pin" src={asset("punk/safetypin.svg")} alt="" />
+      </div>
+      <span className="ts-pk-sticker ts-pk-sticker-a">no giustifica</span>
+      <span className="ts-pk-sticker ts-pk-sticker-b">fai da te</span>
+    </div>
+  ),
 };
 
 export default function ThemeScene({ theme }: { theme: ThemeId }) {

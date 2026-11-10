@@ -1157,3 +1157,140 @@
   border: 3px solid #fff;
   box-shadow: 0 0 0 3px #db2777;
 }
+
+/* =========================================================
+   PUNK — fanzine fotocopiata
+   ========================================================= */
+
+:root[data-theme="punk"] {
+  --glow-1: #ff2a8a;
+  --glow-2: #ffe14d;
+  color-scheme: light;
+  --bg: #e6e5df;
+  --bg-soft: #dddcd5;
+  --surface: #fbfbf8;
+  --surface-2: #efeee9;
+  --border: rgba(0, 0, 0, 0.55);
+  --border-strong: #000;
+  --text: #000;
+  --muted: #383838;
+  --faint: #666;
+  --accent: #d4006a;
+  --accent-strong: #a80054;
+  --accent-soft: rgba(255, 42, 138, 0.14);
+  --accent-2: #ffe14d;
+  --green: #137a33;
+  --green-soft: rgba(19, 122, 51, 0.12);
+  --red: #c4001a;
+  --red-soft: rgba(196, 0, 26, 0.1);
+  --amber: #a85d00;
+  --ring-track: rgba(0, 0, 0, 0.1);
+  --shadow: 5px 5px 0 #000;
+  --radius: 2px;
+  --radius-sm: 0;
+  --selection: rgba(255, 42, 138, 0.45);
+  --accent-border: #000;
+  --accent-grad: linear-gradient(#ff2a8a, #ff2a8a);
+  --accent-shadow: 3px 3px 0 #000;
+  --avatar-grad: linear-gradient(135deg, #ff2a8a, #ffe14d);
+  --on-accent: #000;
+  --logo-1: #ff2a8a;
+  --logo-2: #000;
+  --logo-3: #ffe14d;
+  --logo-shadow: 3px 3px 0 #000;
+  --font-display: "Rubik Dirt", Impact, sans-serif;
+  --body-bg: var(--bg);
+  /* Carta da fotocopiatrice: retino a punti, strisce di toner e i bordi scuriti dal coperchio. */
+  --art:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.14), transparent 2.5%, transparent 97.5%, rgba(0, 0, 0, 0.14)),
+    repeating-linear-gradient(90deg, transparent 0 230px, rgba(0, 0, 0, 0.04) 230px 232px, transparent 232px 410px),
+    radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1.5px) 0 0 / 7px 7px,
+    var(--bg);
+  --empty-art: url("/themes/punk/safetypin.svg");
+  --ring-art: repeating-conic-gradient(#ff2a8a 0 10deg, #000 10deg 14deg);
+  cursor: url("/themes/punk/safetypin-cursor.png") 4 4, auto;
+}
+
+[data-theme="punk"] h1,
+[data-theme="punk"] h2 {
+  font-weight: 400;
+}
+
+/* Il titolo sta su una striscia di nastro giallo strappata a mano. */
+[data-theme="punk"] .page-header h1 {
+  display: inline-block;
+  padding: 6px 18px 4px;
+  background: #ffe14d;
+  font-size: clamp(30px, 5vw, 50px);
+  line-height: 1.05;
+  transform: rotate(-1.5deg);
+  clip-path: polygon(1% 4%, 30% 0, 62% 6%, 99% 1%, 100% 52%, 98% 97%, 66% 100%, 34% 94%, 0 100%, 2% 48%);
+}
+
+[data-theme="punk"] .card,
+[data-theme="punk"] .event-card {
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* Ritagli incollati storti, uno sì e uno no. */
+[data-theme="punk"] .event-list .event-card:nth-child(odd) {
+  rotate: -0.4deg;
+}
+
+[data-theme="punk"] .event-list .event-card:nth-child(even) {
+  rotate: 0.35deg;
+}
+
+/* Le lezioni sono la scaletta del concerto. */
+[data-theme="punk"] .event-list {
+  counter-reset: track;
+}
+
+[data-theme="punk"] .event-list .event-card {
+  counter-increment: track;
+}
+
+[data-theme="punk"] .event-list .event-card::after {
+  content: "traccia " counter(track, decimal-leading-zero);
+  position: absolute;
+  top: -9px;
+  left: 12px;
+  padding: 2px 8px;
+  background: #ff2a8a;
+  border: 1.5px solid #000;
+  color: #000;
+  font: 400 11px/1.2 "Special Elite", "Courier New", monospace;
+  transform: rotate(-2deg);
+}
+
+[data-theme="punk"] .stat-chip {
+  background: #000;
+  border-radius: 0;
+  color: #fbfbf8;
+  font-family: "Special Elite", "Courier New", monospace;
+}
+
+[data-theme="punk"] .stat-chip strong {
+  color: #ff2a8a !important;
+}
+
+/* Barre come nastro adesivo rosa a strisce. */
+[data-theme="punk"] .bar {
+  background: repeating-linear-gradient(-45deg, #ff2a8a 0 7px, #d4006a 7px 14px);
+}
+
+[data-theme="punk"] .button,
+[data-theme="punk"] .status-button {
+  font-family: "Special Elite", "Courier New", monospace;
+}
+
+[data-theme="punk"] .theme-cheer {
+  background: #000;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 #ff2a8a;
+  color: #ffe14d;
+  font-family: "Rubik Dirt", Impact, sans-serif;
+  font-weight: 400;
+  rotate: -2deg;
+}
